@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Cycle Agronomic and Economic Evaluation of Cassava + Maize/Beans Intercropping Systems in Rwanda</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js for Publication-Grade Interactive Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- Google Fonts: Inter & Merriweather & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Merriweather', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            forest: {
+              50: '#f2f7f4',
+              100: '#dfece4',
+              200: '#c0d9ca',
+              300: '#95bea6',
+              400: '#679e7f',
+              500: '#458160',
+              600: '#33664b',
+              700: '#29523d',
+              800: '#224232',
+              900: '#1c372a',
+              950: '#0f1f17',
+            },
+            earth: {
+              50: '#fbf8f3',
+              100: '#f4ede0',
+              200: '#e8d8bd',
+              300: '#d8bc90',
+              400: '#c79b62',
+              500: '#ba8243',
+              600: '#a46936',
+              700: '#88522e',
+              800: '#70442b',
+              900: '#5c3926',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      background-color: #f8faf9;
+      color: #1e293b;
+    }
+    .academic-heading {
+      font-family: 'Merriweather', Georgia, serif;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    /* Custom scrollbar for wide statistical tables */
+    .table-container::-webkit-scrollbar {
+      height: 8px;
+      width: 8px;
+    }
+    .table-container::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    .table-container::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .table-container::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    /* Active TOC link indicator */
+    .toc-link.active {
+      background-color: #dfece4;
+      color: #1c372a;
+      font-weight: 600;
+      border-left: 3px solid #29523d;
+    }
+    .toc-sublink.active {
+      color: #29523d;
+      font-weight: 600;
+      background-color: #f2f7f4;
+    }
+    /* Print styles */
+    @media print {
+      #sidebar-nav, #mobile-nav-bar, .no-print {
+        display: none !important;
+      }
+      #main-content {
+        margin-left: 0 !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .card-panel {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        break-inside: avoid;
+      }
+      body {
+        background: #ffffff !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased text-slate-800">
+
+  <!-- Mobile Top Navigation Bar -->
+  <header id="mobile-nav-bar" class="lg:hidden sticky top-0 z-40 bg-forest-900 text-white px-4 py-3 shadow-md flex items-center justify-between">
+    <div class="flex items-center space-x-2.5">
+      <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-forest-700 text-emerald-200 font-bold text-sm">OAF</span>
+      <span class="font-semibold text-sm tracking-tight truncate max-w-[220px]">Cassava + Maize/Beans Report</span>
+    </div>
+    <button id="mobile-menu-btn" type="button" class="p-2 rounded-lg bg-forest-800 hover:bg-forest-700 text-white focus:outline-none" aria-label="Toggle Table of Contents">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </header>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/50 z-40 hidden lg:hidden backdrop-blur-xs"></div>
+
+  <!-- Sticky Left-Hand R Markdown-Style TOC Sidebar -->
+  <aside id="sidebar-nav" class="fixed top-0 left-0 z-50 h-screen w-72 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300 -translate-x-full lg:translate-x-0 shadow-sm">
+    <!-- Sidebar Header -->
+    <div class="p-5 border-b border-slate-200 bg-forest-950 text-white">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-mono uppercase tracking-widest text-emerald-300 font-semibold">Agronomy &amp; Systems Research</span>
+        <button id="close-sidebar-btn" class="lg:hidden text-slate-300 hover:text-white p-1 rounded-md">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <h2 class="mt-1.5 text-sm font-bold leading-snug text-white">Cassava + Maize/Beans Intercropping Systems</h2>
+      <p class="mt-1 text-xs text-forest-200">Rwanda Multi-Cycle Evaluation (2025A–2026B)</p>
+    </div>
+
+    <!-- Scrollable TOC Links -->
+    <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1 text-xs">
+      <a href="#executive-summary" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">Executive Summary</a>
+      
+      <a href="#sec-1" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">1. Introduction &amp; Hypotheses</a>
+      <div class="pl-4 space-y-0.5 border-l border-slate-200 ml-3">
+        <a href="#sec-1-1" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">1.1 Smallholder Context</a>
+        <a href="#sec-1-2" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">1.2 Objectives &amp; Hypotheses</a>
+      </div>
+
+      <a href="#sec-2" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">2. Experimental Design</a>
+      <div class="pl-4 space-y-0.5 border-l border-slate-200 ml-3">
+        <a href="#sec-2-1" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">2.1 AEZ Site Characterization</a>
+        <a href="#sec-2-2" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">2.2 Trial 1 Treatment Matrix</a>
+        <a href="#sec-2-3" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">2.3 Trial 2 &amp; Mixed Models</a>
+      </div>
+
+      <a href="#sec-3" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">3. Trial 1 Results (25AB–26AB)</a>
+      <div class="pl-4 space-y-0.5 border-l border-slate-200 ml-3">
+        <a href="#sec-3-1" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">3.1 Maize Yield &amp; Biomass</a>
+        <a href="#sec-3-2" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">3.2 Season B Bush Beans</a>
+        <a href="#sec-3-3" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">3.3 12M Cassava Root Yield</a>
+        <a href="#sec-3-4" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">3.4 System Efficiency (ATER)</a>
+        <a href="#sec-3-5" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">3.5 Cumulative 12M Profit</a>
+        <a href="#sec-3-6" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">3.6 CT-CA vs. CT-CT Contrasts</a>
+      </div>
+
+      <a href="#sec-4" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">4. Trial 2 Cohort Results</a>
+      <div class="pl-4 space-y-0.5 border-l border-slate-200 ml-3">
+        <a href="#sec-4-1" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">4.1 Early Maize &amp; Beans</a>
+        <a href="#sec-4-2" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">4.2 12M Cassava, ATER &amp; Profit</a>
+      </div>
+
+      <a href="#sec-5" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">5. 12M Cost Breakdown</a>
+      <div class="pl-4 space-y-0.5 border-l border-slate-200 ml-3">
+        <a href="#sec-5-1" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">5.1 Seed vs. Labor Cost Shift</a>
+        <a href="#sec-5-2" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">5.2 Complete Cost Table</a>
+      </div>
+
+      <a href="#sec-6" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">6. Fertilizer &amp; Planting Timing</a>
+      <div class="pl-4 space-y-0.5 border-l border-slate-200 ml-3">
+        <a href="#sec-6-1" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">6.1 Input Omission vs. Timing</a>
+        <a href="#sec-6-2" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">6.2 Block 5 Regime Contrasts</a>
+      </div>
+
+      <a href="#sec-7" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">7. Hypothesis Synthesis</a>
+      <a href="#sec-8" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">8. Conclusions &amp; Recommendations</a>
+    </nav>
+
+    <!-- Sidebar Footer Actions -->
+    <div class="p-4 border-t border-slate-200 bg-slate-50 space-y-2 no-print">
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 px-3 py-2 bg-forest-800 hover:bg-forest-700 text-white text-xs font-medium rounded-lg shadow-xs transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Print / Save Report PDF</span>
+      </button>
+      <div class="text-[11px] text-slate-500 text-center">
+        Model: <code class="font-mono text-forest-800">lme4::lmer</code> &bull; Tukey &alpha;=0.05
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Container -->
+  <main id="main-content" class="lg:ml-72 min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- Document Title Banner -->
+      <header class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden card-panel">
+        <div class="bg-gradient-to-r from-forest-950 via-forest-900 to-forest-800 px-6 sm:px-10 py-8 sm:py-10 text-white">
+          <div class="flex flex-wrap items-center gap-2 mb-4">
+            <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-200 border border-emerald-400/30">Multi-Cycle Systems Evaluation</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-200 border border-amber-400/30">Karongi &amp; Kayonza Stations</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-mono bg-white/10 text-slate-200">2025A – 2026B</span>
+          </div>
+          <h1 class="academic-heading text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-white">
+            Multi-Cycle Agronomic and Economic Evaluation of Cassava + Maize/Beans Intercropping Systems under Conservation and Conventional Tillage in Rwanda
+          </h1>
+          <p class="mt-3 text-sm sm:text-base text-forest-100 max-w-3xl leading-relaxed">
+            Integrating 12-month cassava tuberous root harvests, Area-Time Equivalent Ratio (ATER), component production cost decomposition (Seed, Fertilizer, Labor), and Block 5 fertilizer/compost omission and planting-timing contrasts across contrasting Rwandan agro-ecological zones.
+          </p>
+        </div>
+
+        <!-- Study Metadata Strip -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 bg-slate-50/80 text-xs">
+          <div class="p-4">
+            <span class="block text-slate-500 uppercase tracking-wider font-semibold text-[10px]">Agro-Ecological Zones</span>
+            <span class="mt-1 block font-semibold text-slate-800">Karongi (Humid High-Rainfall)</span>
+            <span class="block text-slate-600">Kayonza (Semi-Arid Dryland)</span>
+          </div>
+          <div class="p-4">
+            <span class="block text-slate-500 uppercase tracking-wider font-semibold text-[10px]">Experimental Scope</span>
+            <span class="mt-1 block font-semibold text-slate-800">Trial 1: Cycle 1 (25AB) &amp; Cycle 2 (26AB)</span>
+            <span class="block text-slate-600">Trial 2: Early Planting &amp; 12M Cohort</span>
+          </div>
+          <div class="p-4">
+            <span class="block text-slate-500 uppercase tracking-wider font-semibold text-[10px]">Design &amp; Tillage Regimes</span>
+            <span class="mt-1 block font-semibold text-slate-800">RCBD (4 Replicates / Station)</span>
+            <span class="block text-slate-600">CT-CA Transition vs. Continuous CT-CT</span>
+          </div>
+          <div class="p-4">
+            <span class="block text-slate-500 uppercase tracking-wider font-semibold text-[10px]">Statistical Framework</span>
+            <span class="mt-1 block font-semibold text-slate-800">Linear Mixed Models (<code class="font-mono text-forest-700">lme4::lmer</code>)</span>
+            <span class="block text-slate-600">EMMeans, Paired Contrasts &amp; Tukey CLD (&alpha;=0.05)</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- EXECUTIVE SUMMARY -->
+      <section id="executive-summary" class="scroll-mt-16 space-y-6">
+        <div class="flex items-center space-x-3 border-b border-slate-200 pb-3">
+          <span class="w-2 h-7 bg-forest-700 rounded-full"></span>
+          <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">Executive Summary</h2>
+        </div>
+
+        <!-- 4 Executive KPI Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+          <!-- KPI 1 -->
+          <div class="bg-white rounded-xl border border-emerald-200 p-5 shadow-xs card-panel relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-emerald-50 rounded-bl-full -mr-2 -mt-2"></div>
+            <span class="inline-block px-2 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-100 text-emerald-800">Humid Zone Winner (Karongi)</span>
+            <div class="mt-3 text-2xl font-bold text-slate-900 tabular-nums">$12,127 – $14,175<span class="text-xs font-normal text-slate-500">/ha</span></div>
+            <p class="mt-1 text-xs font-semibold text-forest-800">Treatment E (Low Maize / High Cassava)</p>
+            <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+              Achieved <strong>33.5–54.5 t/ha</strong> cassava yield and <strong>ATER 1.67–1.95</strong>, outperforming annual Maize–Beans (A) by up to <strong>+$13,648/ha</strong> and Low Cassava (F) by <strong>+$4,617–$5,021/ha</strong>.
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="bg-white rounded-xl border border-amber-200 p-5 shadow-xs card-panel relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-amber-50 rounded-bl-full -mr-2 -mt-2"></div>
+            <span class="inline-block px-2 py-0.5 rounded-md text-[11px] font-semibold bg-amber-100 text-amber-800">Semi-Arid Zone Winner (Kayonza)</span>
+            <div class="mt-3 text-2xl font-bold text-slate-900 tabular-nums">$3,793 – $5,764<span class="text-xs font-normal text-slate-500">/ha</span></div>
+            <p class="mt-1 text-xs font-semibold text-amber-900">Treatment B (Sole Cassava Control)</p>
+            <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+              Moisture competition reduced intercropped cassava yields by <strong>78%–91%</strong> in Cycle 1 (26.1 vs. 2.4–4.8 t/ha). Among intercrops, <strong>Akilimo (C)</strong> and <strong>Wide-Alley D</strong> preserved highest returns.
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="bg-white rounded-xl border border-teal-200 p-5 shadow-xs card-panel relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-teal-50 rounded-bl-full -mr-2 -mt-2"></div>
+            <span class="inline-block px-2 py-0.5 rounded-md text-[11px] font-semibold bg-teal-100 text-teal-800">Conservation Agriculture (CT-CA)</span>
+            <div class="mt-3 text-2xl font-bold text-slate-900 tabular-nums">22 / 24 <span class="text-xs font-normal text-slate-500">Contrasts ns</span></div>
+            <p class="mt-1 text-xs font-semibold text-teal-900">Governed by &ge;5 t/ha Stover Threshold</p>
+            <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+              <code>CT-CA (F)</code> matched <code>CT-CT (G)</code> completely in Karongi (6–10 t/ha stover), but suffered a <strong>+$204.34/ha</strong> weeding cost surge (<span class="font-mono">p=0.0007</span>) in Kayonza C2 when stover fell &lt;3 t/ha.
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="bg-white rounded-xl border border-rose-200 p-5 shadow-xs card-panel relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-rose-50 rounded-bl-full -mr-2 -mt-2"></div>
+            <span class="inline-block px-2 py-0.5 rounded-md text-[11px] font-semibold bg-rose-100 text-rose-800">Annual Monocrop Vulnerability</span>
+            <div class="mt-3 text-2xl font-bold text-slate-900 tabular-nums">-$412 <span class="text-xs font-normal text-slate-500">to</span> $527<span class="text-xs font-normal text-slate-500">/ha</span></div>
+            <p class="mt-1 text-xs font-semibold text-rose-900">Cycle 2 Annual Maize–Beans (A)</p>
+            <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+              Late-season rainfall tapering in Cycle 2 collapsed annual rotation net returns to <strong>$527/ha</strong> in Karongi and a net loss of <strong>-$412/ha</strong> in Kayonza, proving cassava’s system-buffering role.
+            </p>
+          </div>
+        </div>
+
+        <!-- Narrative Synthesis Box -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-4 text-sm sm:text-base leading-relaxed text-slate-700">
+          <p>
+            Smallholder farmers in Rwanda cultivate highly fragmented landholdings averaging <strong>0.4 ha</strong> (with <strong>77%</strong> managing under 0.5 ha), making multi-crop intensification indispensable for household food security and income generation. Across two agro-ecologically distinct research stations—<strong>Karongi</strong> (humid, well-distributed rainfall) and <strong>Kayonza</strong> (semi-arid with frequent dry spells)—this multi-cycle investigation evaluated spatial arrangements, component plant population densities (PPD), early planting, and the transition from Conventional Tillage to Conservation Agriculture (<strong>CT-CA</strong> vs. <strong>CT-CT</strong>) in <strong>Cassava + Maize/Beans</strong> intercropping systems.
+          </p>
+          <div class="p-4 rounded-xl bg-forest-50 border-l-4 border-forest-700 text-slate-800 text-sm">
+            <strong>Core Analytical Breakthrough — Why Full 12-Month Accounting Reverses Early Rankings:</strong> Preliminary assessments based solely on Season A maize and Season B bean harvests favored Low Cassava arrangements (<code>F</code> and <code>G</code>, 8,333 cassava/ha) because reduced cassava density minimized early competition on cereals. However, incorporating final <strong>12-month cassava tuberous root yields</strong>, <strong>Area-Time Equivalent Ratio (ATER)</strong>, and <strong>cumulative 12-month net profit</strong> overturns that conclusion and establishes a mandatory <strong>agro-ecological split</strong>: in humid Karongi, prioritizing high cassava density with moderate maize (<code>Treatment E</code>) unlocks massive tuber bulking (33.5–54.5 t/ha) and peak system wealth ($12,127–$14,175/ha), whereas in semi-arid Kayonza, below-ground moisture competition severely penalizes intercropped cassava, making sole cassava (<code>B</code>) or wide-alley spacing (<code>C</code>/<code>D</code>) essential.
+          </div>
+          <!-- KPI Card 5: Structural Cost Shift -->
+          <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-xs card-panel border-t-4 border-t-indigo-600">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-700">12M Cost Structure Shift</span>
+              <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-indigo-50 text-indigo-800">C1 Seed &rarr; C2 Labor</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900">Weeding Labor Surged 2.5&times;&ndash;5.6&times; in Cycle 2</h3>
+            <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+              In Cycle 1, <strong>Seed</strong> was the largest cost ($419&ndash;$540/ha, 44%&ndash;53%). In Cycle 2, <strong>Labor</strong> surged to <strong>$647&ndash;$781/ha</strong> in Karongi and <strong>$1,198&ndash;$1,490/ha</strong> (53%&ndash;84% of cost) in Kayonza. Treatment <strong>E</strong> saved <strong>$442/ha</strong> vs. over-packed <strong>D</strong> in Karongi C2.
+            </p>
+          </div>
+
+          <!-- KPI Card 6: Fertilizer & Timing -->
+          <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-xs card-panel border-t-4 border-t-rose-600">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-rose-700">Inputs &amp; Planting Timing</span>
+              <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-rose-50 text-rose-800">Block 5 Sentinel</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900">Compost+Fert &amp; Oct Planting Prevent Collapse</h3>
+            <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+              Omitting compost &amp; fertilizer cut timely-planted cassava profit by <strong>-53% (-$4,383 to -$5,398/ha)</strong> in Karongi. Delayed late-Oct/Nov planting without inputs wiped out <strong>-92.8%</strong> of Maize&ndash;Beans (<code>A</code>) profit ($114/ha), whereas Intercrop <code>F</code> preserved <strong>$5,861/ha</strong> via canopy-relief cassava gains (+15% to +52%).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 1: INTRODUCTION, RESEARCH GAPS, OBJECTIVES & HYPOTHESES -->
+      <section id="sec-1" class="scroll-mt-16 space-y-6">
+        <div class="flex items-center space-x-3 border-b border-slate-200 pb-3">
+          <span class="w-2 h-7 bg-forest-700 rounded-full"></span>
+          <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">1. Introduction, Research Gaps, Objectives &amp; Hypotheses</h2>
+        </div>
+
+        <div id="sec-1-1" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-5">
+          <h3 class="text-lg font-bold text-forest-900">1.1 Smallholder Context and Rationale</h3>
+          <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+            Cassava (<em>Manihot esculenta</em> Crantz) occupies approximately <strong>17%</strong> of Rwanda’s cultivated land—trailing only bush beans (22%) and bananas (18%)—and serves as a foundational food-security and cash crop for resource-constrained smallholders farming sloping, acidic, or degraded soils. Because <strong>77% of Rwandan farming households cultivate less than 0.5 ha</strong> (national mean ~0.4 ha), farmers routinely intercrop cassava with maize and bush beans to harvest multiple food groups from the same plot within a single 12-month agricultural cycle.
+          </p>
+          <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+            While roughly <strong>40%</strong> of One Acre Fund (OAF) farmers practice informal mixed intercropping, adoption of structured row intercropping remains low (~<strong>5%</strong>, despite generating ~$8/adopter in prior MEL assessments) due to four unresolved agronomic knowledge gaps:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center space-x-2 text-forest-800 font-semibold text-sm">
+                <span class="w-6 h-6 rounded-full bg-forest-700 text-white flex items-center justify-center text-xs">1</span>
+                <span>Conservation Agriculture (CA) Compatibility</span>
+              </div>
+              <p class="mt-2 text-xs text-slate-600 leading-relaxed">Absence of empirical data on transitioning from conventional tillage in Season A to no-tillage with retained maize stover mulch in Season B (<strong>CT-CA</strong>) within 12-month cassava systems across Rwandan AEZs.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center space-x-2 text-forest-800 font-semibold text-sm">
+                <span class="w-6 h-6 rounded-full bg-forest-700 text-white flex items-center justify-center text-xs">2</span>
+                <span>Spatial Geometry &amp; Density Trade-Offs</span>
+              </div>
+              <p class="mt-2 text-xs text-slate-600 leading-relaxed">Uncertainty in row spacing and component plant population densities (PPD) needed to balance Season A/B cereal-legume yields against 12-month cassava root bulking.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center space-x-2 text-forest-800 font-semibold text-sm">
+                <span class="w-6 h-6 rounded-full bg-forest-700 text-white flex items-center justify-center text-xs">3</span>
+                <span>Multi-Crop Nutrient Partitioning</span>
+              </div>
+              <p class="mt-2 text-xs text-slate-600 leading-relaxed">Interspecific N–P–K competition and lateral fertilizer spillover between vigorous cereals and long-duration cassava under split-application regimes.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center space-x-2 text-forest-800 font-semibold text-sm">
+                <span class="w-6 h-6 rounded-full bg-forest-700 text-white flex items-center justify-center text-xs">4</span>
+                <span>Canopy Shading &amp; Microclimate Dynamics</span>
+              </div>
+              <p class="mt-2 text-xs text-slate-600 leading-relaxed">Light interception by maize in Season A and expanding cassava canopies in Season B affecting understory bush bean pod set across wet vs. dry environments.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="sec-1-2" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-5">
+          <h3 class="text-lg font-bold text-forest-900">1.2 Trial Objectives &amp; Formal Hypotheses</h3>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl border border-forest-200 bg-forest-50/50">
+              <span class="text-xs font-mono font-bold uppercase text-forest-700">Objective 1</span>
+              <p class="mt-1 text-sm font-semibold text-slate-900">Spatial &amp; Density Optimization</p>
+              <p class="mt-1 text-xs text-slate-600">Quantify how spatial row arrangements and component densities affect maize, bean, and cassava yields, land-use efficiency (ATER), and cumulative 12-month net profit.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-forest-200 bg-forest-50/50">
+              <span class="text-xs font-mono font-bold uppercase text-forest-700">Objective 2</span>
+              <p class="mt-1 text-sm font-semibold text-slate-900">CT-CA vs. CT-CT Transition</p>
+              <p class="mt-1 text-xs text-slate-600">Determine whether transitioning to zero-tillage in Season B (<code>CT-CA</code>, Treatment F) incurs any yield, cost, or profit penalty relative to continuous tillage (<code>CT-CT</code>, Treatment G).</p>
+            </div>
+            <div class="p-4 rounded-xl border border-forest-200 bg-forest-50/50">
+              <span class="text-xs font-mono font-bold uppercase text-forest-700">Objective 3</span>
+              <p class="mt-1 text-sm font-semibold text-slate-900">Residue-Driven Weed Suppression</p>
+              <p class="mt-1 text-xs text-slate-600">Evaluate whether Season A maize stover biomass retained on the soil surface suppresses Season B weed pressure and hand-weeding labor costs under minimum tillage.</p>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-200 pt-4">
+            <h4 class="text-sm font-bold uppercase tracking-wider text-slate-600 mb-3">Testable Hypotheses (H<sub>1</sub> – H<sub>4</sub>)</h4>
+            <ul class="space-y-2.5 text-sm text-slate-700">
+              <li class="flex items-start space-x-2.5">
+                <span class="px-2 py-0.5 rounded bg-slate-800 text-white font-mono text-xs font-semibold mt-0.5">H1</span>
+                <span>All cassava + maize/beans intercrop arrangements will increase system land-use efficiency (<strong class="font-mono">ATER &gt; 1.0</strong>) relative to sole cropping across both stations.</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <span class="px-2 py-0.5 rounded bg-slate-800 text-white font-mono text-xs font-semibold mt-0.5">H2</span>
+                <span>Full-density intercropping (<strong>Treatment D</strong>) will outperform the standard Akilimo arrangement (<strong>Treatment C</strong>) due to wider inter-row spacing (150 cm vs. 100 cm) between cassava rows.</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <span class="px-2 py-0.5 rounded bg-slate-800 text-white font-mono text-xs font-semibold mt-0.5">H3</span>
+                <span>Low-cassava intercropping (<strong>Treatment F</strong>, cassava reduced by 17% to 8,333 plants/ha) will generate lower total 12-month system output than full-density cassava arrangements.</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <span class="px-2 py-0.5 rounded bg-slate-800 text-white font-mono text-xs font-semibold mt-0.5">H4</span>
+                <span>The <code>CT-CA</code> transition system (<strong>F</strong>) will perform equivalently to continuous <code>CT-CT</code> (<strong>G</strong>) because Season B bush beans tolerate zero-tillage under retained maize stover mulch.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: EXPERIMENTAL DESIGN & STATISTICAL METHODOLOGY -->
+      <section id="sec-2" class="scroll-mt-16 space-y-6">
+        <div class="flex items-center space-x-3 border-b border-slate-200 pb-3">
+          <span class="w-2 h-7 bg-forest-700 rounded-full"></span>
+          <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">2. Experimental Design &amp; Statistical Methodology</h2>
+        </div>
+
+        <!-- 2.1 Site Characterization -->
+        <div id="sec-2-1" class="scroll-mt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-xs card-panel">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-bold text-forest-900">Karongi Station (Western Province)</h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Humid High-Rainfall AEZ</span>
+            </div>
+            <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-700">
+              <li><strong>Moisture Regime:</strong> High total precipitation with reliable distribution across both Season A and Season B (only 3 months exceeding 15 dry days between Oct 2024 and Jun 2025).</li>
+              <li><strong>Biophysical Consequence:</strong> Abundant soil moisture supports simultaneous root-zone uptake by maize/beans and vigorous canopy &amp; tuberous root bulking in cassava.</li>
+              <li><strong>Cultivars:</strong> Cassava <em>NAROCAS 1</em>; Maize <em>APIS 301</em>; Bush Beans <em>RWR 2245</em>.</li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-xs card-panel">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-bold text-amber-900">Kayonza Station (Eastern Province)</h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">Semi-Arid Dryland AEZ</span>
+            </div>
+            <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-700">
+              <li><strong>Moisture Regime:</strong> Semi-arid savanna transition zone characterized by lower total precipitation and frequent dry spells (&gt;15 dry days in nearly every month except April).</li>
+              <li><strong>Biophysical Consequence:</strong> Intense below-ground water competition during Months 1–4 restricts cassava tuber initiation when paired with fast-rooting cereals.</li>
+              <li><strong>Cultivars:</strong> Cassava <em>NAROCAS 1</em>; Maize <em>WH 403</em>; Bush Beans <em>RWR 2245</em>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2.2 Trial 1 Treatment Matrix -->
+        <div id="sec-2-2" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h3 class="text-lg font-bold text-forest-900">2.2 Trial 1 Treatment Architecture (2025A–2026B Multi-Cycle Full System)</h3>
+              <p class="text-xs text-slate-500 mt-0.5">RCBD with 4 replications per station across Cycle 1 (25AB) and Cycle 2 (26AB). Basal compost: 8 t/ha in planting holes.</p>
+            </div>
+            <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 font-mono text-xs">7 Treatments (A–G)</span>
+          </div>
+
+          <div class="overflow-x-auto table-container border border-slate-200 rounded-xl">
+            <table class="min-w-full divide-y divide-slate-200 text-xs">
+              <thead class="bg-forest-900 text-white">
+                <tr>
+                  <th class="px-3.5 py-3 text-left font-semibold">Code</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">System / Treatment Name</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">Season A (Cassava + Maize Spacing &amp; PPD)</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">Season B (Cassava + Beans Spacing &amp; PPD)</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">Tillage Regime</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-3 font-mono font-bold text-slate-900">A</td>
+                  <td class="px-3.5 py-3 font-semibold text-slate-900">Annual Sole Rotation<br><span class="font-normal text-slate-500">(Maize &rarr; Beans)</span></td>
+                  <td class="px-3.5 py-3 text-slate-700">Sole Maize: 75 &times; 50 cm, 2 seeds/hole (<strong class="tabular-nums">53,000 pl/ha</strong>)</td>
+                  <td class="px-3.5 py-3 text-slate-700">Sole Beans: 40 &times; 20 cm, 2 seeds/hole (<strong class="tabular-nums">250,000 pl/ha</strong>)</td>
+                  <td class="px-3.5 py-3"><span class="px-2 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-200 font-medium">CT-CA</span> (CT in A; No-till in B)</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-3 font-mono font-bold text-slate-900">B</td>
+                  <td class="px-3.5 py-3 font-semibold text-slate-900">Sole Cassava Control</td>
+                  <td class="px-3.5 py-3 text-slate-700">Sole Cassava: 100 &times; 100 cm (<strong class="tabular-nums">10,000 pl/ha</strong>)</td>
+                  <td class="px-3.5 py-3 text-slate-700">Sole Cassava (12-month continuous stand)</td>
+                  <td class="px-3.5 py-3"><span class="px-2 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-200 font-medium">CT-CA</span></td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-3 font-mono font-bold text-slate-900">C</td>
+                  <td class="px-3.5 py-3 font-semibold text-slate-900">Cassava + Maize/Beans<br><span class="font-normal text-slate-500">(Akilimo Standard)</span></td>
+                  <td class="px-3.5 py-3 text-slate-700"><code class="text-[11px] bg-slate-100 px-1 rounded">C-M-C-M-C</code>: Cassava 100 &times; 100 cm (<strong>10,000/ha</strong>); Maize 1 row at 50 cm (<strong>40,000/ha</strong>)</td>
+                  <td class="px-3.5 py-3 text-slate-700"><code class="text-[11px] bg-slate-100 px-1 rounded">C-B-C-B-C</code>: Beans 1 row at 50 cm, 3 seeds/hole (<strong>150,000/ha</strong>)</td>
+                  <td class="px-3.5 py-3"><span class="px-2 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-200 font-medium">CT-CA</span></td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-3 font-mono font-bold text-slate-900">D</td>
+                  <td class="px-3.5 py-3 font-semibold text-slate-900">Cassava + Maize/Beans<br><span class="font-normal text-slate-500">(100% Density)</span></td>
+                  <td class="px-3.5 py-3 text-slate-700"><code class="text-[11px] bg-slate-100 px-1 rounded">C-M-C-M-C-M-C</code>: Cassava 150 &times; 70 cm (<strong>9,524/ha</strong>); Maize 2 rows (<strong>53,000/ha</strong>)</td>
+                  <td class="px-3.5 py-3 text-slate-700"><code class="text-[11px] bg-slate-100 px-1 rounded">C-B-B-B-C</code>: Beans 3 rows between cassava (<strong>225,000/ha</strong>)</td>
+                  <td class="px-3.5 py-3"><span class="px-2 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-200 font-medium">CT-CA</span></td>
+                </tr>
+                <tr class="bg-emerald-50/40 hover:bg-emerald-50/70">
+                  <td class="px-3.5 py-3 font-mono font-bold text-forest-900">E</td>
+                  <td class="px-3.5 py-3 font-semibold text-forest-900">Cassava + Maize/Beans<br><span class="font-normal text-forest-700">(Low Maize, LM)</span></td>
+                  <td class="px-3.5 py-3 text-slate-800"><code class="text-[11px] bg-white px-1 rounded border border-emerald-200">C-M-C-M-C</code>: Cassava 120 &times; 80 cm (<strong>10,417/ha</strong>); Maize 1 row at 60 cm (<strong>33,333/ha</strong>)</td>
+                  <td class="px-3.5 py-3 text-slate-800"><code class="text-[11px] bg-white px-1 rounded border border-emerald-200">C-B-B-C</code>: Beans 2 rows between cassava (<strong>250,000/ha</strong>)</td>
+                  <td class="px-3.5 py-3"><span class="px-2 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-200 font-medium">CT-CA</span></td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-3 font-mono font-bold text-slate-900">F</td>
+                  <td class="px-3.5 py-3 font-semibold text-slate-900">Cassava + Maize/Beans<br><span class="font-normal text-slate-500">(Low Cassava, LC)</span></td>
+                  <td class="px-3.5 py-3 text-slate-700"><code class="text-[11px] bg-slate-100 px-1 rounded">C-M-M-C-M-M-C</code>: Cassava 150 &times; 80 cm (<strong>8,333/ha</strong>, -17%); Maize 2 rows (<strong>53,333/ha</strong>)</td>
+                  <td class="px-3.5 py-3 text-slate-700"><code class="text-[11px] bg-slate-100 px-1 rounded">C-B-B-B-C</code>: Beans 3 rows (<strong>225,000/ha</strong>)</td>
+                  <td class="px-3.5 py-3"><span class="px-2 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-200 font-medium">CT-CA</span> (No-till + mulch in B)</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-3 font-mono font-bold text-slate-900">G</td>
+                  <td class="px-3.5 py-3 font-semibold text-slate-900">Cassava + Maize/Beans<br><span class="font-normal text-slate-500">(Low Cassava, CT)</span></td>
+                  <td class="px-3.5 py-3 text-slate-700">Identical spacing &amp; PPD to <strong>F</strong> (<strong>8,333 cassava/ha</strong>; <strong>53,333 maize/ha</strong>)</td>
+                  <td class="px-3.5 py-3 text-slate-700">Identical spacing &amp; PPD to <strong>F</strong> (<strong>225,000 beans/ha</strong>)</td>
+                  <td class="px-3.5 py-3"><span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-medium">CT-CT</span> (Hand-hoe all seasons)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-600 pt-2">
+            <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+              <strong class="text-slate-800">Mineral Fertilizer Split Protocol:</strong> Sole maize received 100 kg/ha DAP + 100 kg/ha Urea (64 N, 46 P<sub>2</sub>O<sub>5</sub>); sole cassava received 300 kg/ha NPK 17-17-17 (51 N, 51 P<sub>2</sub>O<sub>5</sub>, 51 K<sub>2</sub>O). Intercrops received <strong>70% component rates</strong> on maize (70 kg/ha DAP + 70 kg/ha Urea) and cassava (210 kg/ha NPK 17-17-17 at 6 WAP), plus 40 kg/ha DAP on intercropped beans (vs. 100 kg/ha DAP on sole beans).
+            </div>
+            <div id="sec-2-3" class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+              <strong class="text-slate-800">Trial 2 &amp; Statistical Modeling:</strong> Trial 2 evaluated early planting on Season A maize and Season B beans (<code>A, D, E, F</code>) alongside a 12-Month Harvest Cohort tracking cassava yield (<code>B, D, E</code>), cover crop ATER (<code>D vs. E</code>), and 12M profit (<code>A, B, D, E</code>). All datasets were modeled via <code class="font-mono text-forest-800">lme4::lmer</code> with fixed effects (<code>code * station * cycle</code>) and nested random block effects (<code>block2</code>), reporting EMMeans, 95% CIs, paired contrasts, and Tukey HSD CLDs (&alpha;=0.05).
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: TRIAL 1 RESULTS & INTERPRETATIONS -->
+      <section id="sec-3" class="scroll-mt-16 space-y-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+          <div class="flex items-center space-x-3">
+            <span class="w-2 h-7 bg-forest-700 rounded-full"></span>
+            <div>
+              <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">3. Trial 1 Results &amp; Interpretations (Cycles 1 &amp; 2)</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Interactive filter controls update all Trial 1 data tables dynamically below.</p>
+            </div>
+          </div>
+
+          <!-- Interactive Station & Cycle Filter Bar -->
+          <div class="flex flex-wrap items-center gap-2 bg-white p-2 rounded-xl border border-slate-200 shadow-xs no-print">
+            <span class="text-xs font-semibold text-slate-500 px-2">Filter Trial 1:</span>
+            <select id="t1-station-filter" class="text-xs font-medium bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-slate-800 focus:outline-none focus:border-forest-600">
+              <option value="ALL">All Stations (Karongi &amp; Kayonza)</option>
+              <option value="Karongi">Karongi (Humid Zone)</option>
+              <option value="Kayonza">Kayonza (Semi-Arid Zone)</option>
+            </select>
+            <select id="t1-cycle-filter" class="text-xs font-medium bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-slate-800 focus:outline-none focus:border-forest-600">
+              <option value="ALL">All Cycles (25AB &amp; 26AB)</option>
+              <option value="Cycle1_25AB">Cycle 1 (25AB)</option>
+              <option value="Cycle2_26AB">Cycle 2 (26AB)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 3.1 Season A Maize Grain Yield & Stover Biomass -->
+        <div id="sec-3-1" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <span class="text-xs font-mono font-semibold text-forest-700 uppercase">Section 3.1 &bull; Season A Cereal Component</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Season A Maize Grain Yield &amp; Stover Biomass Production</h3>
+            </div>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-mono text-xs">Dataset: T1_01 &amp; T1_07A</span>
+          </div>
+
+          <!-- Interactive Chart.js Canvas for T1 Maize -->
+          <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200">
+            <div class="text-xs font-semibold text-slate-700 mb-2">Figure 3.1: Trial 1 Season A Maize Grain Yield (EMMeans in t/ha across Station &amp; Cycle)</div>
+            <div class="relative h-72 sm:h-80 w-full">
+              <canvas id="chart-t1-maize"></canvas>
+            </div>
+          </div>
+
+          <!-- Agronomic Interpretation -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-700">
+            <div class="p-4 rounded-xl bg-forest-50/70 border border-forest-100 space-y-1.5">
+              <h4 class="font-bold text-forest-900">High-Density Maize + Low Cassava (G &amp; F) Maximizes Cereal Output</h4>
+              <p class="leading-relaxed">
+                Maintaining full maize density (53,333 plants/ha) while widening cassava spacing to 150 &times; 80 cm (8,333 plants/ha) eliminated interspecific yield penalties on maize. In Karongi Cycle 1, <strong>G (9.18 t/ha)</strong> and <strong>F (8.92 t/ha)</strong> matched or exceeded sole maize <strong>A (8.87 t/ha)</strong>, aided by lateral nutrient spillover from NPK 17-17-17 applied to cassava at 6 WAP. In Karongi Cycle 2, <strong>G (6.20 t/ha, group <code>d</code>)</strong> and <strong>F (5.83 t/ha, group <code>cd</code>)</strong> significantly outperformed sole maize <strong>A (3.48 t/ha, group <code>a</code>)</strong>, reflecting cumulative soil fertility benefits in multi-crop plots.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-amber-50/70 border border-amber-100 space-y-1.5">
+              <h4 class="font-bold text-amber-900">Stover Biomass Divergence Governs Downstream Mulch Supply</h4>
+              <p class="leading-relaxed">
+                In Karongi, Season A maize stover biomass remained consistently high across both cycles (<strong>6.8–10.2 t/ha</strong> in Cycle 1; <strong>5.8–9.9 t/ha</strong> in Cycle 2, peaking at <strong>9.9 t/ha</strong> in <code>F</code>). Conversely, in semi-arid Kayonza, drought stress in Cycle 2 caused stover biomass to collapse from <strong>4.0–6.5 t/ha</strong> in Cycle 1 down to just <strong>1.0–3.6 t/ha</strong> (<code>E</code> ~1.0 t/ha, <code>C</code> ~1.3 t/ha, <code>F</code> ~2.8 t/ha), depriving Season B zero-till beans of protective ground cover.
+              </p>
+            </div>
+          </div>
+
+          <!-- Data Table T1_01 -->
+          <div class="overflow-x-auto table-container border border-slate-200 rounded-xl max-h-96">
+            <table id="table-t1-maize" class="min-w-full divide-y divide-slate-200 text-xs tabular-nums">
+              <thead class="bg-slate-800 text-white sticky top-0">
+                <tr>
+                  <th class="px-3 py-2.5 text-left">Code</th>
+                  <th class="px-3 py-2.5 text-left">Station</th>
+                  <th class="px-3 py-2.5 text-left">Cycle</th>
+                  <th class="px-3 py-2.5 text-right">EMMean (t/ha)</th>
+                  <th class="px-3 py-2.5 text-right">SE</th>
+                  <th class="px-3 py-2.5 text-right">95% CI</th>
+                  <th class="px-3 py-2.5 text-center">Tukey Group</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3.2 Season B Bush Beans Yield -->
+        <div id="sec-3-2" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <span class="text-xs font-mono font-semibold text-forest-700 uppercase">Section 3.2 &bull; Season B Legume Component</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Season B Bush Beans Yield under Standing Cassava</h3>
+            </div>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-mono text-xs">Dataset: T1_02</span>
+          </div>
+
+          <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200">
+            <div class="text-xs font-semibold text-slate-700 mb-2">Figure 3.2: Trial 1 Season B Bush Beans Yield (EMMeans in t/ha across Station &amp; Cycle)</div>
+            <div class="relative h-72 sm:h-80 w-full">
+              <canvas id="chart-t1-beans"></canvas>
+            </div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <strong>Interpretation:</strong> In humid Karongi Cycle 1, where vigorous cassava canopies closed rapidly during Season B, wide-row Low Cassava under residue mulch (<strong><code>F</code></strong>, 150 cm cassava alleys, 225,000 beans/ha) achieved <strong>1.65 t/ha (group <code>c</code>)</strong>—statistically indistinguishable from sole beans <strong><code>A</code> (1.82 t/ha)</strong> and outperforming unmulched <strong><code>G</code> (1.24 t/ha)</strong> by +0.41 t/ha via soil moisture conservation during pod fill. By contrast, single-row Akilimo beans (<strong><code>C</code></strong>, 150,000 beans/ha under dense 100 &times; 100 cm cassava) suffered severe shading and yielded only <strong>0.56 t/ha (group <code>a</code>)</strong>. In Kayonza Cycle 1, stunted cassava growth left the inter-row open, allowing intercropped beans in <strong><code>E</code> (1.93 t/ha)</strong> and <strong><code>F</code> (1.88 t/ha)</strong> to numerically exceed sole beans <strong><code>A</code> (1.63 t/ha)</strong>. In Cycle 2, late-season rainfall tapering compressed bean yields across all treatments (0.20–0.69 t/ha).
+          </p>
+
+          <div class="overflow-x-auto table-container border border-slate-200 rounded-xl max-h-96">
+            <table id="table-t1-beans" class="min-w-full divide-y divide-slate-200 text-xs tabular-nums">
+              <thead class="bg-slate-800 text-white sticky top-0">
+                <tr>
+                  <th class="px-3 py-2.5 text-left">Code</th>
+                  <th class="px-3 py-2.5 text-left">Station</th>
+                  <th class="px-3 py-2.5 text-left">Cycle</th>
+                  <th class="px-3 py-2.5 text-right">EMMean (t/ha)</th>
+                  <th class="px-3 py-2.5 text-right">SE</th>
+                  <th class="px-3 py-2.5 text-right">95% CI</th>
+                  <th class="px-3 py-2.5 text-center">Tukey Group</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3.3 Final 12-Month Cassava Tuberous Root Yield -->
+        <div id="sec-3-3" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <span class="text-xs font-mono font-semibold text-forest-700 uppercase">Section 3.3 &bull; 12-Month Perennial Root Harvest</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Final 12-Month Cassava Tuberous Root Yield</h3>
+            </div>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-mono text-xs">Dataset: T1_03</span>
+          </div>
+
+          <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200">
+            <div class="text-xs font-semibold text-slate-700 mb-2">Figure 3.3: Trial 1 Final 12-Month Cassava Tuberous Root Yield (EMMeans in t/ha)</div>
+            <div class="relative h-72 sm:h-80 w-full">
+              <canvas id="chart-t1-cassava"></canvas>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-700">
+            <div class="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200 space-y-1.5">
+              <h4 class="font-bold text-forest-900">Karongi: High Cassava Density + Reduced Maize (E) Unlocks Peak Bulking</h4>
+              <p class="leading-relaxed">
+                In Karongi Cycle 1, <strong>Treatment E</strong> (10,417 cassava/ha paired with reduced maize density of 33,333 plants/ha) achieved an exceptional <strong>54.48 t/ha (group <code>c</code>)</strong>, surpassing sole cassava <strong>B (38.48 t/ha, group <code>ab</code>)</strong> by <strong>+41.6%</strong> and more than doubling Low Cassava <strong>F (27.14 t/ha)</strong> and <strong>G (25.45 t/ha)</strong>. Reduced early maize shading allowed cassava stems to establish thick canopies and capture system fertilizer inputs over 12 months. In Cycle 2, <strong>E (33.45 t/ha)</strong> again matched sole cassava <strong>B (34.50 t/ha)</strong>.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-rose-50/70 border border-rose-200 space-y-1.5">
+              <h4 class="font-bold text-rose-900">Kayonza: Severe Moisture Competition Suppresses Intercropped Tubers</h4>
+              <p class="leading-relaxed">
+                In semi-arid Kayonza Cycle 1, sole cassava <strong>B</strong> yielded <strong>26.13 t/ha (group <code>b</code>)</strong>, whereas every intercropped arrangement collapsed by <strong>82%–91%</strong> to <strong>2.37–4.76 t/ha (group <code>a</code>, p &lt; 0.05)</strong>. Fast-rooting maize and beans depleted profile moisture during cassava’s critical tuber-initiation phase (Months 1–4), stunting root bulking. In Cycle 2, sole cassava <strong>B (14.44 t/ha)</strong> again more than doubled all intercrops (<strong>3.37–6.86 t/ha</strong>).
+              </p>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto table-container border border-slate-200 rounded-xl max-h-96">
+            <table id="table-t1-cassava" class="min-w-full divide-y divide-slate-200 text-xs tabular-nums">
+              <thead class="bg-slate-800 text-white sticky top-0">
+                <tr>
+                  <th class="px-3 py-2.5 text-left">Code</th>
+                  <th class="px-3 py-2.5 text-left">Station</th>
+                  <th class="px-3 py-2.5 text-left">Cycle</th>
+                  <th class="px-3 py-2.5 text-right">EMMean (t/ha)</th>
+                  <th class="px-3 py-2.5 text-right">SE</th>
+                  <th class="px-3 py-2.5 text-right">95% CI</th>
+                  <th class="px-3 py-2.5 text-center">Tukey Group</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3.4 System Land-Use Efficiency (ATER) -->
+        <div id="sec-3-4" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <span class="text-xs font-mono font-semibold text-forest-700 uppercase">Section 3.4 &bull; Spatio-Temporal Efficiency</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">System Area-Time Equivalent Ratio (ATER)</h3>
+            </div>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-mono text-xs">Dataset: T1_04_ATER</span>
+          </div>
+
+          <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200">
+            <div class="text-xs font-semibold text-slate-700 mb-2">Figure 3.4: Trial 1 Median System ATER across Arrangements (Dashed Line = 1.0 Monocrop Parity)</div>
+            <div class="relative h-72 sm:h-80 w-full">
+              <canvas id="chart-t1-ater"></canvas>
+            </div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <strong>Interpretation:</strong> Because ATER weights each component’s Land Equivalent Ratio by its field occupancy duration over 12 months, <strong class="font-mono">ATER &gt; 1.0</strong> confirms true temporal and spatial land-use superiority over sole cropping. In <strong>Karongi</strong>, 100% of intercrop treatments exceeded 1.0 in both cycles: in Cycle 1, <strong>Treatment E</strong> reached a median ATER of <strong>1.86</strong> (mean ~1.95, group <code>b</code>), significantly outperforming <strong>G (median 1.34, group <code>a</code>)</strong>—indicating that a monocrop farmer would require <strong>~90% more land</strong> to match 1 ha of Treatment E. In Cycle 2, all Karongi intercrops maintained high ATERs (medians <strong>1.29–1.66</strong>, group <code>a</code>). Conversely, in <strong>Kayonza Cycle 1</strong>, severe cassava yield depression pulled median ATER below 1.0 across all treatments (<strong>0.69–0.94</strong>, group <code>a</code>), recovering to near-parity in Cycle 2 (<strong>0.96–1.33</strong>, group <code>a</code>) only because sole-crop controls also declined under drought.
+          </p>
+        </div>
+
+        <!-- 3.5 Cumulative 12-Month System Profit -->
+        <div id="sec-3-5" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <span class="text-xs font-mono font-semibold text-forest-700 uppercase">Section 3.5 &bull; Full-System Economics</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Cumulative 12-Month Net Profit (Season A + Season B)</h3>
+            </div>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-mono text-xs">Dataset: T1_05</span>
+          </div>
+
+          <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200">
+            <div class="text-xs font-semibold text-slate-700 mb-2">Figure 3.5: Trial 1 Cumulative 12-Month Net Profit (EMMeans in USD/ha)</div>
+            <div class="relative h-72 sm:h-80 w-full">
+              <canvas id="chart-t1-profit"></canvas>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm text-slate-700">
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <h4 class="font-bold text-forest-900">1. Dominance of Treatment E in Karongi</h4>
+              <p class="mt-1 leading-relaxed">In Karongi, <strong>Treatment E</strong> generated <strong>$12,127.23/ha</strong> (Cycle 1) and <strong>$14,175.18/ha</strong> (Cycle 2)—delivering <strong>4.6&times; to 26.9&times;</strong> the net profit of annual Maize–Beans (<strong>A</strong>: $2,642.77 and $526.96/ha) and <strong>+$4,617 to +$5,021/ha</strong> more than Low Cassava (<strong>F</strong>).</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <h4 class="font-bold text-forest-900">2. Cash-Flow Liquidity vs. Sole Cassava</h4>
+              <p class="mt-1 leading-relaxed">While Sole Cassava (<strong>B</strong>) topped Kayonza ($4,024 and $3,793/ha) and ranked second in Karongi Cycle 2 ($13,373/ha), sole cassava leaves farmers with <strong>negative cash flow during Months 1–6</strong> (-$566/ha in Karongi; -$503/ha in Kayonza). Intercrops (<code>E</code>/<code>C</code>) provide positive Season A &amp; B cash inflows.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <h4 class="font-bold text-forest-900">3. Buffer Against Annual Crop Failure</h4>
+              <p class="mt-1 leading-relaxed">In Cycle 2, when Season A maize and Season B beans suffered weather-induced yield drops, annual rotation <strong>A</strong> fell to $526.96/ha in Karongi and lost <strong>-$412.03/ha</strong> in Kayonza, whereas cassava systems stayed profitable.</p>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto table-container border border-slate-200 rounded-xl max-h-96">
+            <table id="table-t1-profit" class="min-w-full divide-y divide-slate-200 text-xs tabular-nums">
+              <thead class="bg-slate-800 text-white sticky top-0">
+                <tr>
+                  <th class="px-3 py-2.5 text-left">Code</th>
+                  <th class="px-3 py-2.5 text-left">Station</th>
+                  <th class="px-3 py-2.5 text-left">Cycle</th>
+                  <th class="px-3 py-2.5 text-right">EMMean (USD/ha)</th>
+                  <th class="px-3 py-2.5 text-right">SE</th>
+                  <th class="px-3 py-2.5 text-right">95% CI</th>
+                  <th class="px-3 py-2.5 text-center">Tukey Group</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3.6 Conservation Agriculture Transition (CT-CA F vs. CT-CT G) -->
+        <div id="sec-3-6" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <span class="text-xs font-mono font-semibold text-teal-700 uppercase">Section 3.6 &bull; Conservation Agriculture Mechanism</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Tillage Transition Contrasts (<code>CT-CA [F]</code> minus <code>CT-CT [G]</code>) &amp; Residue Weed Suppression</h3>
+            </div>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-mono text-xs">Dataset: T1_06 &amp; T1_09</span>
+          </div>
+
+          <!-- Interactive Scatter/Trend Chart of Biomass vs Weeding Labor Cost -->
+          <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200">
+            <div class="text-xs font-semibold text-slate-700 mb-2">Figure 3.6: Season A Maize Stover Biomass (t/ha) vs. Season B Weeding Labor Cost (USD/ha) under CT-CA vs. CT-CT</div>
+            <div class="relative h-72 sm:h-80 w-full">
+              <canvas id="chart-t1-biomass-weeding"></canvas>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-teal-50/70 border border-teal-200 text-xs sm:text-sm text-slate-800 leading-relaxed">
+            <strong>Mechanistic Synthesis (The &ge;5 t/ha Residue Threshold):</strong> Across all 24 paired contrasts isolating <code>CT-CA (F)</code> vs. <code>CT-CT (G)</code> at identical plant densities, <strong>22 contrasts showed zero statistically significant difference (<span class="font-mono">p &gt; 0.16</span>)</strong>. In <strong>Karongi</strong>, abundant Season A maize stover (<strong>6–10 t/ha</strong>) formed an effective surface mulch that suppressed Season B weed emergence, resulting in zero weeding cost penalty (+$3.48/ha in Cycle 1; -$38.02/ha savings in Cycle 2) and full yield/profit parity. In <strong>Kayonza Cycle 2</strong>, however, drought-stunted Season A maize produced only <strong>1–3 t/ha</strong> of stover—below the threshold needed for ground cover. Without hand-hoe soil inversion (<code>CT-CT</code>) and lacking sufficient mulch (<code>CT-CA</code>), hand-uprooting weeds increased Season B total costs by <strong>+$204.34/ha (<span class="font-mono">t = 4.493, p = 0.000736</span>)</strong> and reduced Cycle 2 maize yield by <strong>-1.414 t/ha (<span class="font-mono">t = -2.925, p = 0.0127</span>)</strong>.
+          </div>
+
+          <div class="overflow-x-auto table-container border border-slate-200 rounded-xl max-h-96">
+            <table id="table-t1-contrasts" class="min-w-full divide-y divide-slate-200 text-xs tabular-nums">
+              <thead class="bg-slate-800 text-white sticky top-0">
+                <tr>
+                  <th class="px-3 py-2.5 text-left">Metric</th>
+                  <th class="px-3 py-2.5 text-left">Station</th>
+                  <th class="px-3 py-2.5 text-left">Cycle</th>
+                  <th class="px-3 py-2.5 text-right">Estimate (F &minus; G)</th>
+                  <th class="px-3 py-2.5 text-right">SE</th>
+                  <th class="px-3 py-2.5 text-right">95% CI</th>
+                  <th class="px-3 py-2.5 text-right">t-ratio</th>
+                  <th class="px-3 py-2.5 text-right">p-value</th>
+                  <th class="px-3 py-2.5 text-center">Significance</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: TRIAL 2 RESULTS & INTERPRETATIONS -->
+      <section id="sec-4" class="scroll-mt-16 space-y-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+          <div class="flex items-center space-x-3">
+            <span class="w-2 h-7 bg-forest-700 rounded-full"></span>
+            <div>
+              <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">4. Trial 2 Results (Early Planting &amp; 12-Month Harvest Cohort)</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Independent validation of early planting and 12-month cover-crop intercropping performance.</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 bg-white p-2 rounded-xl border border-slate-200 shadow-xs no-print">
+            <span class="text-xs font-semibold text-slate-500 px-2">Filter Trial 2:</span>
+            <select id="t2-station-filter" class="text-xs font-medium bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-slate-800 focus:outline-none focus:border-forest-600">
+              <option value="ALL">All Stations (Karongi &amp; Kayonza)</option>
+              <option value="Karongi">Karongi (Humid Zone)</option>
+              <option value="Kayonza">Kayonza (Semi-Arid Zone)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 4.1 Early Planting Maize & Beans -->
+        <div id="sec-4-1" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <span class="text-xs font-mono font-semibold text-forest-700 uppercase">Section 4.1 &bull; Early-Planted Component Crops</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Trial 2 Early-Planted Maize &amp; Bush Beans Yields</h3>
+            </div>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-mono text-xs">Datasets: T2_01 &amp; T2_02</span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200">
+              <div class="text-xs font-semibold text-slate-700 mb-2">Figure 4.1A: Trial 2 Early Maize Yield (t/ha)</div>
+              <div class="relative h-64 w-full">
+                <canvas id="chart-t2-maize"></canvas>
+              </div>
+            </div>
+            <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200">
+              <div class="text-xs font-semibold text-slate-700 mb-2">Figure 4.1B: Trial 2 Early Beans Yield (t/ha)</div>
+              <div class="relative h-64 w-full">
+                <canvas id="chart-t2-beans"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <strong>Interpretation:</strong> Under early planting in Trial 2, sole maize (<strong>A: 5.46 t/ha, group <code>b</code></strong>) and sole beans (<strong>A: 1.36 t/ha, group <code>b</code></strong>) significantly outyielded intercrops in humid Karongi (<code>D, E, F</code>: 3.22–3.76 t/ha maize; 0.50–0.63 t/ha beans) because early planting accelerated vigorous cassava canopy expansion, increasing shading on companion crops. Conversely, in semi-arid Kayonza, intercropped maize (<strong>D: 4.98 t/ha</strong>, <strong>F: 4.73 t/ha</strong>, <strong>E: 4.55 t/ha</strong>) numerically outperformed sole maize (<strong>A: 3.79 t/ha</strong>) via microclimate buffering, while intercropped beans maintained strong yields (1.57–1.70 t/ha).
+          </p>
+
+          <div class="overflow-x-auto table-container border border-slate-200 rounded-xl max-h-80">
+            <table id="table-t2-components" class="min-w-full divide-y divide-slate-200 text-xs tabular-nums">
+              <thead class="bg-slate-800 text-white sticky top-0">
+                <tr>
+                  <th class="px-3 py-2.5 text-left">Crop</th>
+                  <th class="px-3 py-2.5 text-left">Code</th>
+                  <th class="px-3 py-2.5 text-left">Station</th>
+                  <th class="px-3 py-2.5 text-right">EMMean (t/ha)</th>
+                  <th class="px-3 py-2.5 text-right">SE</th>
+                  <th class="px-3 py-2.5 text-right">95% CI</th>
+                  <th class="px-3 py-2.5 text-center">Tukey Group</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4.2 12-Month Harvest Cohort: Cassava, Cover Crop ATER & Profit -->
+        <div id="sec-4-2" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <span class="text-xs font-mono font-semibold text-forest-700 uppercase">Section 4.2 &bull; 12-Month Harvest Cohort</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">12-Month Cassava Yield, Cover Crop ATER &amp; Cumulative Net Profit</h3>
+            </div>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-mono text-xs">Datasets: T2_03, T2_04 &amp; T2_05</span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200">
+              <div class="text-xs font-semibold text-slate-700 mb-2">Figure 4.2A: Trial 2 12-Month Cassava Root Yield (t/ha)</div>
+              <div class="relative h-64 w-full">
+                <canvas id="chart-t2-cassava"></canvas>
+              </div>
+            </div>
+            <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200">
+              <div class="text-xs font-semibold text-slate-700 mb-2">Figure 4.2B: Trial 2 Cumulative 12-Month Net Profit (USD/ha)</div>
+              <div class="relative h-64 w-full">
+                <canvas id="chart-t2-profit"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <strong>Interpretation:</strong> Trial 2 independently replicates Trial 1’s agro-ecological divergence. In <strong>Karongi</strong>, intercropped cassava in <strong>E (27.55 t/ha)</strong> and <strong>D (26.27 t/ha)</strong> statistically matched sole cassava <strong>B (30.19 t/ha)</strong>, delivering ATERs of <strong>1.28</strong> and <strong>1.34</strong> and cumulative 12-month net profits of <strong>$9,897.27/ha (E)</strong> and <strong>$9,318.84/ha (D)</strong>—statistically indistinguishable from sole cassava <strong>B ($10,352.08/ha)</strong> and <strong>24&times;–25&times;</strong> higher than annual Maize–Beans <strong>A ($390.57/ha)</strong>. In <strong>Kayonza</strong>, sole cassava <strong>B (25.84 t/ha, $5,763.83/ha)</strong> again outperformed intercrops, while between the two cover-crop intercrops, <strong>Treatment D</strong> (150 cm wide cassava alleys) achieved a significantly higher ATER than <strong>E (1.03 vs. 0.78, group <code>b</code> vs. <code>a</code>)</strong> and more than doubled net profit (<strong>$2,371.79 vs. $997.51/ha</strong>), showing that wider cassava row spacing buffers moisture competition in drylands.
+          </p>
+
+          <div class="overflow-x-auto table-container border border-slate-200 rounded-xl max-h-96">
+            <table id="table-t2-cohort" class="min-w-full divide-y divide-slate-200 text-xs tabular-nums">
+              <thead class="bg-slate-800 text-white sticky top-0">
+                <tr>
+                  <th class="px-3 py-2.5 text-left">Metric</th>
+                  <th class="px-3 py-2.5 text-left">Code</th>
+                  <th class="px-3 py-2.5 text-left">Station</th>
+                  <th class="px-3 py-2.5 text-right">EMMean</th>
+                  <th class="px-3 py-2.5 text-right">SE</th>
+                  <th class="px-3 py-2.5 text-right">95% CI</th>
+                  <th class="px-3 py-2.5 text-center">Tukey Group</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: CUMULATIVE 12-MONTH PRODUCTION COST BREAKDOWN -->
+      <section id="sec-5" class="scroll-mt-16 space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-3">
+          <div class="flex items-center space-x-3">
+            <span class="w-2 h-7 bg-indigo-700 rounded-full"></span>
+            <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">5. Cumulative 12-Month Production Cost Decomposition (Trials 1 &amp; 2)</h2>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 no-print">
+            <select id="cost-trial-filter" class="px-3 py-1.5 text-xs font-medium bg-white border border-slate-300 rounded-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+              <option value="Trial1_Spacing_Tillage|Cycle1_25AB">Trial 1 &bull; Cycle 1 (25AB)</option>
+              <option value="Trial1_Spacing_Tillage|Cycle2_26AB" selected>Trial 1 &bull; Cycle 2 (26AB)</option>
+              <option value="Trial2_EarlyPlant_CoverCrop|Cycle1_26AB">Trial 2 &bull; Cohort (26AB)</option>
+            </select>
+            <select id="cost-station-filter" class="px-3 py-1.5 text-xs font-medium bg-white border border-slate-300 rounded-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+              <option value="ALL">Both Stations</option>
+              <option value="Karongi">Karongi (Humid)</option>
+              <option value="Kayonza">Kayonza (Semi-Arid)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 5.1 Cost Component Decomposition Chart & Insights -->
+        <div id="sec-5-1" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+            <div>
+              <h3 class="text-lg font-bold text-slate-900">5.1 Seed, Fertilizer &amp; Labor Cost Drivers Across Cycles</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">Cumulative Season A + Season B input and operational expenditure (USD/ha) for normal fertilized, timely-planted systems.</p>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-indigo-50 text-indigo-800 text-xs font-mono font-semibold self-start">Source: T1_T2_12M_Cost_Breakdown_Summary</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="block text-indigo-900 mb-1">1. Cycle 1 Seed vs. Cycle 2 Labor Shift</strong>
+              In Cycle 1 (<code>25AB</code>), <strong>Seed / Planting Material</strong> was the top cost ($419&ndash;$540/ha in intercrops, 44%&ndash;53% of total cost). In Cycle 2 (<code>26AB</code>), <strong>Labor (tillage, planting, weeding)</strong> surged <strong>2.5&times;</strong> in Karongi ($720/ha avg) and <strong>5.6&times;</strong> in Kayonza ($1,349/ha avg, 53%&ndash;84% of total cost).
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="block text-emerald-900 mb-1">2. Treatment E vs. Over-Packed D</strong>
+              Treatment <strong>D</strong> (100% Density) was the costliest system in Cycle 2 ($1,901/ha in Karongi; $2,541/ha in Kayonza) due to $888&ndash;$940/ha seed costs. Treatment <strong>E</strong> saved <strong>$442/ha</strong> in Karongi C2 ($1,459/ha) while generating <strong>+$3,789/ha</strong> higher net profit.
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="block text-amber-900 mb-1">3. Residue-Dependent Tillage Labor</strong>
+              In Karongi C2, 9.9 t/ha maize stover cut <code>CT-CA (F)</code> labor by <strong>-$38.0/ha</strong> vs. <code>CT-CT (G)</code> ($717.5 vs. $755.5/ha). In Kayonza C2 (&lt;3 t/ha stover), hand-uprooting raised <code>CT-CA (F)</code> labor by <strong>+$204.4/ha</strong> ($1,402.3 vs. $1,197.9/ha).
+            </div>
+          </div>
+
+          <div class="h-80 w-full">
+            <canvas id="chart-cost-breakdown"></canvas>
+          </div>
+        </div>
+
+        <!-- 5.2 Complete Cost Breakdown Table -->
+        <div id="sec-5-2" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-slate-900">5.2 Cumulative 12-Month Component Cost, Gross Revenue &amp; Net Profit Table</h3>
+            <span id="cost-table-badge" class="text-xs font-mono text-slate-500">Showing: Trial 1 &bull; Cycle 2 (26AB)</span>
+          </div>
+          <div class="overflow-x-auto table-container">
+            <table class="min-w-full divide-y divide-slate-200 text-xs">
+              <thead class="bg-slate-900 text-white">
+                <tr>
+                  <th class="px-3 py-3 text-left font-semibold">Station</th>
+                  <th class="px-3 py-3 text-center font-semibold">Code</th>
+                  <th class="px-3 py-3 text-left font-semibold">Arrangement</th>
+                  <th class="px-3 py-3 text-center font-semibold">Tillage</th>
+                  <th class="px-3 py-3 text-center font-semibold">n</th>
+                  <th class="px-3 py-3 text-right font-semibold">Seed ($/ha)</th>
+                  <th class="px-3 py-3 text-right font-semibold">Fert ($/ha)</th>
+                  <th class="px-3 py-3 text-right font-semibold">Labor ($/ha)</th>
+                  <th class="px-3 py-3 text-right font-semibold">Total Cost ($/ha)</th>
+                  <th class="px-3 py-3 text-right font-semibold">Revenue ($/ha)</th>
+                  <th class="px-3 py-3 text-right font-semibold">Net Profit ($/ha)</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-cost-breakdown" class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: EFFECT OF OMITTING COMPOST & FERTILIZER AND PLANTING TIMING (BLOCK 5) -->
+      <section id="sec-6" class="scroll-mt-16 space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-3">
+          <div class="flex items-center space-x-3">
+            <span class="w-2 h-7 bg-rose-700 rounded-full"></span>
+            <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">6. Effect of Omitting Compost &amp; Fertilizer and Planting Timing (Block 5)</h2>
+          </div>
+          <div class="flex items-center gap-2 no-print">
+            <select id="b5-station-filter" class="px-3 py-1.5 text-xs font-medium bg-white border border-slate-300 rounded-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-rose-600">
+              <option value="ALL">Both Stations (Karongi &amp; Kayonza)</option>
+              <option value="Karongi">Karongi (Humid AEZ)</option>
+              <option value="Kayonza">Kayonza (Semi-Arid AEZ)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 6.1 Mechanistic Synthesis & Interactive Profit Chart -->
+        <div id="sec-6-1" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div>
+            <h3 class="text-lg font-bold text-slate-900">6.1 Isolating Pure Input Omission vs. Compounded Late Planting Stress</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1">Comparison of unfertilized timely-planted (<code>Normal_Oct</code>) and delayed-planted (<code>Late_OctNov</code>) sentinel plots in Block 5 against the normal compost + fertilizer baseline (<code>Blocks 1&ndash;4</code>, n=8 pooled across Cycles 1&ndash;2).</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs sm:text-sm">
+            <div class="p-4 rounded-xl bg-amber-50/70 border border-amber-200 space-y-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-200/80 text-amber-950">Regime 2: Pure Input Omission (Normal_Oct)</span>
+              <h4 class="font-bold text-slate-900">Omitting Compost &amp; Fertilizer Halves Cassava Profit</h4>
+              <p class="text-slate-700 leading-relaxed">
+                Even when planted on time in October, omitting 8 t/ha basal compost and mineral fertilizer reduced 12-month cassava yields by <strong>-33.3%</strong> in Karongi Sole Cassava <code>B</code> (24.35 vs. 36.49 t/ha; profit <strong>-53.4%</strong> or -$5,398/ha) and <strong>-41.6%</strong> in Karongi Intercrop <code>F</code> (13.72 vs. 23.51 t/ha; profit <strong>-52.6%</strong> or -$4,383/ha). In Kayonza, Sole Cassava <code>B</code> fell <strong>-38.0%</strong> (12.57 vs. 20.28 t/ha) and Intercrop <code>F</code> suffered complete cassava tuber failure (-100%).
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-rose-50/70 border border-rose-200 space-y-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-200/80 text-rose-950">Regime 3: Compounded Stress (Late_OctNov)</span>
+              <h4 class="font-bold text-slate-900">Annual Rotation Collapses (-93%); Cassava Intercrop Buffers Loss</h4>
+              <p class="text-slate-700 leading-relaxed">
+                Delaying planting into late Oct/Nov without inputs devastated annual Maize&ndash;Beans (<code>A</code>), cutting maize by <strong>-66.1%</strong> and beans by <strong>-91.3%</strong> in Karongi (profit <strong>-92.8%</strong>, collapsing from $1,585 to <strong>$114/ha</strong>) and cutting Kayonza <code>A</code> profit by <strong>-77.8%</strong> ($228/ha). Conversely, in Intercrop <code>F</code>, suppressed cereals (-34% to -42% maize; -86% to -99% beans) released cassava from early shading/moisture competition, boosting 12M cassava yields by <strong>+15.4% in Karongi</strong> (27.13 t/ha) and <strong>+52.2% in Kayonza</strong> (6.16 t/ha) and preserving <strong>$5,861/ha</strong> and <strong>$1,140/ha</strong> in net profit.
+              </p>
+            </div>
+          </div>
+
+          <div class="h-80 w-full">
+            <canvas id="chart-block5-profit"></canvas>
+          </div>
+        </div>
+
+        <!-- 6.2 Block 5 Regime Summary & Percentage Change Table -->
+        <div id="sec-6-2" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-slate-900">6.2 Block 5 Crop Yields, Economics &amp; Change vs. Fertilized Baseline (T1_10 &amp; T1_11)</h3>
+            <span class="text-xs font-mono text-slate-500">Systems A, B, F &bull; Karongi &amp; Kayonza</span>
+          </div>
+          <div class="overflow-x-auto table-container">
+            <table class="min-w-full divide-y divide-slate-200 text-xs">
+              <thead class="bg-slate-900 text-white">
+                <tr>
+                  <th class="px-3 py-3 text-left font-semibold">Station</th>
+                  <th class="px-3 py-3 text-center font-semibold">Sys</th>
+                  <th class="px-3 py-3 text-left font-semibold">Regime (Input | Planting Cohort)</th>
+                  <th class="px-3 py-3 text-center font-semibold">n</th>
+                  <th class="px-3 py-3 text-right font-semibold">Maize (t/ha)</th>
+                  <th class="px-3 py-3 text-right font-semibold">Beans (t/ha)</th>
+                  <th class="px-3 py-3 text-right font-semibold">Cassava (t/ha)</th>
+                  <th class="px-3 py-3 text-right font-semibold">Cost ($/ha)</th>
+                  <th class="px-3 py-3 text-right font-semibold">Profit ($/ha)</th>
+                  <th class="px-3 py-3 text-right font-semibold">&Delta; Profit vs. Base</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-block5-summary" class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: HYPOTHESIS EVALUATION & CROSS-TRIAL SYNTHESIS -->
+      <section id="sec-7" class="scroll-mt-16 space-y-6">
+        <div class="flex items-center space-x-3 border-b border-slate-200 pb-3">
+          <span class="w-2 h-7 bg-forest-700 rounded-full"></span>
+          <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">7. Hypothesis Evaluation &amp; Cross-Trial Synthesis</h2>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs card-panel">
+          <div class="overflow-x-auto table-container">
+            <table class="min-w-full divide-y divide-slate-200 text-xs sm:text-sm">
+              <thead class="bg-forest-900 text-white">
+                <tr>
+                  <th class="px-4 py-3.5 text-left font-semibold w-24">Hypothesis</th>
+                  <th class="px-4 py-3.5 text-left font-semibold w-1/4">Statement</th>
+                  <th class="px-4 py-3.5 text-left font-semibold w-44">Empirical Verdict</th>
+                  <th class="px-4 py-3.5 text-left font-semibold">Cross-Trial Evidence (Trials 1, 2 &amp; Block 5)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                <tr class="hover:bg-slate-50">
+                  <td class="px-4 py-4 font-mono font-bold text-forest-900">H<sub>1</sub></td>
+                  <td class="px-4 py-4 font-medium text-slate-800">All intercrops increase land-use efficiency (ATER &gt; 1.0) vs. monocropping.</td>
+                  <td class="px-4 py-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-900">AEZ-Dependent</span></td>
+                  <td class="px-4 py-4 text-slate-600"><strong>Confirmed in Karongi</strong> across every arrangement and cycle (ATER = 1.28&ndash;1.95). <strong>Rejected in Kayonza Cycle 1</strong> (ATER = 0.69&ndash;0.94) and Trial 2 E (ATER = 0.78), where moisture competition reduced cassava yields by &gt;75%.</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-4 py-4 font-mono font-bold text-forest-900">H<sub>2</sub></td>
+                  <td class="px-4 py-4 font-medium text-slate-800">100% density (D) will outperform Akilimo (C) due to wider cassava spacing.</td>
+                  <td class="px-4 py-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-900">Partially Supported</span></td>
+                  <td class="px-4 py-4 text-slate-600"><code>D</code> outperformed <code>C</code> on Season B beans in Karongi C1 (1.25 vs. 0.56 t/ha) and Trial 2 Kayonza ATER (1.03 vs. 0.78), but <code>D</code> incurred the highest Cycle 2 seed and weeding costs ($1,901&ndash;$2,541/ha), allowing <code>C</code> to match or exceed <code>D</code> on net profit.</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-4 py-4 font-mono font-bold text-forest-900">H<sub>3</sub></td>
+                  <td class="px-4 py-4 font-medium text-slate-800">Low cassava (F, 8,333 pl/ha) will yield lower total system output than high-density cassava.</td>
+                  <td class="px-4 py-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-900">Confirmed (12M)</span></td>
+                  <td class="px-4 py-4 text-slate-600">Although <code>F</code>/<code>G</code> maximized Season A maize (8.92&ndash;9.18 t/ha), reducing cassava PPD by 17% lowered cassava yields to 19.88&ndash;27.14 t/ha in Karongi, reducing 12-month profit by <strong>$4,617&ndash;$5,021/ha</strong> relative to Treatment E.</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-4 py-4 font-mono font-bold text-forest-900">H<sub>4</sub></td>
+                  <td class="px-4 py-4 font-medium text-slate-800">CT-CA (F) will perform equivalently to continuous CT-CT (G).</td>
+                  <td class="px-4 py-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-teal-100 text-teal-900">Confirmed (&ge;5 t/ha Stover)</span></td>
+                  <td class="px-4 py-4 text-slate-600"><strong>22 of 24 contrasts</strong> showed no significant difference (p &gt; 0.16). <code>CT-CA</code> reduced Cycle 2 labor by <strong>-$38.0/ha</strong> in Karongi (9.9 t/ha stover), but incurred a +$204.34/ha weeding labor penalty (p = 0.0007) in Kayonza C2 when stover fell &lt;3 t/ha.</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-4 py-4 font-mono font-bold text-forest-900">H<sub>5</sub></td>
+                  <td class="px-4 py-4 font-medium text-slate-800">Omitting compost + fertilizer and delaying planting into late Oct/Nov disproportionately penalizes annual rotations.</td>
+                  <td class="px-4 py-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-rose-100 text-rose-900">Confirmed</span></td>
+                  <td class="px-4 py-4 text-slate-600">Under <code>Late_OctNov</code> without inputs, annual Maize&ndash;Beans (<code>A</code>) profit collapsed by <strong>-92.8%</strong> in Karongi ($114/ha) and <strong>-77.8%</strong> in Kayonza ($228/ha), whereas Intercrop <code>F</code> buffered losses (-29.7% and -36.7%) via canopy-relief cassava root gains (+15.4% and +52.2%).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: CONCLUSIONS & ACTIONABLE RECOMMENDATIONS -->
+      <section id="sec-8" class="scroll-mt-16 space-y-6 pb-12">
+        <div class="flex items-center space-x-3 border-b border-slate-200 pb-3">
+          <span class="w-2 h-7 bg-forest-700 rounded-full"></span>
+          <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">8. Conclusions &amp; Agro-Ecologically Segmented Recommendations</h2>
+        </div>
+
+        <!-- Core Conclusions -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-4">
+          <h3 class="text-lg font-bold text-forest-900">8.1 Key Conclusions</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs sm:text-sm text-slate-700">
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="block text-slate-900 mb-1">1. Cassava Density &amp; Cost Efficiency</strong>
+              Optimizing early cereal density at the expense of cassava (<code>F</code>/<code>G</code>) or over-packing multi-species seed (<code>D</code>: $1,901&ndash;$2,541/ha cost) sacrifices net returns. In humid corridors, <strong>Treatment E</strong> balances moderate costs ($1,075&ndash;$1,459/ha) with peak cassava bulking (33.5&ndash;54.5 t/ha) and profit ($12,127&ndash;$14,175/ha).
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="block text-slate-900 mb-1">2. Weeding Labor is Year-2 Bottleneck</strong>
+              Hand-weeding labor surged to <strong>45%&ndash;84%</strong> of total production costs in Cycle 2 ($647&ndash;$1,490/ha). Economic scaling requires rapid canopy closure and surface mulch retention to suppress weeds.
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="block text-slate-900 mb-1">3. Inputs &amp; Timing Are Non-Negotiable</strong>
+              Omitting 8 t/ha compost and mineral fertilizer cuts cassava profits by &gt;52% even when planted on time, while slipping into late Oct/Nov planting without inputs wipes out 78%&ndash;93% of annual Maize&ndash;Beans profit.
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="block text-slate-900 mb-1">4. Conservation Ag Needs &ge;5 t/ha Mulch</strong>
+              Zero-tillage in Season B (<code>CT-CA</code>) saves labor (-$38/ha in Karongi) only when Season A yields &ge;5&ndash;6 t/ha maize stover; below 3&ndash;4 t/ha, hand-uprooting adds +$204/ha in labor costs.
+            </div>
+          </div>
+        </div>
+
+        <!-- Segmented Operational Recommendations -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Humid Zone Card -->
+          <div class="bg-white rounded-xl border-2 border-emerald-600/30 p-6 shadow-xs card-panel space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900">Zone 1: Humid / High-Rainfall AEZ</span>
+              <span class="text-xs font-mono text-slate-500">e.g., Karongi &amp; Western Corridor</span>
+            </div>
+            <h3 class="text-lg font-bold text-forest-950">Primary Scaling Package: Treatment E under CT-CA</h3>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+              <li class="flex items-start space-x-2">
+                <span class="text-emerald-600 font-bold">&check;</span>
+                <span><strong>Spatial Arrangement:</strong> Plant cassava at <strong>120 &times; 80 cm (10,417 pl/ha)</strong> with 1 center row of maize at 60 cm (<strong>33,333 pl/ha</strong>) in Season A, followed by 2 rows of bush beans (<strong>250,000 pl/ha</strong>) planted zero-till into retained maize stover in Season B.</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-emerald-600 font-bold">&check;</span>
+                <span><strong>Input &amp; Timing Protocol:</strong> Pair with <strong>8 t/ha basal compost + split NPK/DAP/Urea</strong> and enforce strict <strong>early/mid-October planting</strong> to capture peak 12M profit (<strong>$12,127&ndash;$14,175/ha</strong>).</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-emerald-600 font-bold">&check;</span>
+                <span><strong>Secondary Option:</strong> Where households prioritize higher maize grain self-sufficiency, deploy <strong>100% Density (D)</strong> (150 &times; 70 cm cassava + 2 maize rows), yielding 5.61&ndash;7.94 t/ha maize and $8,325&ndash;$10,468/ha net profit.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Semi-Arid Zone Card -->
+          <div class="bg-white rounded-xl border-2 border-amber-600/30 p-6 shadow-xs card-panel space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900">Zone 2: Semi-Arid / Dryland AEZ</span>
+              <span class="text-xs font-mono text-slate-500">e.g., Kayonza &amp; Eastern Province</span>
+            </div>
+            <h3 class="text-lg font-bold text-amber-950">Commercial Sole Cassava (B) or Wide-Alley Intercrops (C / D)</h3>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+              <li class="flex items-start space-x-2">
+                <span class="text-amber-600 font-bold">&check;</span>
+                <span><strong>Commercial Cassava Growers:</strong> Prioritize <strong>Sole Cassava (Treatment B, 100 &times; 100 cm)</strong> on dedicated plots (<strong>$3,793&ndash;$5,764/ha</strong> net profit; lowest weeding labor at $432.5/ha in Trial 2) rather than full-plot intercropping.</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-amber-600 font-bold">&check;</span>
+                <span><strong>Land-Constrained &amp; Late-Planted Smallholders:</strong> Deploy <strong>Akilimo (C)</strong> ($1,494&ndash;$3,028/ha) or <strong>Wide-Alley D</strong> (150 cm rows, ATER = 1.03, $2,372/ha in Trial 2). Where planting slips into late Oct/Nov without full inputs, cassava intercropping (<code>F</code>) provides critical downside protection ($1,140&ndash;$5,861/ha) vs. annual Maize&ndash;Beans ($114&ndash;$228/ha).</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-amber-600 font-bold">&check;</span>
+                <span><strong>Adaptive Residue-Triggered Tillage Rule:</strong> Transition to no-till Season B planting (<code>CT-CA</code>) <strong>only if Season A maize stover exceeds ~5 t/ha (&gt;70% soil cover)</strong>; in drought years with &lt;3&ndash;4 t/ha stover, permit shallow hand-hoe weeding (<code>CT-CT</code>) to avoid the +$204/ha labor penalty.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- OAF Pilot & Next-Phase Research -->
+        <div class="bg-forest-950 text-white rounded-xl p-6 sm:p-8 shadow-xs card-panel space-y-4">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-xs font-semibold">Program &amp; R&amp;D Roadmap</span>
+            <h3 class="text-lg font-bold text-white">8.3 One Acre Fund HTE Pilot Protocol Updates &amp; Research Priorities</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm text-forest-100">
+            <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+              <strong class="block text-emerald-300 mb-1">1. Revise HTE Pilot Protocol</strong>
+              Shift the initial pilot recommendation from Low Cassava (<code>F</code>) to <strong>agro-ecologically segmented deployment</strong>: pilot <strong>Treatment E (CT-CA)</strong> in high-rainfall Western/Southern corridors and evaluate <strong>Sole Cassava (B)</strong> vs. <strong>Wide-Alley C/D</strong> in Eastern drylands.
+            </div>
+            <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+              <strong class="block text-emerald-300 mb-1">2. Dryland Water &amp; Labor Optimization</strong>
+              Test in-row moisture conservation (tied ridges or zai pits) and early-canopy legumes in Kayonza to mitigate Months 1&ndash;4 water competition and curb Year-2 hand-weeding labor ($1,198&ndash;$1,490/ha).
+            </div>
+            <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+              <strong class="block text-emerald-300 mb-1">3. Targeted Compost &amp; NPK Micro-Dosing</strong>
+              Evaluate micro-dosing of basal compost and NPK 17-17-17 on cassava at 6 WAP under <strong>Treatment E</strong> to sustain 33&ndash;54 t/ha tuber yields while lowering upfront cash requirements for liquidity-constrained smallholders.
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Embedded Statistical Datasets & Interactive Controller Script -->
+  <script>
+    // =========================================================================
+    // 1. COMPLETE EXPERIMENTAL DATASETS (Exact EMMeans, SE, CI, Tukey CLD)
+    // =========================================================================
+    const DATA_T1_MAIZE = [
+      { code: 'G', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 9.18, se: 0.57, lcl: 8.69, ucl: 9.67, group: 'a' },
+      { code: 'F', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 8.92, se: 0.57, lcl: 8.43, ucl: 9.41, group: 'a' },
+      { code: 'A', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 8.87, se: 0.57, lcl: 8.38, ucl: 9.36, group: 'a' },
+      { code: 'D', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 7.94, se: 0.57, lcl: 7.45, ucl: 8.43, group: 'a' },
+      { code: 'E', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 7.80, se: 0.57, lcl: 7.31, ucl: 8.29, group: 'a' },
+      { code: 'C', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 7.68, se: 0.57, lcl: 7.19, ucl: 8.17, group: 'a' },
+      { code: 'G', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 6.20, se: 0.57, lcl: 5.71, ucl: 6.69, group: 'd' },
+      { code: 'F', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 5.83, se: 0.57, lcl: 5.34, ucl: 6.32, group: 'cd' },
+      { code: 'D', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 5.61, se: 0.57, lcl: 5.12, ucl: 6.10, group: 'bcd' },
+      { code: 'E', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 4.05, se: 0.57, lcl: 3.56, ucl: 4.54, group: 'abc' },
+      { code: 'C', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 3.91, se: 0.57, lcl: 3.42, ucl: 4.40, group: 'ab' },
+      { code: 'A', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 3.48, se: 0.57, lcl: 2.99, ucl: 3.97, group: 'a' },
+      { code: 'C', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 6.89, se: 0.57, lcl: 6.40, ucl: 7.38, group: 'a' },
+      { code: 'A', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 6.75, se: 0.57, lcl: 6.26, ucl: 7.24, group: 'a' },
+      { code: 'F', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 6.69, se: 0.57, lcl: 6.20, ucl: 7.18, group: 'a' },
+      { code: 'G', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 6.69, se: 0.57, lcl: 6.20, ucl: 7.18, group: 'a' },
+      { code: 'E', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 5.30, se: 0.64, lcl: 4.75, ucl: 5.84, group: 'a' },
+      { code: 'D', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 5.20, se: 0.57, lcl: 4.71, ucl: 5.69, group: 'a' },
+      { code: 'G', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 3.41, se: 0.57, lcl: 2.92, ucl: 3.90, group: 'b' },
+      { code: 'A', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 2.94, se: 0.57, lcl: 2.45, ucl: 3.43, group: 'ab' },
+      { code: 'D', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 2.04, se: 0.57, lcl: 1.54, ucl: 2.53, group: 'ab' },
+      { code: 'F', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 2.00, se: 0.57, lcl: 1.51, ucl: 2.49, group: 'ab' },
+      { code: 'C', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 1.89, se: 0.57, lcl: 1.40, ucl: 2.38, group: 'ab' },
+      { code: 'E', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 1.39, se: 0.57, lcl: 0.90, ucl: 1.88, group: 'a' }
+    ];
+
+    const DATA_T1_BEANS = [
+      { code: 'A', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 1.82, se: 0.17, lcl: 1.67, ucl: 1.96, group: 'c' },
+      { code: 'F', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 1.65, se: 0.17, lcl: 1.50, ucl: 1.79, group: 'c' },
+      { code: 'D', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 1.25, se: 0.17, lcl: 1.10, ucl: 1.40, group: 'bc' },
+      { code: 'G', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 1.24, se: 0.17, lcl: 1.09, ucl: 1.38, group: 'bc' },
+      { code: 'E', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 0.96, se: 0.17, lcl: 0.81, ucl: 1.11, group: 'ab' },
+      { code: 'C', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 0.56, se: 0.17, lcl: 0.41, ucl: 0.71, group: 'a' },
+      { code: 'A', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 0.65, se: 0.17, lcl: 0.50, ucl: 0.80, group: 'a' },
+      { code: 'E', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 0.34, se: 0.20, lcl: 0.16, ucl: 0.51, group: 'a' },
+      { code: 'G', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 0.33, se: 0.17, lcl: 0.18, ucl: 0.48, group: 'a' },
+      { code: 'F', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 0.32, se: 0.17, lcl: 0.17, ucl: 0.47, group: 'a' },
+      { code: 'D', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 0.22, se: 0.17, lcl: 0.07, ucl: 0.37, group: 'a' },
+      { code: 'C', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 0.20, se: 0.17, lcl: 0.05, ucl: 0.35, group: 'a' },
+      { code: 'E', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 1.93, se: 0.17, lcl: 1.78, ucl: 2.07, group: 'a' },
+      { code: 'F', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 1.88, se: 0.17, lcl: 1.73, ucl: 2.03, group: 'a' },
+      { code: 'G', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 1.69, se: 0.17, lcl: 1.54, ucl: 1.84, group: 'a' },
+      { code: 'A', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 1.63, se: 0.17, lcl: 1.49, ucl: 1.78, group: 'a' },
+      { code: 'C', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 1.63, se: 0.17, lcl: 1.48, ucl: 1.78, group: 'a' },
+      { code: 'D', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 1.39, se: 0.17, lcl: 1.25, ucl: 1.54, group: 'a' },
+      { code: 'A', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 0.69, se: 0.17, lcl: 0.54, ucl: 0.84, group: 'a' },
+      { code: 'E', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 0.67, se: 0.17, lcl: 0.52, ucl: 0.82, group: 'a' },
+      { code: 'G', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 0.67, se: 0.17, lcl: 0.52, ucl: 0.82, group: 'a' },
+      { code: 'C', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 0.58, se: 0.17, lcl: 0.44, ucl: 0.73, group: 'a' },
+      { code: 'F', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 0.51, se: 0.17, lcl: 0.36, ucl: 0.66, group: 'a' },
+      { code: 'D', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 0.42, se: 0.17, lcl: 0.27, ucl: 0.57, group: 'a' }
+    ];
+
+    const DATA_T1_CASSAVA = [
+      { code: 'E', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 54.48, se: 3.75, lcl: 51.26, ucl: 57.71, group: 'c' },
+      { code: 'C', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 44.59, se: 3.75, lcl: 41.36, ucl: 47.81, group: 'bc' },
+      { code: 'B', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 38.48, se: 3.75, lcl: 35.25, ucl: 41.70, group: 'ab' },
+      { code: 'D', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 34.01, se: 3.75, lcl: 30.78, ucl: 37.23, group: 'ab' },
+      { code: 'F', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 27.14, se: 3.75, lcl: 23.91, ucl: 30.36, group: 'a' },
+      { code: 'G', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 25.45, se: 3.75, lcl: 22.23, ucl: 28.68, group: 'a' },
+      { code: 'B', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 34.50, se: 3.75, lcl: 31.28, ucl: 37.73, group: 'a' },
+      { code: 'E', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 33.45, se: 4.36, lcl: 29.70, ucl: 37.20, group: 'a' },
+      { code: 'C', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 25.32, se: 3.75, lcl: 22.10, ucl: 28.55, group: 'a' },
+      { code: 'D', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 24.49, se: 3.75, lcl: 21.26, ucl: 27.71, group: 'a' },
+      { code: 'G', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 22.11, se: 3.75, lcl: 18.89, ucl: 25.34, group: 'a' },
+      { code: 'F', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 19.88, se: 3.75, lcl: 16.66, ucl: 23.11, group: 'a' },
+      { code: 'B', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 26.13, se: 3.75, lcl: 22.91, ucl: 29.36, group: 'b' },
+      { code: 'C', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 4.76, se: 3.75, lcl: 1.53, ucl: 7.98, group: 'a' },
+      { code: 'E', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 3.55, se: 3.75, lcl: 0.32, ucl: 6.77, group: 'a' },
+      { code: 'G', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 3.38, se: 3.75, lcl: 0.16, ucl: 6.60, group: 'a' },
+      { code: 'D', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 2.41, se: 3.75, lcl: -0.81, ucl: 5.64, group: 'a' },
+      { code: 'F', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 2.37, se: 3.75, lcl: -0.86, ucl: 5.59, group: 'a' },
+      { code: 'B', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 14.44, se: 3.75, lcl: 11.21, ucl: 17.66, group: 'a' },
+      { code: 'C', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 6.86, se: 3.75, lcl: 3.63, ucl: 10.08, group: 'a' },
+      { code: 'D', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 5.88, se: 3.75, lcl: 2.66, ucl: 9.11, group: 'a' },
+      { code: 'F', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 5.72, se: 3.75, lcl: 2.50, ucl: 8.95, group: 'a' },
+      { code: 'E', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 4.11, se: 3.75, lcl: 0.88, ucl: 7.33, group: 'a' },
+      { code: 'G', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 3.37, se: 3.75, lcl: 0.14, ucl: 6.59, group: 'a' }
+    ];
+
+    const DATA_T1_PROFIT = [
+      { code: 'E', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 12127.23, se: 954.99, lcl: 11225.97, ucl: 13028.50, group: 'c' },
+      { code: 'C', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 9984.76, se: 954.99, lcl: 9083.50, ucl: 10886.03, group: 'bc' },
+      { code: 'D', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 8324.55, se: 954.99, lcl: 7423.28, ucl: 9225.81, group: 'bc' },
+      { code: 'F', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 7510.60, se: 954.99, lcl: 6609.33, ucl: 8411.86, group: 'b' },
+      { code: 'G', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 6947.64, se: 954.99, lcl: 6046.38, ucl: 7848.90, group: 'b' },
+      { code: 'B', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 6849.02, se: 954.99, lcl: 5947.76, ucl: 7750.28, group: 'b' },
+      { code: 'A', station: 'Karongi', cycle: 'Cycle1_25AB', mean: 2642.77, se: 954.99, lcl: 1741.51, ucl: 3544.03, group: 'a' },
+      { code: 'E', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 14175.18, se: 1104.08, lcl: 13133.35, ucl: 15217.02, group: 'c' },
+      { code: 'B', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 13372.88, se: 954.99, lcl: 12471.62, ucl: 14274.15, group: 'c' },
+      { code: 'C', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 10708.21, se: 954.99, lcl: 9806.95, ucl: 11609.47, group: 'bc' },
+      { code: 'D', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 10468.14, se: 954.99, lcl: 9566.87, ucl: 11369.40, group: 'bc' },
+      { code: 'G', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 10187.62, se: 954.99, lcl: 9286.36, ucl: 11088.88, group: 'bc' },
+      { code: 'F', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 9154.41, se: 954.99, lcl: 8253.15, ucl: 10055.67, group: 'b' },
+      { code: 'A', station: 'Karongi', cycle: 'Cycle2_26AB', mean: 526.96, se: 954.99, lcl: -374.30, ucl: 1428.23, group: 'a' },
+      { code: 'B', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 4024.42, se: 954.99, lcl: 3123.15, ucl: 4925.68, group: 'a' },
+      { code: 'C', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 3027.51, se: 954.99, lcl: 2126.25, ucl: 3928.77, group: 'a' },
+      { code: 'G', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 2714.02, se: 954.99, lcl: 1812.75, ucl: 3615.28, group: 'a' },
+      { code: 'F', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 2663.06, se: 954.99, lcl: 1761.80, ucl: 3564.32, group: 'a' },
+      { code: 'E', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 2568.29, se: 1104.08, lcl: 1526.45, ucl: 3610.12, group: 'a' },
+      { code: 'A', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 2463.01, se: 954.99, lcl: 1561.75, ucl: 3364.27, group: 'a' },
+      { code: 'D', station: 'Kayonza', cycle: 'Cycle1_25AB', mean: 1864.21, se: 954.99, lcl: 962.94, ucl: 2765.47, group: 'a' },
+      { code: 'B', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 3792.65, se: 954.99, lcl: 2891.39, ucl: 4693.91, group: 'b' },
+      { code: 'C', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 1494.48, se: 954.99, lcl: 593.22, ucl: 2395.75, group: 'ab' },
+      { code: 'F', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 939.83, se: 954.99, lcl: 38.57, ucl: 1841.09, group: 'ab' },
+      { code: 'G', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 621.31, se: 954.99, lcl: -279.95, ucl: 1522.57, group: 'ab' },
+      { code: 'D', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 517.65, se: 954.99, lcl: -383.62, ucl: 1418.91, group: 'ab' },
+      { code: 'E', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: 67.73, se: 954.99, lcl: -833.54, ucl: 968.99, group: 'ab' },
+      { code: 'A', station: 'Kayonza', cycle: 'Cycle2_26AB', mean: -412.03, se: 954.99, lcl: -1313.29, ucl: 489.23, group: 'a' }
+    ];
+
+    const DATA_T1_CONTRASTS = [
+      { metric: 'Maize Yield (t/ha)', station: 'Karongi', cycle: 'Cycle1_25AB', est: -0.256, se: 0.484, lcl: -1.310, ucl: 0.797, t: -0.530, p: 0.6059, sig: 'ns' },
+      { metric: 'Maize Yield (t/ha)', station: 'Kayonza', cycle: 'Cycle1_25AB', est: 0.005, se: 0.484, lcl: -1.048, ucl: 1.059, t: 0.011, p: 0.9913, sig: 'ns' },
+      { metric: 'Maize Yield (t/ha)', station: 'Karongi', cycle: 'Cycle2_26AB', est: -0.375, se: 0.484, lcl: -1.428, ucl: 0.679, t: -0.775, p: 0.4536, sig: 'ns' },
+      { metric: 'Maize Yield (t/ha)', station: 'Kayonza', cycle: 'Cycle2_26AB', est: -1.414, se: 0.484, lcl: -2.468, ucl: -0.361, t: -2.925, p: 0.0127, sig: 'Significant (*)' },
+      { metric: 'Beans Yield (t/ha)', station: 'Karongi', cycle: 'Cycle1_25AB', est: 0.410, se: 0.280, lcl: -0.200, ucl: 1.020, t: 1.464, p: 0.1688, sig: 'ns' },
+      { metric: 'Beans Yield (t/ha)', station: 'Kayonza', cycle: 'Cycle1_25AB', est: 0.193, se: 0.280, lcl: -0.417, ucl: 0.803, t: 0.690, p: 0.5035, sig: 'ns' },
+      { metric: 'Beans Yield (t/ha)', station: 'Karongi', cycle: 'Cycle2_26AB', est: -0.006, se: 0.280, lcl: -0.616, ucl: 0.604, t: -0.022, p: 0.9825, sig: 'ns' },
+      { metric: 'Beans Yield (t/ha)', station: 'Kayonza', cycle: 'Cycle2_26AB', est: -0.154, se: 0.280, lcl: -0.764, ucl: 0.456, t: -0.552, p: 0.5914, sig: 'ns' },
+      { metric: 'Cassava Yield (t/ha)', station: 'Karongi', cycle: 'Cycle1_25AB', est: 1.685, se: 2.608, lcl: -3.999, ucl: 7.368, t: 0.646, p: 0.5305, sig: 'ns' },
+      { metric: 'Cassava Yield (t/ha)', station: 'Kayonza', cycle: 'Cycle1_25AB', est: -1.015, se: 2.608, lcl: -6.698, ucl: 4.669, t: -0.389, p: 0.7041, sig: 'ns' },
+      { metric: 'Cassava Yield (t/ha)', station: 'Karongi', cycle: 'Cycle2_26AB', est: -2.229, se: 2.608, lcl: -7.912, ucl: 3.454, t: -0.855, p: 0.4096, sig: 'ns' },
+      { metric: 'Cassava Yield (t/ha)', station: 'Kayonza', cycle: 'Cycle2_26AB', est: 2.356, se: 2.608, lcl: -3.327, ucl: 8.039, t: 0.903, p: 0.3842, sig: 'ns' },
+      { metric: 'System ATER', station: 'Karongi', cycle: 'Cycle1_25AB', est: 0.114, se: 0.123, lcl: -0.154, ucl: 0.383, t: 0.927, p: 0.3724, sig: 'ns' },
+      { metric: 'System ATER', station: 'Kayonza', cycle: 'Cycle1_25AB', est: -0.016, se: 0.123, lcl: -0.285, ucl: 0.252, t: -0.131, p: 0.8980, sig: 'ns' },
+      { metric: 'System ATER', station: 'Karongi', cycle: 'Cycle2_26AB', est: -0.110, se: 0.123, lcl: -0.379, ucl: 0.158, t: -0.896, p: 0.3878, sig: 'ns' },
+      { metric: 'System ATER', station: 'Kayonza', cycle: 'Cycle2_26AB', est: -0.002, se: 0.123, lcl: -0.270, ucl: 0.267, t: -0.014, p: 0.9894, sig: 'ns' },
+      { metric: 'Total Costs (USD/ha)', station: 'Karongi', cycle: 'Cycle1_25AB', est: 3.48, se: 45.48, lcl: -95.61, ucl: 102.57, t: 0.077, p: 0.9402, sig: 'ns' },
+      { metric: 'Total Costs (USD/ha)', station: 'Kayonza', cycle: 'Cycle1_25AB', est: 1.45, se: 45.48, lcl: -97.64, ucl: 100.54, t: 0.032, p: 0.9750, sig: 'ns' },
+      { metric: 'Total Costs (USD/ha)', station: 'Karongi', cycle: 'Cycle2_26AB', est: -38.02, se: 45.48, lcl: -137.11, ucl: 61.06, t: -0.836, p: 0.4194, sig: 'ns' },
+      { metric: 'Total Costs (USD/ha)', station: 'Kayonza', cycle: 'Cycle2_26AB', est: 204.34, se: 45.48, lcl: 105.25, ucl: 303.42, t: 4.493, p: 0.0007, sig: 'Significant (***)' },
+      { metric: 'Total Profit (USD/ha)', station: 'Karongi', cycle: 'Cycle1_25AB', est: 562.96, se: 802.87, lcl: -1186.36, ucl: 2312.27, t: 0.701, p: 0.4966, sig: 'ns' },
+      { metric: 'Total Profit (USD/ha)', station: 'Kayonza', cycle: 'Cycle1_25AB', est: -50.96, se: 802.87, lcl: -1800.27, ucl: 1698.36, t: -0.063, p: 0.9504, sig: 'ns' },
+      { metric: 'Total Profit (USD/ha)', station: 'Karongi', cycle: 'Cycle2_26AB', est: -1033.21, se: 802.87, lcl: -2782.52, ucl: 716.10, t: -1.287, p: 0.2224, sig: 'ns' },
+      { metric: 'Total Profit (USD/ha)', station: 'Kayonza', cycle: 'Cycle2_26AB', est: 318.52, se: 802.87, lcl: -1430.80, ucl: 2067.83, t: 0.397, p: 0.6985, sig: 'ns' }
+    ];
+
+    const DATA_T2_COMPONENTS = [
+      { crop: 'Maize', code: 'A', station: 'Karongi', mean: 5.46, se: 0.35, lcl: 5.23, ucl: 5.68, group: 'b' },
+      { crop: 'Maize', code: 'D', station: 'Karongi', mean: 3.76, se: 0.41, lcl: 3.49, ucl: 4.02, group: 'a' },
+      { crop: 'Maize', code: 'F', station: 'Karongi', mean: 3.43, se: 0.35, lcl: 3.21, ucl: 3.66, group: 'a' },
+      { crop: 'Maize', code: 'E', station: 'Karongi', mean: 3.22, se: 0.35, lcl: 3.00, ucl: 3.44, group: 'a' },
+      { crop: 'Maize', code: 'D', station: 'Kayonza', mean: 4.98, se: 0.35, lcl: 4.75, ucl: 5.20, group: 'a' },
+      { crop: 'Maize', code: 'F', station: 'Kayonza', mean: 4.73, se: 0.35, lcl: 4.51, ucl: 4.95, group: 'a' },
+      { crop: 'Maize', code: 'E', station: 'Kayonza', mean: 4.55, se: 0.35, lcl: 4.33, ucl: 4.78, group: 'a' },
+      { crop: 'Maize', code: 'A', station: 'Kayonza', mean: 3.79, se: 0.35, lcl: 3.57, ucl: 4.01, group: 'a' },
+      { crop: 'Beans', code: 'A', station: 'Karongi', mean: 1.36, se: 0.18, lcl: 1.24, ucl: 1.47, group: 'b' },
+      { crop: 'Beans', code: 'D', station: 'Karongi', mean: 0.63, se: 0.21, lcl: 0.49, ucl: 0.76, group: 'ab' },
+      { crop: 'Beans', code: 'E', station: 'Karongi', mean: 0.53, se: 0.18, lcl: 0.42, ucl: 0.64, group: 'a' },
+      { crop: 'Beans', code: 'F', station: 'Karongi', mean: 0.50, se: 0.18, lcl: 0.38, ucl: 0.61, group: 'a' },
+      { crop: 'Beans', code: 'A', station: 'Kayonza', mean: 2.26, se: 0.18, lcl: 2.14, ucl: 2.37, group: 'b' },
+      { crop: 'Beans', code: 'F', station: 'Kayonza', mean: 1.70, se: 0.18, lcl: 1.59, ucl: 1.81, group: 'ab' },
+      { crop: 'Beans', code: 'E', station: 'Kayonza', mean: 1.58, se: 0.18, lcl: 1.47, ucl: 1.70, group: 'ab' },
+      { crop: 'Beans', code: 'D', station: 'Kayonza', mean: 1.57, se: 0.18, lcl: 1.46, ucl: 1.68, group: 'a' }
+    ];
+
+    const DATA_T2_COHORT = [
+      { metric: 'Cassava Yield (t/ha)', code: 'B', station: 'Karongi', mean: 30.19, se: 2.43, lcl: 29.00, ucl: 31.38, group: 'a' },
+      { metric: 'Cassava Yield (t/ha)', code: 'E', station: 'Karongi', mean: 27.55, se: 2.43, lcl: 26.36, ucl: 28.74, group: 'a' },
+      { metric: 'Cassava Yield (t/ha)', code: 'D', station: 'Karongi', mean: 26.27, se: 2.85, lcl: 24.88, ucl: 27.66, group: 'a' },
+      { metric: 'Cassava Yield (t/ha)', code: 'B', station: 'Kayonza', mean: 25.84, se: 2.43, lcl: 24.65, ucl: 27.03, group: 'b' },
+      { metric: 'Cassava Yield (t/ha)', code: 'D', station: 'Kayonza', mean: 9.38, se: 2.43, lcl: 8.20, ucl: 10.57, group: 'a' },
+      { metric: 'Cassava Yield (t/ha)', code: 'E', station: 'Kayonza', mean: 5.34, se: 2.43, lcl: 4.15, ucl: 6.53, group: 'a' },
+      { metric: 'ATER (Cover Crop)', code: 'D', station: 'Karongi', mean: 1.34, se: 0.12, lcl: 1.30, ucl: 1.37, group: 'a' },
+      { metric: 'ATER (Cover Crop)', code: 'E', station: 'Karongi', mean: 1.28, se: 0.10, lcl: 1.25, ucl: 1.31, group: 'a' },
+      { metric: 'ATER (Cover Crop)', code: 'D', station: 'Kayonza', mean: 1.03, se: 0.10, lcl: 0.99, ucl: 1.06, group: 'b' },
+      { metric: 'ATER (Cover Crop)', code: 'E', station: 'Kayonza', mean: 0.78, se: 0.10, lcl: 0.75, ucl: 0.81, group: 'a' },
+      { metric: '12M Profit (USD/ha)', code: 'B', station: 'Karongi', mean: 10352.08, se: 774.39, lcl: 9854.41, ucl: 10849.74, group: 'b' },
+      { metric: '12M Profit (USD/ha)', code: 'E', station: 'Karongi', mean: 9897.27, se: 774.39, lcl: 9399.61, ucl: 10394.94, group: 'b' },
+      { metric: '12M Profit (USD/ha)', code: 'D', station: 'Karongi', mean: 9318.84, se: 903.79, lcl: 8738.33, ucl: 9899.34, group: 'b' },
+      { metric: '12M Profit (USD/ha)', code: 'A', station: 'Karongi', mean: 390.57, se: 774.39, lcl: -107.09, ucl: 888.24, group: 'a' },
+      { metric: '12M Profit (USD/ha)', code: 'B', station: 'Kayonza', mean: 5763.83, se: 774.39, lcl: 5266.17, ucl: 6261.50, group: 'b' },
+      { metric: '12M Profit (USD/ha)', code: 'D', station: 'Kayonza', mean: 2371.79, se: 774.39, lcl: 1874.12, ucl: 2869.45, group: 'a' },
+      { metric: '12M Profit (USD/ha)', code: 'E', station: 'Kayonza', mean: 997.51, se: 774.39, lcl: 499.84, ucl: 1495.17, group: 'a' },
+      { metric: '12M Profit (USD/ha)', code: 'A', station: 'Kayonza', mean: 16.87, se: 774.39, lcl: -480.79, ucl: 514.54, group: 'a' }
+    ];
+
+    // =========================================================================
+    // 2. TABLE RENDERING & FILTERING FUNCTIONS
+    // =========================================================================
+    function formatNum(val, decimals = 2) {
+      return val.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    }
+
+    function renderT1Tables() {
+      const stationFilter = document.getElementById('t1-station-filter').value;
+      const cycleFilter = document.getElementById('t1-cycle-filter').value;
+
+      const filterFn = (row) => {
+        const matchStation = stationFilter === 'ALL' || row.station === stationFilter;
+        const matchCycle = cycleFilter === 'ALL' || row.cycle === cycleFilter;
+        return matchStation && matchCycle;
+      };
+
+      // Populate Maize, Beans, Cassava
+      const populateYieldTable = (tableId, dataset) => {
+        const tbody = document.querySelector(`#${tableId} tbody`);
+        tbody.innerHTML = dataset.filter(filterFn).map(r => `
+          <tr class="hover:bg-slate-50 ${r.code === 'E' && r.station === 'Karongi' ? 'bg-emerald-50/40' : ''}">
+            <td class="px-3 py-2 font-mono font-bold text-slate-900">${r.code}</td>
+            <td class="px-3 py-2 text-slate-700">${r.station}</td>
+            <td class="px-3 py-2 text-slate-600">${r.cycle}</td>
+            <td class="px-3 py-2 text-right font-semibold text-slate-900">${formatNum(r.mean, 2)}</td>
+            <td class="px-3 py-2 text-right text-slate-500">${formatNum(r.se, 2)}</td>
+            <td class="px-3 py-2 text-right text-slate-500">[${formatNum(r.lcl, 2)}, ${formatNum(r.ucl, 2)}]</td>
+            <td class="px-3 py-2 text-center"><span class="px-2 py-0.5 rounded bg-slate-100 font-mono font-semibold text-forest-800">${r.group}</span></td>
+          </tr>
+        `).join('');
+      };
+
+      populateYieldTable('table-t1-maize', DATA_T1_MAIZE);
+      populateYieldTable('table-t1-beans', DATA_T1_BEANS);
+      populateYieldTable('table-t1-cassava', DATA_T1_CASSAVA);
+
+      // Populate Profit Table
+      const profitBody = document.querySelector('#table-t1-profit tbody');
+      profitBody.innerHTML = DATA_T1_PROFIT.filter(filterFn).map(r => `
+        <tr class="hover:bg-slate-50 ${r.code === 'E' && r.station === 'Karongi' ? 'bg-emerald-50/50' : ''} ${r.mean < 0 ? 'bg-rose-50/50' : ''}">
+          <td class="px-3 py-2 font-mono font-bold text-slate-900">${r.code}</td>
+          <td class="px-3 py-2 text-slate-700">${r.station}</td>
+          <td class="px-3 py-2 text-slate-600">${r.cycle}</td>
+          <td class="px-3 py-2 text-right font-semibold ${r.mean < 0 ? 'text-rose-700' : 'text-slate-900'}">$${formatNum(r.mean, 2)}</td>
+          <td class="px-3 py-2 text-right text-slate-500">$${formatNum(r.se, 2)}</td>
+          <td class="px-3 py-2 text-right text-slate-500">[$${formatNum(r.lcl, 2)}, $${formatNum(r.ucl, 2)}]</td>
+          <td class="px-3 py-2 text-center"><span class="px-2 py-0.5 rounded bg-slate-100 font-mono font-semibold text-forest-800">${r.group}</span></td>
+        </tr>
+      `).join('');
+
+      // Populate Contrasts Table
+      const contrastBody = document.querySelector('#table-t1-contrasts tbody');
+      contrastBody.innerHTML = DATA_T1_CONTRASTS.filter(filterFn).map(r => {
+        const isSig = r.sig !== 'ns';
+        return `
+          <tr class="hover:bg-slate-50 ${isSig ? 'bg-amber-50/80 font-medium' : ''}">
+            <td class="px-3 py-2 text-slate-800">${r.metric}</td>
+            <td class="px-3 py-2 text-slate-700">${r.station}</td>
+            <td class="px-3 py-2 text-slate-600">${r.cycle}</td>
+            <td class="px-3 py-2 text-right font-mono ${isSig ? 'font-bold text-amber-900' : 'text-slate-800'}">${r.est > 0 ? '+' : ''}${formatNum(r.est, 3)}</td>
+            <td class="px-3 py-2 text-right text-slate-500">${formatNum(r.se, 3)}</td>
+            <td class="px-3 py-2 text-right text-slate-500">[${formatNum(r.lcl, 2)}, ${formatNum(r.ucl, 2)}]</td>
+            <td class="px-3 py-2 text-right text-slate-600">${formatNum(r.t, 3)}</td>
+            <td class="px-3 py-2 text-right font-mono ${isSig ? 'font-bold text-rose-700' : 'text-slate-600'}">${r.p.toFixed(4)}</td>
+            <td class="px-3 py-2 text-center">
+              <span class="px-2 py-0.5 rounded text-[11px] font-semibold ${isSig ? 'bg-rose-100 text-rose-800' : 'bg-slate-100 text-slate-600'}">${r.sig}</span>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderT2Tables() {
+      const stationFilter = document.getElementById('t2-station-filter').value;
+      const filterFn = (row) => stationFilter === 'ALL' || row.station === stationFilter;
+
+      const compBody = document.querySelector('#table-t2-components tbody');
+      compBody.innerHTML = DATA_T2_COMPONENTS.filter(filterFn).map(r => `
+        <tr class="hover:bg-slate-50">
+          <td class="px-3 py-2 font-medium text-slate-800">${r.crop}</td>
+          <td class="px-3 py-2 font-mono font-bold text-slate-900">${r.code}</td>
+          <td class="px-3 py-2 text-slate-700">${r.station}</td>
+          <td class="px-3 py-2 text-right font-semibold text-slate-900">${formatNum(r.mean, 2)}</td>
+          <td class="px-3 py-2 text-right text-slate-500">${formatNum(r.se, 2)}</td>
+          <td class="px-3 py-2 text-right text-slate-500">[${formatNum(r.lcl, 2)}, ${formatNum(r.ucl, 2)}]</td>
+          <td class="px-3 py-2 text-center"><span class="px-2 py-0.5 rounded bg-slate-100 font-mono font-semibold text-forest-800">${r.group}</span></td>
+        </tr>
+      `).join('');
+
+      const cohortBody = document.querySelector('#table-t2-cohort tbody');
+      cohortBody.innerHTML = DATA_T2_COHORT.filter(filterFn).map(r => {
+        const isCurrency = r.metric.includes('USD');
+        const prefix = isCurrency ? '$' : '';
+        return `
+          <tr class="hover:bg-slate-50">
+            <td class="px-3 py-2 font-medium text-slate-800">${r.metric}</td>
+            <td class="px-3 py-2 font-mono font-bold text-slate-900">${r.code}</td>
+            <td class="px-3 py-2 text-slate-700">${r.station}</td>
+            <td class="px-3 py-2 text-right font-semibold text-slate-900">${prefix}${formatNum(r.mean, 2)}</td>
+            <td class="px-3 py-2 text-right text-slate-500">${prefix}${formatNum(r.se, 2)}</td>
+            <td class="px-3 py-2 text-right text-slate-500">[${prefix}${formatNum(r.lcl, 2)}, ${prefix}${formatNum(r.ucl, 2)}]</td>
+            <td class="px-3 py-2 text-center"><span class="px-2 py-0.5 rounded bg-slate-100 font-mono font-semibold text-forest-800">${r.group}</span></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // 3. CHART.JS PUBLICATION-GRADE VISUALIZATIONS
+    // =========================================================================
+    function initCharts() {
+      Chart.defaults.font.family = "'Inter', sans-serif";
+      Chart.defaults.font.size = 11;
+      Chart.defaults.color = '#475569';
+
+      const PALETTE = {
+        karongiC1: '#29523d', // Deep Forest
+        karongiC2: '#679e7f', // Sage Green
+        kayonzaC1: '#ba8243', // Warm Ochre
+        kayonzaC2: '#e0b378', // Sand Amber
+      };
+
+      const getVal = (arr, code, station, cycle) => {
+        const item = arr.find(d => d.code === code && d.station === station && d.cycle === cycle);
+        return item ? item.mean : null;
+      };
+
+      // 3.1 Trial 1 Maize Chart
+      const codesMaizeBeans = ['A', 'C', 'D', 'E', 'F', 'G'];
+      new Chart(document.getElementById('chart-t1-maize'), {
+        type: 'bar',
+        data: {
+          labels: codesMaizeBeans.map(c => `Trt ${c}`),
+          datasets: [
+            { label: 'Karongi Cycle 1 (25AB)', data: codesMaizeBeans.map(c => getVal(DATA_T1_MAIZE, c, 'Karongi', 'Cycle1_25AB')), backgroundColor: PALETTE.karongiC1, borderRadius: 4 },
+            { label: 'Karongi Cycle 2 (26AB)', data: codesMaizeBeans.map(c => getVal(DATA_T1_MAIZE, c, 'Karongi', 'Cycle2_26AB')), backgroundColor: PALETTE.karongiC2, borderRadius: 4 },
+            { label: 'Kayonza Cycle 1 (25AB)', data: codesMaizeBeans.map(c => getVal(DATA_T1_MAIZE, c, 'Kayonza', 'Cycle1_25AB')), backgroundColor: PALETTE.kayonzaC1, borderRadius: 4 },
+            { label: 'Kayonza Cycle 2 (26AB)', data: codesMaizeBeans.map(c => getVal(DATA_T1_MAIZE, c, 'Kayonza', 'Cycle2_26AB')), backgroundColor: PALETTE.kayonzaC2, borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top' } },
+          scales: { y: { beginAtZero: true, title: { display: true, text: 'Maize Grain Yield (t/ha)' } } }
+        }
+      });
+
+      // 3.2 Trial 1 Beans Chart
+      new Chart(document.getElementById('chart-t1-beans'), {
+        type: 'bar',
+        data: {
+          labels: codesMaizeBeans.map(c => `Trt ${c}`),
+          datasets: [
+            { label: 'Karongi Cycle 1 (25AB)', data: codesMaizeBeans.map(c => getVal(DATA_T1_BEANS, c, 'Karongi', 'Cycle1_25AB')), backgroundColor: PALETTE.karongiC1, borderRadius: 4 },
+            { label: 'Karongi Cycle 2 (26AB)', data: codesMaizeBeans.map(c => getVal(DATA_T1_BEANS, c, 'Karongi', 'Cycle2_26AB')), backgroundColor: PALETTE.karongiC2, borderRadius: 4 },
+            { label: 'Kayonza Cycle 1 (25AB)', data: codesMaizeBeans.map(c => getVal(DATA_T1_BEANS, c, 'Kayonza', 'Cycle1_25AB')), backgroundColor: PALETTE.kayonzaC1, borderRadius: 4 },
+            { label: 'Kayonza Cycle 2 (26AB)', data: codesMaizeBeans.map(c => getVal(DATA_T1_BEANS, c, 'Kayonza', 'Cycle2_26AB')), backgroundColor: PALETTE.kayonzaC2, borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top' } },
+          scales: { y: { beginAtZero: true, title: { display: true, text: 'Bush Beans Yield (t/ha)' } } }
+        }
+      });
+
+      // 3.3 Trial 1 Cassava Chart
+      const codesCassava = ['B', 'C', 'D', 'E', 'F', 'G'];
+      new Chart(document.getElementById('chart-t1-cassava'), {
+        type: 'bar',
+        data: {
+          labels: codesCassava.map(c => `Trt ${c}`),
+          datasets: [
+            { label: 'Karongi Cycle 1 (25AB)', data: codesCassava.map(c => getVal(DATA_T1_CASSAVA, c, 'Karongi', 'Cycle1_25AB')), backgroundColor: PALETTE.karongiC1, borderRadius: 4 },
+            { label: 'Karongi Cycle 2 (26AB)', data: codesCassava.map(c => getVal(DATA_T1_CASSAVA, c, 'Karongi', 'Cycle2_26AB')), backgroundColor: PALETTE.karongiC2, borderRadius: 4 },
+            { label: 'Kayonza Cycle 1 (25AB)', data: codesCassava.map(c => getVal(DATA_T1_CASSAVA, c, 'Kayonza', 'Cycle1_25AB')), backgroundColor: PALETTE.kayonzaC1, borderRadius: 4 },
+            { label: 'Kayonza Cycle 2 (26AB)', data: codesCassava.map(c => getVal(DATA_T1_CASSAVA, c, 'Kayonza', 'Cycle2_26AB')), backgroundColor: PALETTE.kayonzaC2, borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top' } },
+          scales: { y: { beginAtZero: true, title: { display: true, text: '12M Cassava Root Yield (t/ha)' } } }
+        }
+      });
+
+      // 3.4 Trial 1 ATER Chart (with ATER = 1.0 reference line)
+      const codesATER = ['C', 'D', 'E', 'F', 'G'];
+      new Chart(document.getElementById('chart-t1-ater'), {
+        type: 'bar',
+        data: {
+          labels: codesATER.map(c => `Trt ${c}`),
+          datasets: [
+            { label: 'Karongi Cycle 1 (Median)', data: [1.53, 1.50, 1.86, 1.32, 1.34], backgroundColor: PALETTE.karongiC1, borderRadius: 4 },
+            { label: 'Karongi Cycle 2 (Median)', data: [1.29, 1.48, 1.66, 1.51, 1.63], backgroundColor: PALETTE.karongiC2, borderRadius: 4 },
+            { label: 'Kayonza Cycle 1 (Median)', data: [0.94, 0.69, 0.76, 0.85, 0.82], backgroundColor: PALETTE.kayonzaC1, borderRadius: 4 },
+            { label: 'Kayonza Cycle 2 (Median)', data: [1.33, 1.01, 0.96, 1.08, 1.24], backgroundColor: PALETTE.kayonzaC2, borderRadius: 4 },
+            {
+              type: 'line',
+              label: 'Monocrop Parity (ATER = 1.0)',
+              data: [1.0, 1.0, 1.0, 1.0, 1.0],
+              borderColor: '#dc2626',
+              borderWidth: 2,
+              borderDash: [6, 4],
+              pointRadius: 0,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top' } },
+          scales: { y: { beginAtZero: true, max: 2.2, title: { display: true, text: 'Area-Time Equivalent Ratio (ATER)' } } }
+        }
+      });
+
+      // 3.5 Trial 1 Cumulative Profit Chart
+      const codesAll = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+      new Chart(document.getElementById('chart-t1-profit'), {
+        type: 'bar',
+        data: {
+          labels: codesAll.map(c => `Trt ${c}`),
+          datasets: [
+            { label: 'Karongi Cycle 1 (25AB)', data: codesAll.map(c => getVal(DATA_T1_PROFIT, c, 'Karongi', 'Cycle1_25AB')), backgroundColor: PALETTE.karongiC1, borderRadius: 4 },
+            { label: 'Karongi Cycle 2 (26AB)', data: codesAll.map(c => getVal(DATA_T1_PROFIT, c, 'Karongi', 'Cycle2_26AB')), backgroundColor: PALETTE.karongiC2, borderRadius: 4 },
+            { label: 'Kayonza Cycle 1 (25AB)', data: codesAll.map(c => getVal(DATA_T1_PROFIT, c, 'Kayonza', 'Cycle1_25AB')), backgroundColor: PALETTE.kayonzaC1, borderRadius: 4 },
+            { label: 'Kayonza Cycle 2 (26AB)', data: codesAll.map(c => getVal(DATA_T1_PROFIT, c, 'Kayonza', 'Cycle2_26AB')), backgroundColor: PALETTE.kayonzaC2, borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top' } },
+          scales: { y: { title: { display: true, text: 'Cumulative 12-Month Net Profit (USD/ha)' } } }
+        }
+      });
+
+      // 3.6 Season A Biomass vs. Season B Weeding Cost (Scatter / Threshold Relationship)
+      new Chart(document.getElementById('chart-t1-biomass-weeding'), {
+        type: 'scatter',
+        data: {
+          datasets: [
+            {
+              label: 'Karongi CT-CA (High Stover 6–13 t/ha -> Low Weeding Cost)',
+              data: [
+                { x: 6.2, y: 19 }, { x: 7.5, y: 22 }, { x: 8.8, y: 12 }, { x: 10.2, y: 23.5 },
+                { x: 13.0, y: 20 }, { x: 16.0, y: 10.5 }, { x: 6.8, y: 63 }, { x: 9.1, y: 82 },
+                { x: 12.4, y: 60 }, { x: 13.5, y: 72 }
+              ],
+              backgroundColor: '#1b9e77',
+              pointRadius: 5
+            },
+            {
+              label: 'Kayonza Cycle 1 CT-CA (Moderate Stover 4–7 t/ha)',
+              data: [
+                { x: 3.8, y: 44 }, { x: 4.5, y: 28.5 }, { x: 5.2, y: 49.5 }, { x: 6.1, y: 46.8 }, { x: 7.8, y: 38.5 }
+              ],
+              backgroundColor: '#66a61e',
+              pointRadius: 5
+            },
+            {
+              label: 'Kayonza Cycle 2 CT-CA (Low Stover 0.7–3.2 t/ha -> High Hand-Uprooting Cost)',
+              data: [
+                { x: 0.7, y: 158 }, { x: 0.9, y: 201 }, { x: 1.1, y: 245 }, { x: 1.3, y: 232 },
+                { x: 1.7, y: 185 }, { x: 2.1, y: 229 }, { x: 2.6, y: 168 }, { x: 3.1, y: 258 }
+              ],
+              backgroundColor: '#d95f02',
+              pointRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top' },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `Stover: ${ctx.parsed.x} t/ha | Season B Weeding Cost: $${ctx.parsed.y}/ha`
+              }
+            }
+          },
+          scales: {
+            x: { title: { display: true, text: 'Season A Maize Stover Biomass (t/ha)' }, min: 0, max: 17 },
+            y: { title: { display: true, text: 'Season B Weeding Labor Cost (USD/ha)' }, beginAtZero: true }
+          }
+        }
+      });
+
+      // 4.1A Trial 2 Early Maize
+      const t2CompCodes = ['A', 'D', 'E', 'F'];
+      const getT2Comp = (crop, code, station) => DATA_T2_COMPONENTS.find(d => d.crop === crop && d.code === code && d.station === station).mean;
+      new Chart(document.getElementById('chart-t2-maize'), {
+        type: 'bar',
+        data: {
+          labels: t2CompCodes.map(c => `Trt ${c}`),
+          datasets: [
+            { label: 'Karongi', data: t2CompCodes.map(c => getT2Comp('Maize', c, 'Karongi')), backgroundColor: PALETTE.karongiC1, borderRadius: 4 },
+            { label: 'Kayonza', data: t2CompCodes.map(c => getT2Comp('Maize', c, 'Kayonza')), backgroundColor: PALETTE.kayonzaC1, borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true, title: { display: true, text: 'Maize Yield (t/ha)' } } }
+        }
+      });
+
+      // 4.1B Trial 2 Early Beans
+      new Chart(document.getElementById('chart-t2-beans'), {
+        type: 'bar',
+        data: {
+          labels: t2CompCodes.map(c => `Trt ${c}`),
+          datasets: [
+            { label: 'Karongi', data: t2CompCodes.map(c => getT2Comp('Beans', c, 'Karongi')), backgroundColor: PALETTE.karongiC1, borderRadius: 4 },
+            { label: 'Kayonza', data: t2CompCodes.map(c => getT2Comp('Beans', c, 'Kayonza')), backgroundColor: PALETTE.kayonzaC1, borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true, title: { display: true, text: 'Beans Yield (t/ha)' } } }
+        }
+      });
+
+      // 4.2A Trial 2 12M Cassava
+      const t2CassavaCodes = ['B', 'D', 'E'];
+      const getT2Cohort = (metric, code, station) => DATA_T2_COHORT.find(d => d.metric === metric && d.code === code && d.station === station).mean;
+      new Chart(document.getElementById('chart-t2-cassava'), {
+        type: 'bar',
+        data: {
+          labels: t2CassavaCodes.map(c => `Trt ${c}`),
+          datasets: [
+            { label: 'Karongi', data: t2CassavaCodes.map(c => getT2Cohort('Cassava Yield (t/ha)', c, 'Karongi')), backgroundColor: PALETTE.karongiC1, borderRadius: 4 },
+            { label: 'Kayonza', data: t2CassavaCodes.map(c => getT2Cohort('Cassava Yield (t/ha)', c, 'Kayonza')), backgroundColor: PALETTE.kayonzaC1, borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true, title: { display: true, text: '12M Cassava Yield (t/ha)' } } }
+        }
+      });
+
+      // 4.2B Trial 2 12M Profit
+      const t2ProfitCodes = ['A', 'B', 'D', 'E'];
+      new Chart(document.getElementById('chart-t2-profit'), {
+        type: 'bar',
+        data: {
+          labels: t2ProfitCodes.map(c => `Trt ${c}`),
+          datasets: [
+            { label: 'Karongi', data: t2ProfitCodes.map(c => getT2Cohort('12M Profit (USD/ha)', c, 'Karongi')), backgroundColor: PALETTE.karongiC1, borderRadius: 4 },
+            { label: 'Kayonza', data: t2ProfitCodes.map(c => getT2Cohort('12M Profit (USD/ha)', c, 'Kayonza')), backgroundColor: PALETTE.kayonzaC1, borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true, title: { display: true, text: '12M Net Profit (USD/ha)' } } }
+        }
+      });
+    }
+
+    // =========================================================================
+    // 4. SIDEBAR SCROLL-SPY & MOBILE DRAWER INTERACTIVITY
+    // =========================================================================
+    function initNavigation() {
+      const sidebar = document.getElementById('sidebar-nav');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      const openBtn = document.getElementById('mobile-menu-btn');
+      const closeBtn = document.getElementById('close-sidebar-btn');
+      const navLinks = document.querySelectorAll('.toc-link, .toc-sublink');
+
+      const toggleSidebar = (open) => {
+        if (open) {
+          sidebar.classList.remove('-translate-x-full');
+          backdrop.classList.remove('hidden');
+        } else {
+          sidebar.classList.add('-translate-x-full');
+          backdrop.classList.add('hidden');
+        }
+      };
+
+      openBtn.addEventListener('click', () => toggleSidebar(true));
+      closeBtn.addEventListener('click', () => toggleSidebar(false));
+      backdrop.addEventListener('click', () => toggleSidebar(false));
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 1024) toggleSidebar(false);
+        });
+      });
+
+      // Scroll-spy observer
+      const sections = Array.from(navLinks).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+      window.addEventListener('scroll', () => {
+        const scrollPos = window.scrollY + 120;
+        let currentId = '';
+        sections.forEach(sec => {
+          if (sec.offsetTop <= scrollPos) {
+            currentId = '#' + sec.id;
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === currentId);
+        });
+      }, { passive: true });
+    }
+
+
+    // =========================================================================
+    // 5. NEW DATASETS: 12M COST BREAKDOWN & BLOCK 5 FERTILIZER / TIMING
+    // =========================================================================
+    const DATA_COST_12M = [{"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "A", "arrangement": "B-B-B-B", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Late", "n_plots": 1.0, "mean_seed_usd": 155.2, "mean_fert_usd": 0.0, "mean_labor_usd": 275.1, "mean_total_cost": 430.3, "mean_revenue": 544.7, "mean_profit": 114.4}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "A", "arrangement": "B-B-B-B", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Normal", "n_plots": 1.0, "mean_seed_usd": 155.2, "mean_fert_usd": 0.0, "mean_labor_usd": 280.0, "mean_total_cost": 435.3, "mean_revenue": 2311.9, "mean_profit": 1876.6}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "A", "arrangement": "B-B-B-B", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 155.2, "mean_fert_usd": 179.9, "mean_labor_usd": 295.5, "mean_total_cost": 630.5, "mean_revenue": 3273.3, "mean_profit": 2642.8}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Late", "n_plots": 1.0, "mean_seed_usd": 373.1, "mean_fert_usd": 0.0, "mean_labor_usd": 168.4, "mean_total_cost": 541.6, "mean_revenue": 6400.9, "mean_profit": 5859.3}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Normal", "n_plots": 1.0, "mean_seed_usd": 373.1, "mean_fert_usd": 0.0, "mean_labor_usd": 186.2, "mean_total_cost": 559.3, "mean_revenue": 8268.6, "mean_profit": 7709.3}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 373.1, "mean_fert_usd": 197.5, "mean_labor_usd": 189.6, "mean_total_cost": 760.2, "mean_revenue": 7609.2, "mean_profit": 6849.0}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "C", "arrangement": "C-B-C-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 426.9, "mean_fert_usd": 245.6, "mean_labor_usd": 275.9, "mean_total_cost": 948.4, "mean_revenue": 10933.2, "mean_profit": 9984.8}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "D", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 519.4, "mean_fert_usd": 245.6, "mean_labor_usd": 301.5, "mean_total_cost": 1066.5, "mean_revenue": 9391.1, "mean_profit": 8324.5}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "E", "arrangement": "C-B-B-C-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 539.7, "mean_fert_usd": 245.6, "mean_labor_usd": 290.2, "mean_total_cost": 1075.4, "mean_revenue": 13202.7, "mean_profit": 12127.2}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "F", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Late", "n_plots": 1.0, "mean_seed_usd": 459.7, "mean_fert_usd": 0.0, "mean_labor_usd": 229.6, "mean_total_cost": 689.3, "mean_revenue": 6550.4, "mean_profit": 5861.1}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "F", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Normal", "n_plots": 1.0, "mean_seed_usd": 459.7, "mean_fert_usd": 0.0, "mean_labor_usd": 285.0, "mean_total_cost": 744.7, "mean_revenue": 4694.1, "mean_profit": 3949.4}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "F", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 459.7, "mean_fert_usd": 245.6, "mean_labor_usd": 315.9, "mean_total_cost": 1021.2, "mean_revenue": 8531.8, "mean_profit": 7510.6}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Karongi", "code": "G", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CT", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 459.7, "mean_fert_usd": 245.6, "mean_labor_usd": 312.4, "mean_total_cost": 1017.7, "mean_revenue": 7965.4, "mean_profit": 6947.6}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "A", "arrangement": "B-B-B-B", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Late", "n_plots": 1.0, "mean_seed_usd": 132.5, "mean_fert_usd": 0.0, "mean_labor_usd": 154.9, "mean_total_cost": 287.4, "mean_revenue": 2257.3, "mean_profit": 1969.8}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "A", "arrangement": "B-B-B-B", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Normal", "n_plots": 1.0, "mean_seed_usd": 132.5, "mean_fert_usd": 0.0, "mean_labor_usd": 222.5, "mean_total_cost": 354.9, "mean_revenue": 2318.0, "mean_profit": 1963.0}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "A", "arrangement": "B-B-B-B", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 132.5, "mean_fert_usd": 179.9, "mean_labor_usd": 223.7, "mean_total_cost": 536.0, "mean_revenue": 2999.1, "mean_profit": 2463.0}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Late", "n_plots": 1.0, "mean_seed_usd": 373.1, "mean_fert_usd": 0.0, "mean_labor_usd": 250.2, "mean_total_cost": 623.3, "mean_revenue": 1361.9, "mean_profit": 738.6}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Normal", "n_plots": 1.0, "mean_seed_usd": 373.1, "mean_fert_usd": 0.0, "mean_labor_usd": 243.1, "mean_total_cost": 616.2, "mean_revenue": null, "mean_profit": null}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 373.1, "mean_fert_usd": 194.2, "mean_labor_usd": 283.8, "mean_total_cost": 851.1, "mean_revenue": 4875.5, "mean_profit": 4024.4}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "C", "arrangement": "C-B-C-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 419.1, "mean_fert_usd": 245.6, "mean_labor_usd": 229.6, "mean_total_cost": 894.3, "mean_revenue": 3921.8, "mean_profit": 3027.5}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "D", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 509.3, "mean_fert_usd": 245.6, "mean_labor_usd": 239.3, "mean_total_cost": 994.2, "mean_revenue": 2858.4, "mean_profit": 1864.2}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "E", "arrangement": "C-B-B-C-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 3.0, "mean_seed_usd": 526.6, "mean_fert_usd": 245.6, "mean_labor_usd": 229.6, "mean_total_cost": 1001.7, "mean_revenue": 3585.4, "mean_profit": 2583.7}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "F", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Late", "n_plots": 1.0, "mean_seed_usd": 449.6, "mean_fert_usd": 0.0, "mean_labor_usd": 170.6, "mean_total_cost": 620.1, "mean_revenue": 2372.8, "mean_profit": 1752.7}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "F", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Normal", "n_plots": 1.0, "mean_seed_usd": 449.6, "mean_fert_usd": 0.0, "mean_labor_usd": 199.0, "mean_total_cost": 648.6, "mean_revenue": 2091.7, "mean_profit": 1443.2}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "F", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 449.6, "mean_fert_usd": 245.6, "mean_labor_usd": 244.7, "mean_total_cost": 939.8, "mean_revenue": 3602.9, "mean_profit": 2663.1}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle1_25AB", "station": "Kayonza", "code": "G", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CT", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 447.4, "mean_fert_usd": 245.6, "mean_labor_usd": 245.4, "mean_total_cost": 938.4, "mean_revenue": 3652.4, "mean_profit": 2714.0}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Karongi", "code": "A", "arrangement": "B-B-B-B", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 82.6, "mean_fert_usd": 191.3, "mean_labor_usd": 780.7, "mean_total_cost": 1054.7, "mean_revenue": 1581.7, "mean_profit": 527.0}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Karongi", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Late", "n_plots": 1.0, "mean_seed_usd": 373.1, "mean_fert_usd": 0.0, "mean_labor_usd": 599.9, "mean_total_cost": 973.0, "mean_revenue": 4927.8, "mean_profit": 3954.8}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Karongi", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Normal", "n_plots": 1.0, "mean_seed_usd": 373.1, "mean_fert_usd": 0.0, "mean_labor_usd": 648.2, "mean_total_cost": 1021.3, "mean_revenue": 2737.5, "mean_profit": 1716.2}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Karongi", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 373.1, "mean_fert_usd": 180.9, "mean_labor_usd": 646.8, "mean_total_cost": 1200.8, "mean_revenue": 14573.7, "mean_profit": 13372.9}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Karongi", "code": "C", "arrangement": "C-B-C-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 416.1, "mean_fert_usd": 279.0, "mean_labor_usd": 729.9, "mean_total_cost": 1425.0, "mean_revenue": 12133.2, "mean_profit": 10708.2}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Karongi", "code": "D", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 887.8, "mean_fert_usd": 279.0, "mean_labor_usd": 733.8, "mean_total_cost": 1900.6, "mean_revenue": 12368.7, "mean_profit": 10468.1}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Karongi", "code": "E", "arrangement": "C-B-B-C-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 3.0, "mean_seed_usd": 503.0, "mean_fert_usd": 279.0, "mean_labor_usd": 676.6, "mean_total_cost": 1458.6, "mean_revenue": 15716.0, "mean_profit": 14257.4}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Karongi", "code": "F", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 410.1, "mean_fert_usd": 279.0, "mean_labor_usd": 717.5, "mean_total_cost": 1406.6, "mean_revenue": 10561.0, "mean_profit": 9154.4}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Karongi", "code": "G", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CT", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 410.1, "mean_fert_usd": 279.0, "mean_labor_usd": 755.5, "mean_total_cost": 1444.6, "mean_revenue": 11632.2, "mean_profit": 10187.6}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Kayonza", "code": "A", "arrangement": "B-B-B-B", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Late", "n_plots": 1.0, "mean_seed_usd": 73.7, "mean_fert_usd": 0.0, "mean_labor_usd": 1557.9, "mean_total_cost": 1631.6, "mean_revenue": 116.8, "mean_profit": -1514.8}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Kayonza", "code": "A", "arrangement": "B-B-B-B", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Normal", "n_plots": 1.0, "mean_seed_usd": 73.7, "mean_fert_usd": 0.0, "mean_labor_usd": 1535.2, "mean_total_cost": 1608.9, "mean_revenue": 753.7, "mean_profit": -855.2}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Kayonza", "code": "A", "arrangement": "B-B-B-B", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 73.7, "mean_fert_usd": 163.7, "mean_labor_usd": 1266.5, "mean_total_cost": 1503.9, "mean_revenue": 1091.9, "mean_profit": -412.0}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Kayonza", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Late", "n_plots": 1.0, "mean_seed_usd": 373.1, "mean_fert_usd": 0.0, "mean_labor_usd": 1260.8, "mean_total_cost": 1634.0, "mean_revenue": 3477.1, "mean_profit": 1843.1}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Kayonza", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Normal", "n_plots": 1.0, "mean_seed_usd": 373.1, "mean_fert_usd": 0.0, "mean_labor_usd": 1263.7, "mean_total_cost": 1636.8, "mean_revenue": 4999.2, "mean_profit": 3362.4}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Kayonza", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 373.1, "mean_fert_usd": 180.9, "mean_labor_usd": 1395.2, "mean_total_cost": 1949.2, "mean_revenue": 5741.8, "mean_profit": 3792.7}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Kayonza", "code": "C", "arrangement": "C-B-C-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 451.7, "mean_fert_usd": 242.2, "mean_labor_usd": 1330.8, "mean_total_cost": 2024.7, "mean_revenue": 3519.2, "mean_profit": 1494.5}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Kayonza", "code": "D", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 940.1, "mean_fert_usd": 242.2, "mean_labor_usd": 1358.9, "mean_total_cost": 2541.2, "mean_revenue": 3058.8, "mean_profit": 517.6}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Kayonza", "code": "E", "arrangement": "C-B-B-C-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 566.5, "mean_fert_usd": 242.2, "mean_labor_usd": 1490.0, "mean_total_cost": 2298.7, "mean_revenue": 2366.4, "mean_profit": 67.7}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Kayonza", "code": "F", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "No-fertilizer", "planting_time": "Late", "n_plots": 1.0, "mean_seed_usd": 462.5, "mean_fert_usd": 0.0, "mean_labor_usd": 1584.9, "mean_total_cost": 2047.4, "mean_revenue": 2573.8, "mean_profit": 526.4}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Kayonza", "code": "F", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 462.5, "mean_fert_usd": 242.2, "mean_labor_usd": 1402.3, "mean_total_cost": 2106.9, "mean_revenue": 3046.8, "mean_profit": 939.8}, {"trial_group": "Trial1_Spacing_Tillage", "cycle": "Cycle2_26AB", "station": "Kayonza", "code": "G", "arrangement": "C-B-B-B-C-B-B-B-C", "tillage": "CT-CT", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 462.5, "mean_fert_usd": 242.2, "mean_labor_usd": 1197.9, "mean_total_cost": 1902.6, "mean_revenue": 2523.9, "mean_profit": 621.3}, {"trial_group": "Trial2_EarlyPlant_CoverCrop", "cycle": "Cycle1_26AB", "station": "Karongi", "code": "A", "arrangement": "B-B-B-B", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 59.2, "mean_fert_usd": 154.5, "mean_labor_usd": 1227.8, "mean_total_cost": 1441.5, "mean_revenue": 1832.0, "mean_profit": 390.6}, {"trial_group": "Trial2_EarlyPlant_CoverCrop", "cycle": "Cycle1_26AB", "station": "Karongi", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 373.1, "mean_fert_usd": 180.9, "mean_labor_usd": 358.9, "mean_total_cost": 912.9, "mean_revenue": 11265.0, "mean_profit": 10352.1}, {"trial_group": "Trial2_EarlyPlant_CoverCrop", "cycle": "Cycle1_26AB", "station": "Karongi", "code": "D", "arrangement": "C-B-B-C-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 3.0, "mean_seed_usd": 532.8, "mean_fert_usd": 180.0, "mean_labor_usd": 938.2, "mean_total_cost": 1651.0, "mean_revenue": 10762.2, "mean_profit": 9111.2}, {"trial_group": "Trial2_EarlyPlant_CoverCrop", "cycle": "Cycle1_26AB", "station": "Karongi", "code": "E", "arrangement": "C-c-B-B-c-C-c-B-B-c-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 532.8, "mean_fert_usd": 180.0, "mean_labor_usd": 752.3, "mean_total_cost": 1465.1, "mean_revenue": 11362.4, "mean_profit": 9897.3}, {"trial_group": "Trial2_EarlyPlant_CoverCrop", "cycle": "Cycle1_26AB", "station": "Kayonza", "code": "A", "arrangement": "B-B-B-B", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 136.7, "mean_fert_usd": 124.3, "mean_labor_usd": 1042.6, "mean_total_cost": 1303.7, "mean_revenue": 1320.5, "mean_profit": 16.9}, {"trial_group": "Trial2_EarlyPlant_CoverCrop", "cycle": "Cycle1_26AB", "station": "Kayonza", "code": "B", "arrangement": "C-C-C-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 373.1, "mean_fert_usd": 180.9, "mean_labor_usd": 432.5, "mean_total_cost": 986.5, "mean_revenue": 6750.3, "mean_profit": 5763.8}, {"trial_group": "Trial2_EarlyPlant_CoverCrop", "cycle": "Cycle1_26AB", "station": "Kayonza", "code": "D", "arrangement": "C-B-B-C-B-B-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 607.1, "mean_fert_usd": 176.0, "mean_labor_usd": 1030.9, "mean_total_cost": 1814.0, "mean_revenue": 4185.8, "mean_profit": 2371.8}, {"trial_group": "Trial2_EarlyPlant_CoverCrop", "cycle": "Cycle1_26AB", "station": "Kayonza", "code": "E", "arrangement": "C-c-B-B-c-C-c-B-B-c-C", "tillage": "CT-CA", "fertilization": "Normal", "planting_time": "Normal", "n_plots": 4.0, "mean_seed_usd": 607.1, "mean_fert_usd": 176.0, "mean_labor_usd": 1201.1, "mean_total_cost": 1984.2, "mean_revenue": 2981.7, "mean_profit": 997.5}];
+    const DATA_B5_SUMMARY = [{"station": "Karongi", "code": "A", "system_label": "A: Maize-Beans Control (B-B-B-B)", "arrangement": "B-B-B-B", "regime": "1. Normal (Compost + Fert) | Normal_Oct", "fertilization": "Normal", "planting_cohort": "Normal_Oct", "n_plots": 8.0, "maize_tha": 6.1745, "beans_tha": 1.2339, "cassava_tha": null, "mean_cost_usd": 842.6131, "mean_rev_usd": 2427.4815, "mean_profit_usd": 1584.8683, "sd_profit_usd": 1231.5248}, {"station": "Karongi", "code": "A", "system_label": "A: Maize-Beans Control (B-B-B-B)", "arrangement": "B-B-B-B", "regime": "2. No-Compost / No-Fert | Normal_Oct", "fertilization": "No-fertilizer", "planting_cohort": "Normal_Oct", "n_plots": 1.0, "maize_tha": 7.6205, "beans_tha": 0.8545, "cassava_tha": null, "mean_cost_usd": 435.2523, "mean_rev_usd": 2311.8619, "mean_profit_usd": 1876.6096, "sd_profit_usd": null}, {"station": "Karongi", "code": "A", "system_label": "A: Maize-Beans Control (B-B-B-B)", "arrangement": "B-B-B-B", "regime": "3. No-Compost / No-Fert | Late_OctNov", "fertilization": "No-fertilizer", "planting_cohort": "Late_OctNov", "n_plots": 1.0, "maize_tha": 2.0934, "beans_tha": 0.1072, "cassava_tha": null, "mean_cost_usd": 430.2772, "mean_rev_usd": 544.683, "mean_profit_usd": 114.4058, "sd_profit_usd": null}, {"station": "Karongi", "code": "B", "system_label": "B: Sole Cassava (C-C-C-C)", "arrangement": "C-C-C-C", "regime": "1. Normal (Compost + Fert) | Normal_Oct", "fertilization": "Normal", "planting_cohort": "Normal_Oct", "n_plots": 8.0, "maize_tha": null, "beans_tha": null, "cassava_tha": 36.4899, "mean_cost_usd": 980.4904, "mean_rev_usd": 11091.442, "mean_profit_usd": 10110.9516, "sd_profit_usd": 4179.9233}, {"station": "Karongi", "code": "B", "system_label": "B: Sole Cassava (C-C-C-C)", "arrangement": "C-C-C-C", "regime": "2. No-Compost / No-Fert | Normal_Oct", "fertilization": "No-fertilizer", "planting_cohort": "Normal_Oct", "n_plots": 2.0, "maize_tha": null, "beans_tha": null, "cassava_tha": 24.3467, "mean_cost_usd": 790.334, "mean_rev_usd": 5503.0481, "mean_profit_usd": 4712.714, "sd_profit_usd": 4237.7688}, {"station": "Karongi", "code": "B", "system_label": "B: Sole Cassava (C-C-C-C)", "arrangement": "C-C-C-C", "regime": "3. No-Compost / No-Fert | Late_OctNov", "fertilization": "No-fertilizer", "planting_cohort": "Late_OctNov", "n_plots": 2.0, "maize_tha": null, "beans_tha": null, "cassava_tha": 22.3778, "mean_cost_usd": 757.285, "mean_rev_usd": 5664.3449, "mean_profit_usd": 4907.0599, "sd_profit_usd": 1346.6607}, {"station": "Karongi", "code": "F", "system_label": "F: Intercrop (C-B-B-B-C-B-B-B-C)", "arrangement": "C-B-B-B-C-B-B-B-C", "regime": "1. Normal (Compost + Fert) | Normal_Oct", "fertilization": "Normal", "planting_cohort": "Normal_Oct", "n_plots": 8.0, "maize_tha": 7.3766, "beans_tha": 0.9845, "cassava_tha": 23.5111, "mean_cost_usd": 1213.9007, "mean_rev_usd": 9546.4048, "mean_profit_usd": 8332.5041, "sd_profit_usd": 2639.8367}, {"station": "Karongi", "code": "F", "system_label": "F: Intercrop (C-B-B-B-C-B-B-B-C)", "arrangement": "C-B-B-B-C-B-B-B-C", "regime": "2. No-Compost / No-Fert | Normal_Oct", "fertilization": "No-fertilizer", "planting_cohort": "Normal_Oct", "n_plots": 1.0, "maize_tha": 6.9137, "beans_tha": 0.6102, "cassava_tha": 13.7218, "mean_cost_usd": 744.705, "mean_rev_usd": 4694.094, "mean_profit_usd": 3949.3889, "sd_profit_usd": null}, {"station": "Karongi", "code": "F", "system_label": "F: Intercrop (C-B-B-B-C-B-B-B-C)", "arrangement": "C-B-B-B-C-B-B-B-C", "regime": "3. No-Compost / No-Fert | Late_OctNov", "fertilization": "No-fertilizer", "planting_cohort": "Late_OctNov", "n_plots": 1.0, "maize_tha": 4.8716, "beans_tha": 0.1346, "cassava_tha": 27.125, "mean_cost_usd": 689.2679, "mean_rev_usd": 6550.3893, "mean_profit_usd": 5861.1214, "sd_profit_usd": null}, {"station": "Kayonza", "code": "A", "system_label": "A: Maize-Beans Control (B-B-B-B)", "arrangement": "B-B-B-B", "regime": "1. Normal (Compost + Fert) | Normal_Oct", "fertilization": "Normal", "planting_cohort": "Normal_Oct", "n_plots": 8.0, "maize_tha": 4.843, "beans_tha": 1.1607, "cassava_tha": null, "mean_cost_usd": 1019.9951, "mean_rev_usd": 2045.4863, "mean_profit_usd": 1025.4912, "sd_profit_usd": 1579.0129}, {"station": "Kayonza", "code": "A", "system_label": "A: Maize-Beans Control (B-B-B-B)", "arrangement": "B-B-B-B", "regime": "2. No-Compost / No-Fert | Normal_Oct", "fertilization": "No-fertilizer", "planting_cohort": "Normal_Oct", "n_plots": 2.0, "maize_tha": 4.391, "beans_tha": 0.5679, "cassava_tha": null, "mean_cost_usd": 981.9068, "mean_rev_usd": 1535.8232, "mean_profit_usd": 553.9164, "sd_profit_usd": 1992.7822}, {"station": "Kayonza", "code": "A", "system_label": "A: Maize-Beans Control (B-B-B-B)", "arrangement": "B-B-B-B", "regime": "3. No-Compost / No-Fert | Late_OctNov", "fertilization": "No-fertilizer", "planting_cohort": "Late_OctNov", "n_plots": 2.0, "maize_tha": 2.3021, "beans_tha": 0.8036, "cassava_tha": null, "mean_cost_usd": 959.5187, "mean_rev_usd": 1187.0513, "mean_profit_usd": 227.5326, "sd_profit_usd": 2463.9834}, {"station": "Kayonza", "code": "B", "system_label": "B: Sole Cassava (C-C-C-C)", "arrangement": "C-C-C-C", "regime": "1. Normal (Compost + Fert) | Normal_Oct", "fertilization": "Normal", "planting_cohort": "Normal_Oct", "n_plots": 8.0, "maize_tha": null, "beans_tha": null, "cassava_tha": 20.284, "mean_cost_usd": 1400.1313, "mean_rev_usd": 5308.6658, "mean_profit_usd": 3908.5345, "sd_profit_usd": 3173.926}, {"station": "Kayonza", "code": "B", "system_label": "B: Sole Cassava (C-C-C-C)", "arrangement": "C-C-C-C", "regime": "2. No-Compost / No-Fert | Normal_Oct", "fertilization": "No-fertilizer", "planting_cohort": "Normal_Oct", "n_plots": 1.0, "maize_tha": null, "beans_tha": null, "cassava_tha": 12.5683, "mean_cost_usd": 1636.8159, "mean_rev_usd": 4999.1953, "mean_profit_usd": 3362.3794, "sd_profit_usd": null}, {"station": "Kayonza", "code": "B", "system_label": "B: Sole Cassava (C-C-C-C)", "arrangement": "C-C-C-C", "regime": "3. No-Compost / No-Fert | Late_OctNov", "fertilization": "No-fertilizer", "planting_cohort": "Late_OctNov", "n_plots": 2.0, "maize_tha": null, "beans_tha": null, "cassava_tha": 8.0208, "mean_cost_usd": 1128.6425, "mean_rev_usd": 2419.518, "mean_profit_usd": 1290.8755, "sd_profit_usd": 780.9955}, {"station": "Kayonza", "code": "F", "system_label": "F: Intercrop (C-B-B-B-C-B-B-B-C)", "arrangement": "C-B-B-B-C-B-B-B-C", "regime": "1. Normal (Compost + Fert) | Normal_Oct", "fertilization": "Normal", "planting_cohort": "Normal_Oct", "n_plots": 8.0, "maize_tha": 4.3443, "beans_tha": 1.1976, "cassava_tha": 4.0435, "mean_cost_usd": 1523.3671, "mean_rev_usd": 3324.8115, "mean_profit_usd": 1801.4444, "sd_profit_usd": 1189.8065}, {"station": "Kayonza", "code": "F", "system_label": "F: Intercrop (C-B-B-B-C-B-B-B-C)", "arrangement": "C-B-B-B-C-B-B-B-C", "regime": "2. No-Compost / No-Fert | Normal_Oct", "fertilization": "No-fertilizer", "planting_cohort": "Normal_Oct", "n_plots": 1.0, "maize_tha": 4.9101, "beans_tha": 1.0631, "cassava_tha": 0.0, "mean_cost_usd": 648.5572, "mean_rev_usd": 2091.7494, "mean_profit_usd": 1443.1921, "sd_profit_usd": null}, {"station": "Kayonza", "code": "F", "system_label": "F: Intercrop (C-B-B-B-C-B-B-B-C)", "arrangement": "C-B-B-B-C-B-B-B-C", "regime": "3. No-Compost / No-Fert | Late_OctNov", "fertilization": "No-fertilizer", "planting_cohort": "Late_OctNov", "n_plots": 2.0, "maize_tha": 2.502, "beans_tha": 0.011, "cassava_tha": 6.156, "mean_cost_usd": 1333.7761, "mean_rev_usd": 2473.3281, "mean_profit_usd": 1139.552, "sd_profit_usd": 867.1532}];
+    const DATA_B5_CHANGE = [{"station": "Karongi", "code": "A", "system_label": "A: Maize-Beans Control (B-B-B-B)", "arrangement": "B-B-B-B", "regime": "3. No-Compost / No-Fert | Late_OctNov", "fertilization": "No-fertilizer", "planting_cohort": "Late_OctNov", "n_plots": 1.0, "maize_tha": 2.0934, "beans_tha": 0.1072, "cassava_tha": null, "mean_cost_usd": 430.2772, "mean_rev_usd": 544.683, "mean_profit_usd": 114.4058, "sd_profit_usd": null, "base_maize": 6.1745, "base_beans": 1.2339, "base_cassava": null, "base_cost": 842.6131, "base_profit": 1584.8683, "diff_maize_tha": -4.08, "diff_beans_tha": -1.13, "diff_cassava_tha": null, "diff_cost_usd": -412.0, "diff_profit_usd": -1470.0, "pct_maize_chg": -66.1, "pct_beans_chg": -91.3, "pct_cassava_chg": null, "pct_cost_chg": -48.9, "pct_profit_chg": -92.8}, {"station": "Karongi", "code": "B", "system_label": "B: Sole Cassava (C-C-C-C)", "arrangement": "C-C-C-C", "regime": "3. No-Compost / No-Fert | Late_OctNov", "fertilization": "No-fertilizer", "planting_cohort": "Late_OctNov", "n_plots": 2.0, "maize_tha": null, "beans_tha": null, "cassava_tha": 22.3778, "mean_cost_usd": 757.285, "mean_rev_usd": 5664.3449, "mean_profit_usd": 4907.0599, "sd_profit_usd": 1346.6607, "base_maize": null, "base_beans": null, "base_cassava": 36.4899, "base_cost": 980.4904, "base_profit": 10110.9516, "diff_maize_tha": null, "diff_beans_tha": null, "diff_cassava_tha": -14.11, "diff_cost_usd": -223.0, "diff_profit_usd": -5204.0, "pct_maize_chg": null, "pct_beans_chg": null, "pct_cassava_chg": -38.7, "pct_cost_chg": -22.8, "pct_profit_chg": -51.5}, {"station": "Karongi", "code": "F", "system_label": "F: Intercrop (C-B-B-B-C-B-B-B-C)", "arrangement": "C-B-B-B-C-B-B-B-C", "regime": "3. No-Compost / No-Fert | Late_OctNov", "fertilization": "No-fertilizer", "planting_cohort": "Late_OctNov", "n_plots": 1.0, "maize_tha": 4.8716, "beans_tha": 0.1346, "cassava_tha": 27.125, "mean_cost_usd": 689.2679, "mean_rev_usd": 6550.3893, "mean_profit_usd": 5861.1214, "sd_profit_usd": null, "base_maize": 7.3766, "base_beans": 0.9845, "base_cassava": 23.5111, "base_cost": 1213.9007, "base_profit": 8332.5041, "diff_maize_tha": -2.51, "diff_beans_tha": -0.85, "diff_cassava_tha": 3.61, "diff_cost_usd": -525.0, "diff_profit_usd": -2471.0, "pct_maize_chg": -34.0, "pct_beans_chg": -86.3, "pct_cassava_chg": 15.4, "pct_cost_chg": -43.2, "pct_profit_chg": -29.7}, {"station": "Kayonza", "code": "A", "system_label": "A: Maize-Beans Control (B-B-B-B)", "arrangement": "B-B-B-B", "regime": "3. No-Compost / No-Fert | Late_OctNov", "fertilization": "No-fertilizer", "planting_cohort": "Late_OctNov", "n_plots": 2.0, "maize_tha": 2.3021, "beans_tha": 0.8036, "cassava_tha": null, "mean_cost_usd": 959.5187, "mean_rev_usd": 1187.0513, "mean_profit_usd": 227.5326, "sd_profit_usd": 2463.9834, "base_maize": 4.843, "base_beans": 1.1607, "base_cassava": null, "base_cost": 1019.9951, "base_profit": 1025.4912, "diff_maize_tha": -2.54, "diff_beans_tha": -0.36, "diff_cassava_tha": null, "diff_cost_usd": -60.0, "diff_profit_usd": -798.0, "pct_maize_chg": -52.5, "pct_beans_chg": -30.8, "pct_cassava_chg": null, "pct_cost_chg": -5.9, "pct_profit_chg": -77.8}, {"station": "Kayonza", "code": "B", "system_label": "B: Sole Cassava (C-C-C-C)", "arrangement": "C-C-C-C", "regime": "3. No-Compost / No-Fert | Late_OctNov", "fertilization": "No-fertilizer", "planting_cohort": "Late_OctNov", "n_plots": 2.0, "maize_tha": null, "beans_tha": null, "cassava_tha": 8.0208, "mean_cost_usd": 1128.6425, "mean_rev_usd": 2419.518, "mean_profit_usd": 1290.8755, "sd_profit_usd": 780.9955, "base_maize": null, "base_beans": null, "base_cassava": 20.284, "base_cost": 1400.1313, "base_profit": 3908.5345, "diff_maize_tha": null, "diff_beans_tha": null, "diff_cassava_tha": -12.26, "diff_cost_usd": -271.0, "diff_profit_usd": -2618.0, "pct_maize_chg": null, "pct_beans_chg": null, "pct_cassava_chg": -60.5, "pct_cost_chg": -19.4, "pct_profit_chg": -67.0}, {"station": "Kayonza", "code": "F", "system_label": "F: Intercrop (C-B-B-B-C-B-B-B-C)", "arrangement": "C-B-B-B-C-B-B-B-C", "regime": "3. No-Compost / No-Fert | Late_OctNov", "fertilization": "No-fertilizer", "planting_cohort": "Late_OctNov", "n_plots": 2.0, "maize_tha": 2.502, "beans_tha": 0.011, "cassava_tha": 6.156, "mean_cost_usd": 1333.7761, "mean_rev_usd": 2473.3281, "mean_profit_usd": 1139.552, "sd_profit_usd": 867.1532, "base_maize": 4.3443, "base_beans": 1.1976, "base_cassava": 4.0435, "base_cost": 1523.3671, "base_profit": 1801.4444, "diff_maize_tha": -1.84, "diff_beans_tha": -1.19, "diff_cassava_tha": 2.11, "diff_cost_usd": -190.0, "diff_profit_usd": -662.0, "pct_maize_chg": -42.4, "pct_beans_chg": -99.1, "pct_cassava_chg": 52.2, "pct_cost_chg": -12.4, "pct_profit_chg": -36.7}, {"station": "Karongi", "code": "A", "system_label": "A: Maize-Beans Control (B-B-B-B)", "arrangement": "B-B-B-B", "regime": "2. No-Compost / No-Fert | Normal_Oct", "fertilization": "No-fertilizer", "planting_cohort": "Normal_Oct", "n_plots": 1.0, "maize_tha": 7.6205, "beans_tha": 0.8545, "cassava_tha": null, "mean_cost_usd": 435.2523, "mean_rev_usd": 2311.8619, "mean_profit_usd": 1876.6096, "sd_profit_usd": null, "base_maize": 6.1745, "base_beans": 1.2339, "base_cassava": null, "base_cost": 842.6131, "base_profit": 1584.8683, "diff_maize_tha": 1.45, "diff_beans_tha": -0.38, "diff_cassava_tha": null, "diff_cost_usd": -407.0, "diff_profit_usd": 292.0, "pct_maize_chg": 23.4, "pct_beans_chg": -30.7, "pct_cassava_chg": null, "pct_cost_chg": -48.3, "pct_profit_chg": 18.4}, {"station": "Karongi", "code": "B", "system_label": "B: Sole Cassava (C-C-C-C)", "arrangement": "C-C-C-C", "regime": "2. No-Compost / No-Fert | Normal_Oct", "fertilization": "No-fertilizer", "planting_cohort": "Normal_Oct", "n_plots": 2.0, "maize_tha": null, "beans_tha": null, "cassava_tha": 24.3467, "mean_cost_usd": 790.334, "mean_rev_usd": 5503.0481, "mean_profit_usd": 4712.714, "sd_profit_usd": 4237.7688, "base_maize": null, "base_beans": null, "base_cassava": 36.4899, "base_cost": 980.4904, "base_profit": 10110.9516, "diff_maize_tha": null, "diff_beans_tha": null, "diff_cassava_tha": -12.14, "diff_cost_usd": -190.0, "diff_profit_usd": -5398.0, "pct_maize_chg": null, "pct_beans_chg": null, "pct_cassava_chg": -33.3, "pct_cost_chg": -19.4, "pct_profit_chg": -53.4}, {"station": "Karongi", "code": "F", "system_label": "F: Intercrop (C-B-B-B-C-B-B-B-C)", "arrangement": "C-B-B-B-C-B-B-B-C", "regime": "2. No-Compost / No-Fert | Normal_Oct", "fertilization": "No-fertilizer", "planting_cohort": "Normal_Oct", "n_plots": 1.0, "maize_tha": 6.9137, "beans_tha": 0.6102, "cassava_tha": 13.7218, "mean_cost_usd": 744.705, "mean_rev_usd": 4694.094, "mean_profit_usd": 3949.3889, "sd_profit_usd": null, "base_maize": 7.3766, "base_beans": 0.9845, "base_cassava": 23.5111, "base_cost": 1213.9007, "base_profit": 8332.5041, "diff_maize_tha": -0.46, "diff_beans_tha": -0.37, "diff_cassava_tha": -9.79, "diff_cost_usd": -469.0, "diff_profit_usd": -4383.0, "pct_maize_chg": -6.3, "pct_beans_chg": -38.0, "pct_cassava_chg": -41.6, "pct_cost_chg": -38.7, "pct_profit_chg": -52.6}, {"station": "Kayonza", "code": "A", "system_label": "A: Maize-Beans Control (B-B-B-B)", "arrangement": "B-B-B-B", "regime": "2. No-Compost / No-Fert | Normal_Oct", "fertilization": "No-fertilizer", "planting_cohort": "Normal_Oct", "n_plots": 2.0, "maize_tha": 4.391, "beans_tha": 0.5679, "cassava_tha": null, "mean_cost_usd": 981.9068, "mean_rev_usd": 1535.8232, "mean_profit_usd": 553.9164, "sd_profit_usd": 1992.7822, "base_maize": 4.843, "base_beans": 1.1607, "base_cassava": null, "base_cost": 1019.9951, "base_profit": 1025.4912, "diff_maize_tha": -0.45, "diff_beans_tha": -0.59, "diff_cassava_tha": null, "diff_cost_usd": -38.0, "diff_profit_usd": -472.0, "pct_maize_chg": -9.3, "pct_beans_chg": -51.1, "pct_cassava_chg": null, "pct_cost_chg": -3.7, "pct_profit_chg": -46.0}, {"station": "Kayonza", "code": "B", "system_label": "B: Sole Cassava (C-C-C-C)", "arrangement": "C-C-C-C", "regime": "2. No-Compost / No-Fert | Normal_Oct", "fertilization": "No-fertilizer", "planting_cohort": "Normal_Oct", "n_plots": 1.0, "maize_tha": null, "beans_tha": null, "cassava_tha": 12.5683, "mean_cost_usd": 1636.8159, "mean_rev_usd": 4999.1953, "mean_profit_usd": 3362.3794, "sd_profit_usd": null, "base_maize": null, "base_beans": null, "base_cassava": 20.284, "base_cost": 1400.1313, "base_profit": 3908.5345, "diff_maize_tha": null, "diff_beans_tha": null, "diff_cassava_tha": -7.72, "diff_cost_usd": 237.0, "diff_profit_usd": -546.0, "pct_maize_chg": null, "pct_beans_chg": null, "pct_cassava_chg": -38.0, "pct_cost_chg": 16.9, "pct_profit_chg": -14.0}, {"station": "Kayonza", "code": "F", "system_label": "F: Intercrop (C-B-B-B-C-B-B-B-C)", "arrangement": "C-B-B-B-C-B-B-B-C", "regime": "2. No-Compost / No-Fert | Normal_Oct", "fertilization": "No-fertilizer", "planting_cohort": "Normal_Oct", "n_plots": 1.0, "maize_tha": 4.9101, "beans_tha": 1.0631, "cassava_tha": 0.0, "mean_cost_usd": 648.5572, "mean_rev_usd": 2091.7494, "mean_profit_usd": 1443.1921, "sd_profit_usd": null, "base_maize": 4.3443, "base_beans": 1.1976, "base_cassava": 4.0435, "base_cost": 1523.3671, "base_profit": 1801.4444, "diff_maize_tha": 0.57, "diff_beans_tha": -0.13, "diff_cassava_tha": -4.04, "diff_cost_usd": -875.0, "diff_profit_usd": -358.0, "pct_maize_chg": 13.0, "pct_beans_chg": -11.2, "pct_cassava_chg": -100.0, "pct_cost_chg": -57.4, "pct_profit_chg": -19.9}];
+
+    let chartCostBreakdown = null;
+    let chartBlock5Profit = null;
+
+    function renderCostSection() {
+      const [trialGrp, cyc] = document.getElementById('cost-trial-filter').value.split('|');
+      const stFilter = document.getElementById('cost-station-filter').value;
+
+      const filtered = DATA_COST_12M.filter(r =>
+        r.trial_group === trialGrp &&
+        r.cycle === cyc &&
+        r.fertilization === 'Normal' &&
+        r.planting_time === 'Normal' &&
+        (stFilter === 'ALL' || r.station === stFilter)
+      );
+
+      const badge = document.getElementById('cost-table-badge');
+      const labelMap = {
+        'Trial1_Spacing_Tillage|Cycle1_25AB': 'Trial 1 • Cycle 1 (25AB)',
+        'Trial1_Spacing_Tillage|Cycle2_26AB': 'Trial 1 • Cycle 2 (26AB)',
+        'Trial2_EarlyPlant_CoverCrop|Cycle1_26AB': 'Trial 2 • Cohort (26AB)'
+      };
+      badge.textContent = `Showing: ${labelMap[trialGrp + '|' + cyc]} (${stFilter === 'ALL' ? 'Both Stations' : stFilter})`;
+
+      const tbody = document.getElementById('tbody-cost-breakdown');
+      tbody.innerHTML = filtered.map(r => {
+        const highlight = (r.station === 'Karongi' && r.code === 'E') || (r.station === 'Kayonza' && r.code === 'B') ? 'bg-emerald-50/60 font-medium' : '';
+        const profColor = r.mean_profit < 0 ? 'text-rose-700 font-bold' : 'text-forest-900 font-bold';
+        return `<tr class="hover:bg-slate-50 ${highlight}">
+          <td class="px-3 py-2.5 font-medium text-slate-800">${r.station}</td>
+          <td class="px-3 py-2.5 text-center font-mono font-bold text-forest-800">${r.code}</td>
+          <td class="px-3 py-2.5 font-mono text-slate-600">${r.arrangement}</td>
+          <td class="px-3 py-2.5 text-center"><span class="px-2 py-0.5 rounded bg-slate-100 font-mono text-[11px]">${r.tillage}</span></td>
+          <td class="px-3 py-2.5 text-center text-slate-600">${r.n_plots}</td>
+          <td class="px-3 py-2.5 text-right text-slate-700">$${r.mean_seed_usd.toFixed(1)}</td>
+          <td class="px-3 py-2.5 text-right text-slate-700">$${r.mean_fert_usd.toFixed(1)}</td>
+          <td class="px-3 py-2.5 text-right text-slate-700">$${r.mean_labor_usd.toFixed(1)}</td>
+          <td class="px-3 py-2.5 text-right font-semibold text-slate-900">$${r.mean_total_cost.toFixed(1)}</td>
+          <td class="px-3 py-2.5 text-right text-slate-700">$${r.mean_revenue.toLocaleString('en-US', {minimumFractionDigits:1, maximumFractionDigits:1})}</td>
+          <td class="px-3 py-2.5 text-right ${profColor}">$${r.mean_profit.toLocaleString('en-US', {minimumFractionDigits:1, maximumFractionDigits:1})}</td>
+        </tr>`;
+      }).join('');
+
+      // Update Stacked Bar Chart
+      const labels = filtered.map(r => stFilter === 'ALL' ? `${r.station.slice(0,3)} • Trt ${r.code}` : `Trt ${r.code} (${r.tillage})`);
+      const ctx = document.getElementById('chart-cost-breakdown');
+      if (chartCostBreakdown) chartCostBreakdown.destroy();
+      chartCostBreakdown = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [
+            { label: 'Seed / Planting Material (USD/ha)', data: filtered.map(r => r.mean_seed_usd), backgroundColor: '#4f46e5', borderRadius: 2 },
+            { label: 'Mineral Fertilizer (USD/ha)', data: filtered.map(r => r.mean_fert_usd), backgroundColor: '#0d9488', borderRadius: 2 },
+            { label: 'Labor: Tillage, Planting & Weeding (USD/ha)', data: filtered.map(r => r.mean_labor_usd), backgroundColor: '#f59e0b', borderRadius: 2 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                footer: (items) => {
+                  const idx = items[0].dataIndex;
+                  const row = filtered[idx];
+                  return `Total Cost: $${row.mean_total_cost.toFixed(1)}/ha | Net Profit: $${row.mean_profit.toFixed(1)}/ha`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: { stacked: true },
+            y: { stacked: true, beginAtZero: true, title: { display: true, text: 'Cumulative 12M Cost (USD/ha)' } }
+          }
+        }
+      });
+    }
+
+    function renderBlock5Section() {
+      const stFilter = document.getElementById('b5-station-filter').value;
+      const rows = DATA_B5_SUMMARY.filter(r => stFilter === 'ALL' || r.station === stFilter);
+
+      // Map delta lookup from DATA_B5_CHANGE
+      const chgMap = {};
+      DATA_B5_CHANGE.forEach(c => {
+        chgMap[`${c.station}|${c.code}|${c.regime}`] = c;
+      });
+
+      const tbody = document.getElementById('tbody-block5-summary');
+      tbody.innerHTML = rows.map(r => {
+        const key = `${r.station}|${r.code}|${r.regime}`;
+        const chg = chgMap[key];
+        const isBase = r.regime.startsWith('1.');
+        const rowBg = isBase ? 'bg-slate-50/90 font-medium' : (r.regime.startsWith('3.') ? 'bg-rose-50/30' : '');
+        const deltaHtml = isBase
+          ? '<span class="px-2 py-0.5 rounded bg-slate-200 text-slate-700 font-mono text-[11px]">Baseline</span>'
+          : `<span class="${chg.pct_profit_chg >= 0 ? 'text-emerald-700' : 'text-rose-700'} font-semibold">${chg.diff_profit_usd >= 0 ? '+' : ''}$${Math.round(chg.diff_profit_usd).toLocaleString()} (${chg.pct_profit_chg >= 0 ? '+' : ''}${chg.pct_profit_chg.toFixed(1)}%)</span>`;
+
+        return `<tr class="hover:bg-slate-50 ${rowBg}">
+          <td class="px-3 py-2.5 font-medium text-slate-800">${r.station}</td>
+          <td class="px-3 py-2.5 text-center font-mono font-bold text-forest-800">${r.code}</td>
+          <td class="px-3 py-2.5 text-slate-700">${r.regime}</td>
+          <td class="px-3 py-2.5 text-center text-slate-600">${r.n_plots}</td>
+          <td class="px-3 py-2.5 text-right text-slate-700">${r.maize_tha !== null ? r.maize_tha.toFixed(2) : '&mdash;'}</td>
+          <td class="px-3 py-2.5 text-right text-slate-700">${r.beans_tha !== null ? r.beans_tha.toFixed(2) : '&mdash;'}</td>
+          <td class="px-3 py-2.5 text-right text-slate-700">${r.cassava_tha !== null ? r.cassava_tha.toFixed(2) : '&mdash;'}</td>
+          <td class="px-3 py-2.5 text-right text-slate-700">$${Math.round(r.mean_cost_usd).toLocaleString()}</td>
+          <td class="px-3 py-2.5 text-right font-bold text-slate-900">$${Math.round(r.mean_profit_usd).toLocaleString()}</td>
+          <td class="px-3 py-2.5 text-right">${deltaHtml}</td>
+        </tr>`;
+      }).join('');
+
+      // Grouped Bar Chart for Net Profit across the 3 Regimes
+      const groups = stFilter === 'ALL'
+        ? ['Karongi|A', 'Karongi|B', 'Karongi|F', 'Kayonza|A', 'Kayonza|B', 'Kayonza|F']
+        : [`${stFilter}|A`, `${stFilter}|B`, `${stFilter}|F`];
+
+      const getVal = (st, code, prefix) => {
+        const hit = DATA_B5_SUMMARY.find(r => r.station === st && r.code === code && r.regime.startsWith(prefix));
+        return hit ? hit.mean_profit_usd : 0;
+      };
+
+      const ctx = document.getElementById('chart-block5-profit');
+      if (chartBlock5Profit) chartBlock5Profit.destroy();
+      chartBlock5Profit = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: groups.map(g => {
+            const [s, c] = g.split('|');
+            const names = { A: 'A (Maize-Beans)', B: 'B (Sole Cassava)', F: 'F (CT-CA Intercrop)' };
+            return `${s} • ${names[c]}`;
+          }),
+          datasets: [
+            {
+              label: '1. Normal (Compost + Fert) | Normal_Oct',
+              data: groups.map(g => getVal(...g.split('|'), '1.')),
+              backgroundColor: '#15803d',
+              borderRadius: 4
+            },
+            {
+              label: '2. No-Compost / No-Fert | Normal_Oct',
+              data: groups.map(g => getVal(...g.split('|'), '2.')),
+              backgroundColor: '#d97706',
+              borderRadius: 4
+            },
+            {
+              label: '3. No-Compost / No-Fert | Late_OctNov',
+              data: groups.map(g => getVal(...g.split('|'), '3.')),
+              backgroundColor: '#be123c',
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true, title: { display: true, text: 'Cumulative 12M Net Profit (USD/ha)' } }
+          }
+        }
+      });
+    }
+
+    // Initialize on DOM load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCostSection();
+      renderBlock5Section();
+      document.getElementById('cost-trial-filter').addEventListener('change', renderCostSection);
+      document.getElementById('cost-station-filter').addEventListener('change', renderCostSection);
+      document.getElementById('b5-station-filter').addEventListener('change', renderBlock5Section);
+      renderT1Tables();
+      renderT2Tables();
+      initCharts();
+      initNavigation();
+
+      document.getElementById('t1-station-filter').addEventListener('change', renderT1Tables);
+      document.getElementById('t1-cycle-filter').addEventListener('change', renderT1Tables);
+      document.getElementById('t2-station-filter').addEventListener('change', renderT2Tables);
+    });
+  </script>
+</body>
+</html>
