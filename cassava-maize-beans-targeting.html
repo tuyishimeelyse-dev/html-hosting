@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agro-Ecological Targeting & Predictive Drivers of Profitability in Cassava + Maize/Beans Systems</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js for Publication-Grade Interactive Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- Google Fonts: Merriweather, Inter, and JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Merriweather', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            forest: {
+              50: '#f2f8f5',
+              100: '#dfeee6',
+              200: '#c0ddcf',
+              300: '#94c4af',
+              400: '#64a58a',
+              500: '#42886c',
+              600: '#306d55',
+              700: '#265744',
+              800: '#204638',
+              900: '#1b4332',
+              950: '#0e241b',
+            },
+            slateblue: {
+              50: '#f2f7fc',
+              100: '#e1ecf8',
+              200: '#c5dcf2',
+              600: '#2563eb',
+              700: '#1d4e89',
+              800: '#194172',
+              900: '#16365e',
+            },
+            ochre: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+            },
+            crimson: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              600: '#dc2626',
+              700: '#b91c1c',
+              800: '#991b1b',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      background-color: #f6f8f7;
+      color: #1e293b;
+    }
+    .academic-heading {
+      font-family: 'Merriweather', Georgia, serif;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    /* Custom scrollbar for wide statistical tables and decision trees */
+    .scroll-box::-webkit-scrollbar {
+      height: 8px;
+      width: 8px;
+    }
+    .scroll-box::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    .scroll-box::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .scroll-box::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    /* Active TOC link indicator */
+    .toc-link.active {
+      background-color: #dfeee6;
+      color: #1b4332;
+      font-weight: 600;
+      border-left: 3px solid #1b4332;
+    }
+    .toc-sublink.active {
+      color: #1b4332;
+      font-weight: 600;
+      background-color: #f2f8f5;
+    }
+    /* Interactive SVG Tree Node Styling */
+    .tree-node {
+      cursor: pointer;
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .tree-node:hover {
+      filter: drop-shadow(0 4px 8px rgba(15, 23, 42, 0.18));
+    }
+    .tree-node.selected-node rect {
+      stroke: #1b4332;
+      stroke-width: 3px;
+    }
+    /* Print media styles */
+    @media print {
+      #sidebar-nav, #mobile-nav-bar, .no-print {
+        display: none !important;
+      }
+      #main-content {
+        margin-left: 0 !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .card-panel {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        break-inside: avoid;
+      }
+      body {
+        background: #ffffff !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased text-slate-800">
+
+  <!-- Mobile Top Navigation Bar -->
+  <header id="mobile-nav-bar" class="lg:hidden sticky top-0 z-40 bg-forest-900 text-white px-4 py-3 shadow-md flex items-center justify-between">
+    <div class="flex items-center space-x-2.5">
+      <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-forest-700 text-emerald-200 font-bold text-xs font-mono">RF/DT</span>
+      <span class="font-semibold text-sm tracking-tight truncate max-w-[230px]">AEZ Targeting &amp; Profitability Drivers</span>
+    </div>
+    <button id="mobile-menu-btn" type="button" class="p-2 rounded-lg bg-forest-800 hover:bg-forest-700 text-white focus:outline-none" aria-label="Toggle Table of Contents">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </header>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/50 z-40 hidden lg:hidden backdrop-blur-xs"></div>
+
+  <!-- Sticky Left-Hand R Markdown-Style TOC Sidebar -->
+  <aside id="sidebar-nav" class="fixed top-0 left-0 z-50 h-screen w-72 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300 -translate-x-full lg:translate-x-0 shadow-sm">
+    <!-- Sidebar Header -->
+    <div class="p-5 border-b border-slate-200 bg-forest-900 text-white">
+      <div class="flex items-center justify-between">
+        <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-300 font-semibold">Extension Targeting &amp; ML Report</span>
+        <button id="close-sidebar-btn" class="lg:hidden text-slate-300 hover:text-white p-1 rounded-md">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <h2 class="mt-1.5 text-sm font-bold leading-snug text-white">Agro-Ecological Targeting &amp; Predictive Drivers of Profitability</h2>
+      <p class="mt-1 text-xs text-forest-200">Cassava + Maize/Beans &bull; Rwanda (Karongi vs. Kayonza)</p>
+    </div>
+
+    <!-- Scrollable TOC Links -->
+    <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1 text-xs">
+      <a href="#sec-1" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">1. Executive Summary &amp; Mandate</a>
+      <div class="pl-4 space-y-0.5 border-l border-slate-200 ml-3">
+        <a href="#sec-1-kpis" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">Core Targeting Benchmarks</a>
+        <a href="#sec-1-mandate" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">Why Blanket Scaling Fails</a>
+      </div>
+
+      <a href="#sec-2" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">2. Multi-Window Rainfall (1–24 MAP)</a>
+      <div class="pl-4 space-y-0.5 border-l border-slate-200 ml-3">
+        <a href="#sec-2-chart" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">3-Month MAP Rainfall Chart</a>
+        <a href="#sec-2-table" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">Complete Cohort Hydrological Table</a>
+      </div>
+
+      <a href="#sec-3" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">3. Random Forest Importance</a>
+      <div class="pl-4 space-y-0.5 border-l border-slate-200 ml-3">
+        <a href="#sec-3-chart" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">Permutation MSE Importance (R&sup2;=0.73)</a>
+        <a href="#sec-3-table" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">12-Predictor Extension Ranking</a>
+      </div>
+
+      <a href="#sec-4" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">4. Global Regression Decision Tree</a>
+      <div class="pl-4 space-y-0.5 border-l border-slate-200 ml-3">
+        <a href="#sec-4-tree" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">Interactive Macro-Targeting Tree</a>
+        <a href="#sec-4-leaves" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">7 Terminal Node Summary</a>
+      </div>
+
+      <a href="#sec-5" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">5. Within-Zone Intercrop Trees</a>
+      <div class="pl-4 space-y-0.5 border-l border-slate-200 ml-3">
+        <a href="#sec-5-karongi" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">Karongi Intercrop Tree (n=48)</a>
+        <a href="#sec-5-kayonza" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">Kayonza Intercrop Tree (n=50)</a>
+      </div>
+
+      <a href="#sec-6" class="toc-link block px-3 py-2 rounded-r-lg text-slate-700 hover:bg-slate-100 transition-colors">6. Extension Targeting Simulator</a>
+      <div class="pl-4 space-y-0.5 border-l border-slate-200 ml-3">
+        <a href="#sec-6-simulator" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">Interactive Field Decision Tool</a>
+        <a href="#sec-6-matrix" class="toc-sublink block px-2.5 py-1.5 rounded-md text-slate-600 hover:bg-slate-100">Regional Deployment Matrix</a>
+      </div>
+    </nav>
+
+    <!-- Sidebar Footer Actions -->
+    <div class="p-4 border-t border-slate-200 bg-slate-50 space-y-2 no-print">
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 px-3 py-2 bg-forest-900 hover:bg-forest-800 text-white text-xs font-medium rounded-lg shadow-xs transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Print / Save Report PDF</span>
+      </button>
+      <div class="text-[11px] text-slate-500 text-center font-mono">
+        Block-Grouped 5-Fold CV &bull; R&sup2; = 0.73
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Container -->
+  <main id="main-content" class="lg:ml-72 min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- Document Title Banner -->
+      <header class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden card-panel">
+        <div class="bg-gradient-to-r from-forest-950 via-forest-900 to-slateblue-900 px-6 sm:px-10 py-8 sm:py-10 text-white">
+          <div class="flex flex-wrap items-center gap-2 mb-4">
+            <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-200 border border-emerald-400/30">Precision Extension Targeting</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-200 border border-sky-400/30">Random Forest &amp; CART Decision Trees</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-mono bg-white/10 text-slate-200">n = 159 Plots &bull; Rwanda</span>
+          </div>
+          <h1 class="academic-heading text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight text-white">
+            Agro-Ecological Targeting &amp; Predictive Drivers of Profitability in Cassava + Maize/Beans Systems: Random Forest Variable Importance, Decision Tree Segmentation, and Extension Decision Rules for Rwanda (Karongi vs. Kayonza)
+          </h1>
+          <p class="mt-3 text-sm sm:text-base text-slate-200 max-w-3xl leading-relaxed">
+            Translating multi-cycle machine learning models and hydrological thresholds into actionable, plot-level extension decision rules for smallholder cassava-cereal-legume intensification.
+          </p>
+        </div>
+
+        <!-- Metadata Bar -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 bg-slate-50/90 text-xs">
+          <div class="p-4">
+            <span class="block text-slate-500 uppercase tracking-wider font-semibold text-[10px]">Predictive Validation</span>
+            <span class="mt-1 block font-semibold text-slate-900">Block-Grouped 5-Fold CV</span>
+            <span class="block text-forest-800 font-mono">Out-of-Sample R&sup2; = 0.73 (n = 159)</span>
+          </div>
+          <div class="p-4">
+            <span class="block text-slate-500 uppercase tracking-wider font-semibold text-[10px]">Primary Climate Split</span>
+            <span class="mt-1 block font-semibold text-slate-900">rain_mm_1_3MAP = 357 mm</span>
+            <span class="block text-slate-600">4.2&times; Mean Profit Divide ($8,095 vs $1,935)</span>
+          </div>
+          <div class="p-4">
+            <span class="block text-slate-500 uppercase tracking-wider font-semibold text-[10px]">Top Actionable Levers</span>
+            <span class="mt-1 block font-semibold text-slate-900">arrangement (#3) &amp; interrow_cm (#5)</span>
+            <span class="block text-slate-600">Outweigh Fertilization (#9) by 4&times;–6&times;</span>
+          </div>
+          <div class="p-4">
+            <span class="block text-slate-500 uppercase tracking-wider font-semibold text-[10px]">Extension Segmentation</span>
+            <span class="mt-1 block font-semibold text-slate-900">Karongi (n=48) vs. Kayonza (n=50)</span>
+            <span class="block text-slate-600">Zone-Specific Intercrop Recommendation Trees</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- SECTION 1: EXECUTIVE SUMMARY & EXTENSION TARGETING MANDATE -->
+      <section id="sec-1" class="scroll-mt-16 space-y-6">
+        <div class="flex items-center space-x-3 border-b border-slate-200 pb-3">
+          <span class="w-2 h-7 bg-forest-900 rounded-full"></span>
+          <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">1. Executive Summary &amp; Extension Targeting Mandate</h2>
+        </div>
+
+        <!-- 4 KPI Summary Cards -->
+        <div id="sec-1-kpis" class="scroll-mt-20 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+          <!-- KPI 1 -->
+          <div class="bg-white rounded-xl border border-slateblue-200 p-5 shadow-xs card-panel relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-slateblue-50 rounded-bl-full -mr-2 -mt-2"></div>
+            <span class="inline-block px-2 py-0.5 rounded-md text-[11px] font-semibold bg-slateblue-100 text-slateblue-800">Out-of-Sample Model Accuracy</span>
+            <div class="mt-3 text-2xl font-bold text-slate-900 tabular-nums font-mono">R&sup2; = 0.73 <span class="text-xs font-sans font-normal text-slate-500">(n = 159)</span></div>
+            <p class="mt-1 text-xs font-semibold text-slateblue-800">Block-Grouped 5-Fold Cross-Validation</p>
+            <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+              Random Forest regression predicts 12-month net profit across unseen spatial blocks with <strong>73% explained variance</strong>, confirming robust generalizability for field targeting.
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="bg-white rounded-xl border border-emerald-200 p-5 shadow-xs card-panel relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-emerald-50 rounded-bl-full -mr-2 -mt-2"></div>
+            <span class="inline-block px-2 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-100 text-emerald-900">Primary Global Tree Split</span>
+            <div class="mt-3 text-2xl font-bold text-slate-900 tabular-nums font-mono">357 mm <span class="text-xs font-sans font-normal text-slate-500">(1–3 MAP)</span></div>
+            <p class="mt-1 text-xs font-semibold text-forest-900">4.2&times; Mean Profit Separation</p>
+            <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+              Separates semi-arid regimes (<strong>$1,935/ha</strong>, n=84, 53%) from humid regimes (<strong>$8,095/ha</strong>, n=75, 47%), cleanly dividing Kayonza from Karongi across all cycles.
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="bg-white rounded-xl border border-forest-300 p-5 shadow-xs card-panel relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-forest-50 rounded-bl-full -mr-2 -mt-2"></div>
+            <span class="inline-block px-2 py-0.5 rounded-md text-[11px] font-semibold bg-forest-100 text-forest-900">Humid Zone Target (Karongi)</span>
+            <div class="mt-3 text-2xl font-bold text-slate-900 tabular-nums">$12k – $14k<span class="text-xs font-normal text-slate-500">/ha</span></div>
+            <p class="mt-1 text-xs font-semibold text-forest-900">Treatment E (C-B-B-C-B-B-C, &ge;55 cm)</p>
+            <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+              High-density cassava intercrop with <strong>60 cm inter-row spacing</strong> and low bean root rot (<strong>&lt; 2</strong>) achieves $12,000–$14,000/ha in CART leaves ($14,175/ha in Cycle 2).
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="bg-white rounded-xl border border-ochre-300 p-5 shadow-xs card-panel relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-ochre-50 rounded-bl-full -mr-2 -mt-2"></div>
+            <span class="inline-block px-2 py-0.5 rounded-md text-[11px] font-semibold bg-ochre-100 text-ochre-800">Semi-Arid Target (Kayonza)</span>
+            <div class="mt-3 text-2xl font-bold text-slate-900 tabular-nums">$4,133<span class="text-xs font-normal text-slate-500">/ha</span></div>
+            <p class="mt-1 text-xs font-semibold text-ochre-800">Sole Cassava B (or Akilimo C Intercrop)</p>
+            <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+              Sole Cassava B leads at <strong>$4,133/ha</strong> ($3,793–$5,764/ha by cohort). Where intercropping is needed, <strong>Akilimo C</strong> preserves <strong>$1,494/ha</strong> under drought (&lt;273 mm) and <strong>$2,460/ha</strong> without cover crops (&ge;273 mm).
+            </p>
+          </div>
+        </div>
+
+        <!-- Narrative Framing Box -->
+        <div id="sec-1-mandate" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-4 text-sm sm:text-base leading-relaxed text-slate-700">
+          <h3 class="text-lg font-bold text-forest-900">Why Blanket Intercropping Recommendations Fail Across Rwanda</h3>
+          <p>
+            Across multi-cycle field experiments in Rwanda, cumulative 12-month net profit in cassava-cereal-legume systems spans an extraordinary range—from a net financial loss of <strong class="text-crimson-700">-$412/ha</strong> (Cycle 2 annual Maize–Beans rotation in Kayonza) to <strong class="text-forest-900">$14,175/ha</strong> (Cycle 2 Low Maize / High Cassava Treatment E in Karongi). Deploying a single, uniform intercropping package across Rwandan districts inevitably causes severe economic underperformance in at least half of target geographies.
+          </p>
+          <p>
+            To equip agricultural extension programs (such as One Acre Fund field teams) with objective, field-measurable targeting rules, we trained a <strong>Block-Grouped 5-Fold Cross-Validated Random Forest model (<code class="font-mono text-slateblue-700">R&sup2; = 0.73</code>, <code class="font-mono">n = 159</code> plots)</strong> alongside <strong>CART Regression Decision Trees</strong> combining multi-window rainfall metrics (1–24 MAP), dry-spell indices, spatial row geometry (<code class="font-mono">arrangement</code> and <code class="font-mono">interrow_cm</code>), fertilization, planting dates, and Season B bean root rot severity (<code class="font-mono">beans_rootrot_inc_r1</code>).
+          </p>
+          <div class="p-4 rounded-xl bg-forest-50 border-l-4 border-forest-900 text-sm text-slate-800">
+            <strong>The Three-Tier Extension Targeting Hierarchy:</strong>
+            <ol class="mt-2 list-decimal list-inside space-y-1 text-slate-700">
+              <li><strong>Tier 1 — Hydrological Regime (<code class="font-mono text-forest-900">rain_mm_1_3MAP = 357 mm</code>):</strong> Determines whether soil moisture during Months 1–3 supports simultaneous cereal establishment and cassava tuber initiation (Humid &ge; 357 mm) or induces below-ground competition (Semi-Arid &lt; 357 mm).</li>
+              <li><strong>Tier 2 — Spatial Row Geometry (<code class="font-mono text-forest-900">arrangement</code> &amp; <code class="font-mono text-forest-900">interrow_cm</code>):</strong> Within humid zones, shifting from 3-bean-row wide alleys (<code class="font-mono">C-B-B-B-C</code>) to 2-bean-row high-density cassava (<code class="font-mono">C-B-B-C</code>, Treatment E) at <code class="font-mono">interrow_cm &ge; 55 cm</code> (60 cm) boosts profits by <strong>+$3,500 to +$4,500/ha</strong>. Within semi-arid zones, avoiding cover crops and using single-row Akilimo (<code class="font-mono">C-B-C-B-C</code>) under drought prevents crop failure.</li>
+              <li><strong>Tier 3 — Biotic &amp; Residue Management (<code class="font-mono text-forest-900">beans_rootrot_inc_r1 &lt; 2</code> &amp; <code class="font-mono text-forest-900">stover &ge; 5 t/ha</code>):</strong> In Karongi, keeping Season B bean root rot incidence below score 2 protects <strong>+$3,248/ha</strong> in system profit ($12,000 vs. $8,752/ha).</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: MULTI-WINDOW RAINFALL DYNAMICS (1-24 MAP SEASONAL REGIMES) -->
+      <section id="sec-2" class="scroll-mt-16 space-y-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-3">
+          <div class="flex items-center space-x-3">
+            <span class="w-2 h-7 bg-slateblue-700 rounded-full"></span>
+            <div>
+              <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">2. Multi-Window Rainfall Dynamics (1–24 MAP Seasonal Regimes)</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Cumulative rainfall (mm) by 3-Month Period After Planting (MAP) across all 3 experimental cohorts.</p>
+            </div>
+          </div>
+
+          <!-- Cohort Selector for Rainfall Chart -->
+          <div class="flex items-center gap-2 bg-white p-2 rounded-xl border border-slate-200 shadow-xs no-print">
+            <label for="rain-cohort-select" class="text-xs font-semibold text-slate-600 pl-1">Select Cohort:</label>
+            <select id="rain-cohort-select" class="text-xs font-medium bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-slate-800 focus:outline-none focus:border-slateblue-700">
+              <option value="T1_C1">Trial 1 Cycle 1 (25AB: 1–24 MAP)</option>
+              <option value="T1_C2">Trial 1 Cycle 2 (26AB: 1–15* MAP)</option>
+              <option value="T2_HT">Trial 2 HarvestTime (Cycle1_26AB: 1–15* MAP)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="sec-2-chart" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="bg-slate-50/80 rounded-xl p-4 border border-slate-200">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span id="rain-chart-title" class="text-xs font-semibold text-slate-800">Figure 2.1: Cumulative Rainfall (mm) by 3-Month Period After Planting — Trial 1 Cycle 1 (25AB)</span>
+              <span class="text-[11px] font-mono text-crimson-700 font-semibold">Red Dashed Line = 357 mm Global Tree Threshold</span>
+            </div>
+            <div class="relative h-72 sm:h-80 w-full">
+              <canvas id="chart-rainfall-map"></canvas>
+            </div>
+          </div>
+
+          <!-- Hydrological Threshold Interpretation -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-700">
+            <div class="p-4 rounded-xl bg-slateblue-50/70 border border-slateblue-200 space-y-1.5">
+              <h4 class="font-bold text-slateblue-900">1. The 357 mm Early-Season Establishment Threshold (1–3 MAP)</h4>
+              <p class="leading-relaxed">
+                Across all three cohorts, <strong>100% of Karongi plantings exceeded 357 mm</strong> during the critical 1–3 MAP window (<strong>402 mm</strong> in T1 Cycle 1, <strong>444 mm</strong> in T1 Cycle 2, and <strong>362 mm</strong> in T2 HarvestTime), whereas <strong>100% of Kayonza plantings fell below 357 mm</strong> (<strong>335 mm</strong>, <strong>264 mm</strong>, and <strong>282 mm</strong>). Because cassava initiates storage roots between 30 and 90 days after planting, rainfall &ge;357 mm allows cassava and intercropped maize to coexist without water stress, whereas &lt;357 mm triggers competitive root-zone moisture depletion by maize.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-ochre-50/80 border border-ochre-200 space-y-1.5">
+              <h4 class="font-bold text-ochre-800">2. Late-Cycle Starch Bulking Deficit (10–12 MAP) in Kayonza</h4>
+              <p class="leading-relaxed">
+                During Months 10–12 after planting—when maize and beans have been harvested and cassava undergoes rapid starch accumulation—Kayonza suffered severe terminal dry spells across all cohorts: <strong>150 mm</strong> (T1 Cycle 1), <strong>53 mm</strong> (T1 Cycle 2), and just <strong>35 mm</strong> (T2 HarvestTime), compared to <strong>268 mm</strong>, <strong>109 mm</strong>, and <strong>98 mm</strong> in Karongi. Furthermore, Year 1 total precipitation in Karongi (<strong>1,283–1,367 mm</strong>) consistently exceeded Kayonza (<strong>860–1,020 mm</strong>) by <strong>+263 to +438 mm/year</strong>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Complete Multi-Window Hydrological Table -->
+          <div id="sec-2-table" class="scroll-mt-20 overflow-x-auto scroll-box border border-slate-200 rounded-xl">
+            <table class="min-w-full divide-y divide-slate-200 text-xs tabular-nums">
+              <thead class="bg-forest-900 text-white">
+                <tr>
+                  <th class="px-3.5 py-3 text-left font-semibold">Cohort / Trial</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">Station</th>
+                  <th class="px-3 py-3 text-right font-semibold bg-forest-800">1–3 MAP</th>
+                  <th class="px-3 py-3 text-right font-semibold">4–6 MAP</th>
+                  <th class="px-3 py-3 text-right font-semibold">7–9 MAP</th>
+                  <th class="px-3 py-3 text-right font-semibold">10–12 MAP</th>
+                  <th class="px-3.5 py-3 text-right font-semibold bg-slateblue-800">Year 1 Total</th>
+                  <th class="px-3 py-3 text-right font-semibold">13–15 MAP</th>
+                  <th class="px-3 py-3 text-right font-semibold">16–18 MAP</th>
+                  <th class="px-3 py-3 text-right font-semibold">19–21 MAP</th>
+                  <th class="px-3 py-3 text-right font-semibold">22–24 MAP</th>
+                  <th class="px-3.5 py-3 text-right font-semibold bg-slateblue-800">Year 2 Total</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-2.5 font-semibold text-slate-900" rowspan="2">Trial 1 Cycle 1<br><span class="font-normal text-slate-500">(25AB)</span></td>
+                  <td class="px-3.5 py-2.5 font-semibold text-forest-800">Karongi</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-forest-900 bg-emerald-50/70">402 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">301 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">312 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">268 mm</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-slateblue-900 bg-slateblue-50/70">1,283 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">454 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">556 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">232 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">98 mm</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-slateblue-900 bg-slateblue-50/70">1,340 mm</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-2.5 font-semibold text-ochre-700">Kayonza</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-ochre-800 bg-ochre-50/70">335 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">267 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">268 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">150 mm</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-slate-800 bg-slate-50">1,020 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">308 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">332 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">211 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">37 mm</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-slate-800 bg-slate-50">888 mm</td>
+                </tr>
+
+                <tr class="hover:bg-slate-50 border-t-2 border-slate-300">
+                  <td class="px-3.5 py-2.5 font-semibold text-slate-900" rowspan="2">Trial 1 Cycle 2<br><span class="font-normal text-slate-500">(26AB)</span></td>
+                  <td class="px-3.5 py-2.5 font-semibold text-forest-800">Karongi</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-forest-900 bg-emerald-50/70">444 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">517 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">228 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">109 mm</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-slateblue-900 bg-slateblue-50/70">1,298 mm</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-500">145* mm</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">&mdash;</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">&mdash;</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">&mdash;</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">Ongoing</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-2.5 font-semibold text-ochre-700">Kayonza</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-crimson-700 bg-crimson-50/70">264 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">384 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">159 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">53 mm</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-slate-800 bg-slate-50">860 mm</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-500">37* mm</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">&mdash;</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">&mdash;</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">&mdash;</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">Ongoing</td>
+                </tr>
+
+                <tr class="hover:bg-slate-50 border-t-2 border-slate-300">
+                  <td class="px-3.5 py-2.5 font-semibold text-slate-900" rowspan="2">Trial 2 HarvestTime<br><span class="font-normal text-slate-500">(Cycle1_26AB)</span></td>
+                  <td class="px-3.5 py-2.5 font-semibold text-forest-800">Karongi</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-forest-900 bg-emerald-50/70">362 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">655 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">252 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">98 mm</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-slateblue-900 bg-slateblue-50/70">1,367 mm</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-500">156* mm</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">&mdash;</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">&mdash;</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">&mdash;</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">Ongoing</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-2.5 font-semibold text-ochre-700">Kayonza</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-ochre-800 bg-ochre-50/70">282 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">381 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">235 mm</td>
+                  <td class="px-3.5 py-2.5 text-right">35 mm</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-slate-800 bg-slate-50">933 mm</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-500">54* mm</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">&mdash;</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">&mdash;</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">&mdash;</td>
+                  <td class="px-3.5 py-2.5 text-right text-slate-400">Ongoing</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-[11px] text-slate-500">*Note: Asterisks in 13–15 MAP denote ongoing partial 3-month meteorological windows at time of 12-month harvest modeling.</p>
+        </div>
+      </section>
+
+      <!-- SECTION 3: RANDOM FOREST VARIABLE IMPORTANCE -->
+      <section id="sec-3" class="scroll-mt-16 space-y-6">
+        <div class="flex items-center space-x-3 border-b border-slate-200 pb-3">
+          <span class="w-2 h-7 bg-slateblue-700 rounded-full"></span>
+          <div>
+            <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">3. Random Forest Variable Importance (Block-Grouped 5-Fold CV, R&sup2; = 0.73)</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Permutation importance (Increase in Mean Squared Error) across all 12 biophysical and management predictors.</p>
+          </div>
+        </div>
+
+        <div id="sec-3-chart" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="bg-slate-50/80 rounded-xl p-4 border border-slate-200">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold text-slate-800">Figure 3.1: Random Forest Permutation Importance (Increase in MSE) — Target: 12-Month Net Profit (USD/ha)</span>
+              <span class="px-2.5 py-0.5 rounded bg-slateblue-100 text-slateblue-900 font-mono text-xs font-semibold">Unseen-Block CV R&sup2; = 0.73</span>
+            </div>
+            <div class="relative h-96 w-full">
+              <canvas id="chart-rf-importance"></canvas>
+            </div>
+          </div>
+
+          <!-- Key Extension Takeaway Callout -->
+          <div class="p-4 rounded-xl bg-slateblue-50 border-l-4 border-slateblue-700 text-xs sm:text-sm text-slate-800 leading-relaxed">
+            <strong>Key Extension Targeting Insight — Geometry Outweighs Input Timing by 4&times;–15&times;:</strong> While macro-climate (<code class="font-mono text-slateblue-800">rain_mm_1_3MAP</code> #1 at <code class="font-mono">7.15e+06</code> and <code class="font-mono text-slateblue-800">station</code> #2 at <code class="font-mono">6.90e+06</code>) establishes the regional ceiling, <strong>spatial row geometry levers (<code class="font-mono text-forest-800">arrangement</code> #3 at <code class="font-mono">5.75e+06</code> and <code class="font-mono text-forest-800">interrow_cm</code> #5 at <code class="font-mono">3.81e+06</code>)</strong> rank substantially higher than <code class="font-mono">fertilization</code> (#9 at <code class="font-mono">9.40e+05</code>) and <code class="font-mono">planting_cohort</code> (#12 at <code class="font-mono">3.70e+05</code>) by <strong>4&times; to 15&times;</strong> in MSE importance. Once farmers are stratified by agro-ecological zone, getting the row configuration and spacing right is the single highest-leverage extension intervention.
+          </div>
+
+          <!-- Ranked 12-Predictor Analytical Table -->
+          <div id="sec-3-table" class="scroll-mt-20 overflow-x-auto scroll-box border border-slate-200 rounded-xl">
+            <table class="min-w-full divide-y divide-slate-200 text-xs tabular-nums">
+              <thead class="bg-slate-800 text-white">
+                <tr>
+                  <th class="px-3.5 py-3 text-center font-semibold w-14">Rank</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">Predictor Variable</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">Category</th>
+                  <th class="px-3.5 py-3 text-right font-semibold">Permutation MSE</th>
+                  <th class="px-3.5 py-3 text-right font-semibold">Relative % of Top</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">Agronomic &amp; Extension Mechanism</th>
+                </tr>
+              </thead>
+              <tbody id="table-rf-body" class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: GLOBAL REGRESSION DECISION TREE -->
+      <section id="sec-4" class="scroll-mt-16 space-y-6">
+        <div class="flex items-center space-x-3 border-b border-slate-200 pb-3">
+          <span class="w-2 h-7 bg-forest-900 rounded-full"></span>
+          <div>
+            <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">4. Global Regression Decision Tree — Macro-Targeting Across Rwanda (n = 159)</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Click any node or terminal leaf in the interactive tree diagram below to inspect its exact split pathway and profit benchmark.</p>
+          </div>
+        </div>
+
+        <div id="sec-4-tree" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <!-- Interactive SVG Global Tree -->
+          <div class="bg-slate-50 rounded-xl border border-slate-200 p-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-bold text-slate-800">Figure 4.1: Global CART Decision Tree — Drivers of 12-Month Net Profit (USD/ha, Overall Mean = $4,840/ha, n = 159)</span>
+              <span class="text-[11px] text-slate-500">Interactive: Click any box to inspect</span>
+            </div>
+
+            <div class="overflow-x-auto scroll-box pb-2">
+              <svg id="svg-global-tree" viewBox="0 0 1120 575" class="w-full min-w-[920px] h-auto select-none">
+                <!-- Connector Edges -->
+                <g stroke="#64748b" stroke-width="2" fill="none">
+                  <!-- Root (560, 45) to L1 (260, 155) & R1 (820, 155) -->
+                  <path d="M 560 72 L 560 105 L 260 105 L 260 128" />
+                  <path d="M 560 72 L 560 105 L 820 105 L 820 128" />
+
+                  <!-- L1 (260, 155) to L2a (150, 285) & Leaf 3 (375, 285) -->
+                  <path d="M 260 182 L 260 218 L 150 218 L 150 258" />
+                  <path d="M 260 182 L 260 218 L 375 218 L 375 258" />
+
+                  <!-- R1 (820, 155) to Leaf 4 (580, 285) & R2b (920, 285) -->
+                  <path d="M 820 182 L 820 218 L 580 218 L 580 258" />
+                  <path d="M 820 182 L 820 218 L 920 218 L 920 258" />
+
+                  <!-- L2a (150, 285) to Leaf 1 (75, 420) & Leaf 2 (235, 420) -->
+                  <path d="M 150 312 L 150 355 L 75 355 L 75 393" />
+                  <path d="M 150 312 L 150 355 L 235 355 L 235 393" />
+
+                  <!-- R2b (920, 285) to L3a (810, 420) & Leaf 7 (1035, 420) -->
+                  <path d="M 920 312 L 920 355 L 810 355 L 810 393" />
+                  <path d="M 920 312 L 920 355 L 1035 355 L 1035 393" />
+
+                  <!-- L3a (810, 420) to Leaf 5 (720, 525) & Leaf 6 (900, 525) -->
+                  <path d="M 810 447 L 810 478 L 720 478 L 720 498" />
+                  <path d="M 810 447 L 810 478 L 900 478 L 900 498" />
+                </g>
+
+                <!-- Split Condition Labels -->
+                <g font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" text-anchor="middle">
+                  <rect x="295" y="92" width="165" height="20" rx="4" fill="#fffbeb" stroke="#f59e0b" />
+                  <text x="377" y="106" fill="#92400e">rain_mm_1_3MAP &lt; 357</text>
+
+                  <rect x="655" y="92" width="120" height="20" rx="4" fill="#f2f8f5" stroke="#42886c" />
+                  <text x="715" y="106" fill="#1b4332">&ge; 357 mm</text>
+
+                  <rect x="135" y="205" width="115" height="20" rx="4" fill="#ffffff" stroke="#cbd5e1" />
+                  <text x="192" y="219" fill="#334155">Annual &amp; Intercrops</text>
+
+                  <rect x="305" y="205" width="135" height="20" rx="4" fill="#ffffff" stroke="#cbd5e1" />
+                  <text x="372" y="219" fill="#334155">arr = C-C-C-C (B)</text>
+
+                  <rect x="520" y="205" width="125" height="20" rx="4" fill="#fee2e2" stroke="#dc2626" />
+                  <text x="582" y="219" fill="#991b1b">arr = B-B-B-B (A)</text>
+
+                  <rect x="835" y="205" width="135" height="20" rx="4" fill="#f2f8f5" stroke="#42886c" />
+                  <text x="902" y="219" fill="#1b4332">All Cassava Systems</text>
+
+                  <text x="98" y="348" fill="#92400e" font-size="10.5">&lt; 305 mm</text>
+                  <text x="208" y="348" fill="#1b4332" font-size="10.5">&ge; 305 mm</text>
+
+                  <rect x="775" y="342" width="145" height="19" rx="4" fill="#ffffff" stroke="#cbd5e1" />
+                  <text x="847" y="355" fill="#334155">rain_10_12MAP &ge; 157</text>
+                  <text x="1008" y="348" fill="#1b4332" font-size="10.5">&lt; 157 mm</text>
+
+                  <text x="735" y="472" fill="#334155" font-size="10">C-B-B-B-C, C-C-C-C</text>
+                  <text x="895" y="472" fill="#1b4332" font-size="10">C-B-B-C, C-B-C-B-C</text>
+                </g>
+
+                <!-- Internal & Terminal Nodes -->
+                <!-- Root Node -->
+                <g class="tree-node" data-tree="global" data-node="G_ROOT" transform="translate(485, 18)">
+                  <rect width="150" height="54" rx="10" fill="#fef08a" stroke="#ca8a04" stroke-width="2" />
+                  <text x="75" y="23" text-anchor="middle" font-weight="700" font-size="14" fill="#1e293b">$4,840/ha</text>
+                  <text x="75" y="41" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#475569">n=159 (100%)</text>
+                </g>
+
+                <!-- L1: Semi-Arid Branch -->
+                <g class="tree-node" data-tree="global" data-node="G_L1" transform="translate(185, 128)">
+                  <rect width="150" height="54" rx="10" fill="#bbf7d0" stroke="#16a34a" stroke-width="2" />
+                  <text x="75" y="23" text-anchor="middle" font-weight="700" font-size="14" fill="#14532d">$1,935/ha</text>
+                  <text x="75" y="41" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#166534">n=84 (53%)</text>
+                </g>
+
+                <!-- R1: Humid Branch -->
+                <g class="tree-node" data-tree="global" data-node="G_R1" transform="translate(745, 128)">
+                  <rect width="150" height="54" rx="10" fill="#fed7aa" stroke="#ea580c" stroke-width="2" />
+                  <text x="75" y="23" text-anchor="middle" font-weight="700" font-size="14" fill="#7c2d12">$8,095/ha</text>
+                  <text x="75" y="41" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#9a3412">n=75 (47%)</text>
+                </g>
+
+                <!-- L2a: Semi-Arid Annual & Intercrops -->
+                <g class="tree-node" data-tree="global" data-node="G_L2A" transform="translate(75, 258)">
+                  <rect width="150" height="54" rx="10" fill="#86efac" stroke="#16a34a" stroke-width="2" />
+                  <text x="75" y="23" text-anchor="middle" font-weight="700" font-size="14" fill="#14532d">$1,418/ha</text>
+                  <text x="75" y="41" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#166534">n=68 (43%)</text>
+                </g>
+
+                <!-- Leaf 3: Semi-Arid Sole Cassava B -->
+                <g class="tree-node" data-tree="global" data-node="G_LEAF3" transform="translate(305, 258)">
+                  <rect width="140" height="54" rx="10" fill="#fef08a" stroke="#a16207" stroke-width="2" />
+                  <text x="70" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#713f12">$4,133/ha</text>
+                  <text x="70" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#854d0e">Leaf 3: n=16 (10%)</text>
+                </g>
+
+                <!-- Leaf 4: Humid Annual Maize-Beans A -->
+                <g class="tree-node" data-tree="global" data-node="G_LEAF4" transform="translate(510, 258)">
+                  <rect width="140" height="54" rx="10" fill="#fecaca" stroke="#dc2626" stroke-width="2" />
+                  <text x="70" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#7f1d1d">$1,240/ha</text>
+                  <text x="70" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#991b1b">Leaf 4: n=13 (8%)</text>
+                </g>
+
+                <!-- R2b: Humid All Cassava Systems -->
+                <g class="tree-node" data-tree="global" data-node="G_R2B" transform="translate(845, 258)">
+                  <rect width="150" height="54" rx="10" fill="#fdba74" stroke="#ea580c" stroke-width="2" />
+                  <text x="75" y="23" text-anchor="middle" font-weight="700" font-size="14" fill="#7c2d12">$9,532/ha</text>
+                  <text x="75" y="41" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#9a3412">n=62 (39%)</text>
+                </g>
+
+                <!-- Leaf 1: Semi-Arid Severe Drought (<305 mm) -->
+                <g class="tree-node" data-tree="global" data-node="G_LEAF1" transform="translate(10, 393)">
+                  <rect width="130" height="54" rx="10" fill="#6ee7b7" stroke="#059669" stroke-width="2" />
+                  <text x="65" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#064e3b">$631/ha</text>
+                  <text x="65" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#065f46">Leaf 1: n=39 (25%)</text>
+                </g>
+
+                <!-- Leaf 2: Semi-Arid Moderate Rain (305-356 mm) -->
+                <g class="tree-node" data-tree="global" data-node="G_LEAF2" transform="translate(170, 393)">
+                  <rect width="130" height="54" rx="10" fill="#bef264" stroke="#65a30d" stroke-width="2" />
+                  <text x="65" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#365314">$2,475/ha</text>
+                  <text x="65" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#3f6212">Leaf 2: n=29 (18%)</text>
+                </g>
+
+                <!-- L3a: Humid Late-Rain >= 157 mm -->
+                <g class="tree-node" data-tree="global" data-node="G_L3A" transform="translate(740, 393)">
+                  <rect width="140" height="54" rx="10" fill="#fed7aa" stroke="#ea580c" stroke-width="2" />
+                  <text x="70" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#7c2d12">$8,244/ha</text>
+                  <text x="70" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9a3412">n=27 (17%)</text>
+                </g>
+
+                <!-- Leaf 7: Humid Cassava Systems (10-12MAP < 157 mm) -->
+                <g class="tree-node" data-tree="global" data-node="G_LEAF7" transform="translate(965, 393)">
+                  <rect width="140" height="54" rx="10" fill="#fca5a5" stroke="#b91c1c" stroke-width="2.5" />
+                  <text x="70" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#7f1d1d">$11,000/ha</text>
+                  <text x="70" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#991b1b">Leaf 7: n=35 (22%)</text>
+                </g>
+
+                <!-- Leaf 5: Humid Wide-Alley / Sole Cassava under Wet Late Season -->
+                <g class="tree-node" data-tree="global" data-node="G_LEAF5" transform="translate(650, 498)">
+                  <rect width="140" height="54" rx="10" fill="#fde047" stroke="#ca8a04" stroke-width="2" />
+                  <text x="70" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#713f12">$7,060/ha</text>
+                  <text x="70" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#854d0e">Leaf 5: n=19 (12%)</text>
+                </g>
+
+                <!-- Leaf 6: Humid High-Density Cassava Intercrops E & C -->
+                <g class="tree-node" data-tree="global" data-node="G_LEAF6" transform="translate(830, 498)">
+                  <rect width="140" height="54" rx="10" fill="#fca5a5" stroke="#b91c1c" stroke-width="2.5" />
+                  <text x="70" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#7f1d1d">$11,000/ha</text>
+                  <text x="70" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#991b1b">Leaf 6: n=8 (5%)</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Interactive Node Inspector Box for Global Tree -->
+            <div id="global-node-inspector" class="mt-3 p-4 rounded-xl bg-white border border-forest-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+              <div>
+                <span class="px-2 py-0.5 rounded bg-forest-100 text-forest-900 font-mono font-bold">Selected Node: Root Node (All Plots)</span>
+                <p class="mt-1.5 text-slate-700"><strong>Rule:</strong> Entire experimental dataset across Karongi &amp; Kayonza (n = 159, 100%). First split occurs at <code>rain_mm_1_3MAP = 357 mm</code>.</p>
+              </div>
+              <div class="text-right shrink-0">
+                <div class="text-lg font-bold text-forest-900 font-mono">$4,840/ha</div>
+                <div class="text-slate-500">Mean 12-Month Net Profit</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Complete 7-Leaf Terminal Summary Table -->
+          <div id="sec-4-leaves" class="scroll-mt-20 overflow-x-auto scroll-box border border-slate-200 rounded-xl">
+            <table class="min-w-full divide-y divide-slate-200 text-xs tabular-nums">
+              <thead class="bg-forest-900 text-white">
+                <tr>
+                  <th class="px-3.5 py-3 text-left font-semibold">Terminal Leaf</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">Decision Pathway (Split Rules)</th>
+                  <th class="px-3.5 py-3 text-right font-semibold">Sample (n)</th>
+                  <th class="px-3.5 py-3 text-right font-semibold">% Share</th>
+                  <th class="px-3.5 py-3 text-right font-semibold">Mean Profit</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">Extension Targeting Interpretation</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-2.5 font-mono font-bold text-slate-900">Leaf 1</td>
+                  <td class="px-3.5 py-2.5 font-mono text-[11px] text-slate-700">rain_1_3MAP &lt; 305 mm &amp; Annual/Intercrops</td>
+                  <td class="px-3.5 py-2.5 text-right">39</td>
+                  <td class="px-3.5 py-2.5 text-right">25%</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-crimson-700">$631/ha</td>
+                  <td class="px-3.5 py-2.5 text-slate-600">Severe dryland drought penalizes multi-crop &amp; annual systems; avoid dense intercrops.</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-2.5 font-mono font-bold text-slate-900">Leaf 2</td>
+                  <td class="px-3.5 py-2.5 font-mono text-[11px] text-slate-700">rain_1_3MAP [305–356 mm] &amp; Annual/Intercrops</td>
+                  <td class="px-3.5 py-2.5 text-right">29</td>
+                  <td class="px-3.5 py-2.5 text-right">18%</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-ochre-800">$2,475/ha</td>
+                  <td class="px-3.5 py-2.5 text-slate-600">Moderate semi-arid rainfall (Kayonza Cycle 1) sustains modest cereal-legume returns.</td>
+                </tr>
+                <tr class="bg-ochre-50/40 hover:bg-ochre-50/70">
+                  <td class="px-3.5 py-2.5 font-mono font-bold text-ochre-900">Leaf 3</td>
+                  <td class="px-3.5 py-2.5 font-mono text-[11px] text-slate-800">rain_1_3MAP &lt; 357 mm &amp; arr = C-C-C-C (Sole Cassava B)</td>
+                  <td class="px-3.5 py-2.5 text-right">16</td>
+                  <td class="px-3.5 py-2.5 text-right">10%</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-ochre-900">$4,133/ha</td>
+                  <td class="px-3.5 py-2.5 text-slate-700"><strong>Best Dryland Strategy:</strong> Eliminating intercrop water competition boosts profit 2.9&times; ($4,133 vs $1,418/ha).</td>
+                </tr>
+                <tr class="bg-crimson-50/40 hover:bg-crimson-50/70">
+                  <td class="px-3.5 py-2.5 font-mono font-bold text-crimson-800">Leaf 4</td>
+                  <td class="px-3.5 py-2.5 font-mono text-[11px] text-slate-800">rain_1_3MAP &ge; 357 mm &amp; arr = B-B-B-B (Annual A)</td>
+                  <td class="px-3.5 py-2.5 text-right">13</td>
+                  <td class="px-3.5 py-2.5 text-right">8%</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-crimson-800">$1,240/ha</td>
+                  <td class="px-3.5 py-2.5 text-slate-700"><strong>Opportunity Cost Trap:</strong> Omitting cassava in humid zones forfeits &gt;$8,200/ha in annual profit.</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-3.5 py-2.5 font-mono font-bold text-slate-900">Leaf 5</td>
+                  <td class="px-3.5 py-2.5 font-mono text-[11px] text-slate-700">rain_1_3MAP &ge; 357, rain_10_12 &ge; 157, C-B-B-B-C / C-C-C-C</td>
+                  <td class="px-3.5 py-2.5 text-right">19</td>
+                  <td class="px-3.5 py-2.5 text-right">12%</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-slate-900">$7,060/ha</td>
+                  <td class="px-3.5 py-2.5 text-slate-600">Wide-alley 3-bean-row (D/F/G) &amp; sole cassava in Karongi Cycle 1 underperform E &amp; C by -$3,940/ha.</td>
+                </tr>
+                <tr class="bg-emerald-50/50 hover:bg-emerald-50/80">
+                  <td class="px-3.5 py-2.5 font-mono font-bold text-forest-900">Leaf 6</td>
+                  <td class="px-3.5 py-2.5 font-mono text-[11px] text-slate-800">rain_1_3MAP &ge; 357, rain_10_12 &ge; 157, C-B-B-C / C-B-C-B-C</td>
+                  <td class="px-3.5 py-2.5 text-right">8</td>
+                  <td class="px-3.5 py-2.5 text-right">5%</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-forest-900">$11,000/ha</td>
+                  <td class="px-3.5 py-2.5 text-slate-700"><strong>Top Humid Intercrops (E &amp; C):</strong> High cassava density captures full 12-month yield &amp; profit.</td>
+                </tr>
+                <tr class="bg-emerald-50/50 hover:bg-emerald-50/80">
+                  <td class="px-3.5 py-2.5 font-mono font-bold text-forest-900">Leaf 7</td>
+                  <td class="px-3.5 py-2.5 font-mono text-[11px] text-slate-800">rain_1_3MAP &ge; 357, rain_10_12 &lt; 157 mm (All Cassava)</td>
+                  <td class="px-3.5 py-2.5 text-right">35</td>
+                  <td class="px-3.5 py-2.5 text-right">22%</td>
+                  <td class="px-3.5 py-2.5 text-right font-bold text-forest-900">$11,000/ha</td>
+                  <td class="px-3.5 py-2.5 text-slate-700"><strong>Peak Humid Cohort Performance:</strong> Karongi Cycle 2 &amp; T2 cassava systems average $11,000/ha.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: WITHIN-ZONE INTERCROP RECOMMENDATION TREES (KARONGI VS. KAYONZA) -->
+      <section id="sec-5" class="scroll-mt-16 space-y-8">
+        <div class="flex items-center space-x-3 border-b border-slate-200 pb-3">
+          <span class="w-2 h-7 bg-forest-900 rounded-full"></span>
+          <div>
+            <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">5. Within-Zone Intercrop Recommendation Trees (Karongi vs. Kayonza)</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Zone-specific decision rules for smallholders adopting multi-crop cassava intercropping.</p>
+          </div>
+        </div>
+
+        <!-- 5A. KARONGI INTERCROP TREE -->
+        <div id="sec-5-karongi" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-emerald-100 text-forest-900 font-mono text-xs font-bold">Humid High-Rainfall Zone</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-1">5.1 Karongi Intercrop Recommendation Tree (n = 48 Plots, Mean = $9,607/ha)</h3>
+            </div>
+            <span class="text-xs font-mono text-slate-500">6 Terminal Leaves (K1 – K6)</span>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl border border-slate-200 p-4">
+            <div class="overflow-x-auto scroll-box pb-2">
+              <svg id="svg-karongi-tree" viewBox="0 0 1060 575" class="w-full min-w-[880px] h-auto select-none">
+                <!-- Connector Edges -->
+                <g stroke="#64748b" stroke-width="2" fill="none">
+                  <!-- Root (480, 45) to L1 (210, 155) & R1 (710, 155) -->
+                  <path d="M 480 72 L 480 105 L 210 105 L 210 128" />
+                  <path d="M 480 72 L 480 105 L 710 105 L 710 128" />
+
+                  <!-- L1 (210, 155) to K1 (110, 290) & K2 (310, 290) -->
+                  <path d="M 210 182 L 210 225 L 110 225 L 110 263" />
+                  <path d="M 210 182 L 210 225 L 310 225 L 310 263" />
+
+                  <!-- R1 (710, 155) to K3 (520, 290) & R2 (820, 290) -->
+                  <path d="M 710 182 L 710 225 L 520 225 L 520 263" />
+                  <path d="M 710 182 L 710 225 L 820 225 L 820 263" />
+
+                  <!-- R2 (820, 290) to K4 (690, 420) & R3 (910, 420) -->
+                  <path d="M 820 317 L 820 355 L 690 355 L 690 393" />
+                  <path d="M 820 317 L 820 355 L 910 355 L 910 393" />
+
+                  <!-- R3 (910, 420) to K5 (835, 525) & K6 (985, 525) -->
+                  <path d="M 910 447 L 910 478 L 835 478 L 835 498" />
+                  <path d="M 910 447 L 910 478 L 985 478 L 985 498" />
+                </g>
+
+                <!-- Split Labels -->
+                <g font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600" text-anchor="middle">
+                  <rect x="200" y="92" width="180" height="20" rx="4" fill="#e1ecf8" stroke="#1d4e89" />
+                  <text x="290" y="106" fill="#16365e">arr = C-B-B-B-C (D/F/G)</text>
+
+                  <rect x="575" y="92" width="190" height="20" rx="4" fill="#dfeee6" stroke="#1b4332" />
+                  <text x="670" y="106" fill="#1b4332">C-B-B-C / C-B-C-B-C (E/C)</text>
+
+                  <rect x="95" y="212" width="145" height="19" rx="4" fill="#ffffff" stroke="#cbd5e1" />
+                  <text x="167" y="225" fill="#334155">rain_4_6MAP &lt; 469</text>
+                  <text x="285" y="218" fill="#1d4e89">&ge; 469 mm</text>
+
+                  <rect x="505" y="212" width="175" height="19" rx="4" fill="#fee2e2" stroke="#dc2626" />
+                  <text x="592" y="225" fill="#991b1b">beans_rootrot_r1 &ge; 2</text>
+                  <text x="795" y="218" fill="#1b4332">&lt; 2 (Healthy)</text>
+
+                  <rect x="665" y="342" width="135" height="19" rx="4" fill="#ffffff" stroke="#cbd5e1" />
+                  <text x="732" y="355" fill="#334155">interrow_cm &lt; 55</text>
+                  <text x="890" y="348" fill="#1b4332">&ge; 55 cm (60)</text>
+
+                  <text x="822" y="472" fill="#334155" font-size="10">rain_4_6 &lt; 409</text>
+                  <text x="965" y="472" fill="#1b4332" font-size="10">&ge; 409 mm</text>
+                </g>
+
+                <!-- Nodes -->
+                <g class="tree-node" data-tree="karongi" data-node="K_ROOT" transform="translate(405, 18)">
+                  <rect width="150" height="54" rx="10" fill="#dbeafe" stroke="#1d4e89" stroke-width="2" />
+                  <text x="75" y="23" text-anchor="middle" font-weight="700" font-size="14" fill="#1e3a8a">$9,607/ha</text>
+                  <text x="75" y="41" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#1e40af">n=48 (100%)</text>
+                </g>
+
+                <g class="tree-node" data-tree="karongi" data-node="K_L1" transform="translate(135, 128)">
+                  <rect width="150" height="54" rx="10" fill="#93c5fd" stroke="#1d4e89" stroke-width="2" />
+                  <text x="75" y="23" text-anchor="middle" font-weight="700" font-size="14" fill="#1e3a8a">$8,469/ha</text>
+                  <text x="75" y="41" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#1e40af">n=26 (54%)</text>
+                </g>
+
+                <g class="tree-node" data-tree="karongi" data-node="K_R1" transform="translate(635, 128)">
+                  <rect width="150" height="54" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2" />
+                  <text x="75" y="23" text-anchor="middle" font-weight="700" font-size="14" fill="#14532d">$11,000/ha</text>
+                  <text x="75" y="41" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#166534">n=22 (46%)</text>
+                </g>
+
+                <!-- K1 -->
+                <g class="tree-node" data-tree="karongi" data-node="K_LEAF1" transform="translate(45, 263)">
+                  <rect width="130" height="54" rx="10" fill="#60a5fa" stroke="#1e40af" stroke-width="2" />
+                  <text x="65" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#172554">$7,210/ha</text>
+                  <text x="65" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#1e3a8a">K1: n=14 (29%)</text>
+                </g>
+
+                <!-- K2 -->
+                <g class="tree-node" data-tree="karongi" data-node="K_LEAF2" transform="translate(245, 263)">
+                  <rect width="130" height="54" rx="10" fill="#dbeafe" stroke="#1d4e89" stroke-width="2" />
+                  <text x="65" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#1e3a8a">$9,937/ha</text>
+                  <text x="65" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#1e40af">K2: n=12 (25%)</text>
+                </g>
+
+                <!-- K3 -->
+                <g class="tree-node" data-tree="karongi" data-node="K_LEAF3" transform="translate(455, 263)">
+                  <rect width="130" height="54" rx="10" fill="#fecaca" stroke="#b91c1c" stroke-width="2" />
+                  <text x="65" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#7f1d1d">$8,752/ha</text>
+                  <text x="65" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#991b1b">K3: n=7 (15%)</text>
+                </g>
+
+                <!-- R2 -->
+                <g class="tree-node" data-tree="karongi" data-node="K_R2" transform="translate(750, 263)">
+                  <rect width="140" height="54" rx="10" fill="#bbf7d0" stroke="#15803d" stroke-width="2" />
+                  <text x="70" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#14532d">$12,000/ha</text>
+                  <text x="70" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#166534">n=15 (31%)</text>
+                </g>
+
+                <!-- K4 -->
+                <g class="tree-node" data-tree="karongi" data-node="K_LEAF4" transform="translate(625, 393)">
+                  <rect width="130" height="54" rx="10" fill="#e0f2fe" stroke="#0369a1" stroke-width="2" />
+                  <text x="65" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#0c4a6e">$11,000/ha</text>
+                  <text x="65" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#075985">K4: n=7 (15%)</text>
+                </g>
+
+                <!-- R3 -->
+                <g class="tree-node" data-tree="karongi" data-node="K_R3" transform="translate(845, 393)">
+                  <rect width="130" height="54" rx="10" fill="#86efac" stroke="#15803d" stroke-width="2" />
+                  <text x="65" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#14532d">$13,000/ha</text>
+                  <text x="65" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#166534">n=8 (17%)</text>
+                </g>
+
+                <!-- K5 -->
+                <g class="tree-node" data-tree="karongi" data-node="K_LEAF5" transform="translate(770, 498)">
+                  <rect width="130" height="54" rx="10" fill="#86efac" stroke="#166534" stroke-width="2" />
+                  <text x="65" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#14532d">$12,000/ha</text>
+                  <text x="65" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#166534">K5: n=4 (8%)</text>
+                </g>
+
+                <!-- K6 -->
+                <g class="tree-node" data-tree="karongi" data-node="K_LEAF6" transform="translate(920, 498)">
+                  <rect width="130" height="54" rx="10" fill="#4ade80" stroke="#14532d" stroke-width="2.5" />
+                  <text x="65" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#052e16">$14,000/ha</text>
+                  <text x="65" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#14532d">K6: n=4 (8%)</text>
+                </g>
+              </svg>
+            </div>
+
+            <div id="karongi-node-inspector" class="mt-3 p-4 rounded-xl bg-white border border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+              <div>
+                <span class="px-2 py-0.5 rounded bg-emerald-100 text-forest-900 font-mono font-bold">Karongi Peak Leaf K6: Treatment E (C-B-B-C, 60 cm, Healthy Beans)</span>
+                <p class="mt-1.5 text-slate-700"><strong>Critical Extension Insights:</strong> (1) High-density cassava intercrops (E/C) beat 3-bean-row wide alleys (D/F/G) by +$2,531/ha ($11,000 vs $8,469/ha); (2) Season B bean root rot (<code>&ge; 2</code>) inflicts a <strong>-$3,248/ha penalty</strong> ($8,752 vs $12,000/ha); (3) <code>interrow_cm &ge; 55 cm</code> (60 cm in Treatment E) outperforms 50 cm Akilimo C ($13,000 vs $11,000/ha), peaking at <strong>$14,000/ha</strong> when 4–6 MAP rainfall &ge; 409 mm.</p>
+              </div>
+              <div class="text-right shrink-0">
+                <div class="text-lg font-bold text-forest-900 font-mono">$14,000/ha</div>
+                <div class="text-slate-500">Peak Terminal Node (K6)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5B. KAYONZA INTERCROP TREE -->
+        <div id="sec-5-kayonza" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-ochre-100 text-ochre-900 font-mono text-xs font-bold">Semi-Arid Dryland Zone</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-1">5.2 Kayonza Intercrop Recommendation Tree (n = 50 Plots, Mean = $1,612/ha)</h3>
+            </div>
+            <span class="text-xs font-mono text-slate-500">4 Terminal Leaves (Y1 – Y4)</span>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl border border-slate-200 p-4">
+            <div class="overflow-x-auto scroll-box pb-2">
+              <svg id="svg-kayonza-tree" viewBox="0 0 960 365" class="w-full min-w-[780px] h-auto select-none">
+                <!-- Connector Edges -->
+                <g stroke="#64748b" stroke-width="2" fill="none">
+                  <!-- Root (480, 45) to L1 (240, 165) & R1 (720, 165) -->
+                  <path d="M 480 72 L 480 110 L 240 110 L 240 138" />
+                  <path d="M 480 72 L 480 110 L 720 110 L 720 138" />
+
+                  <!-- L1 (240, 165) to Y1 (125, 295) & Y2 (355, 295) -->
+                  <path d="M 240 192 L 240 232 L 125 232 L 125 268" />
+                  <path d="M 240 192 L 240 232 L 355 232 L 355 268" />
+
+                  <!-- R1 (720, 165) to Y3 (605, 295) & Y4 (835, 295) -->
+                  <path d="M 720 192 L 720 232 L 605 232 L 605 268" />
+                  <path d="M 720 192 L 720 232 L 835 232 L 835 268" />
+                </g>
+
+                <!-- Split Labels -->
+                <g font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" text-anchor="middle">
+                  <rect x="275" y="96" width="165" height="20" rx="4" fill="#fee2e2" stroke="#dc2626" />
+                  <text x="357" y="110" fill="#991b1b">rain_mm_1_3MAP &lt; 273</text>
+
+                  <rect x="550" y="96" width="115" height="20" rx="4" fill="#dfeee6" stroke="#1b4332" />
+                  <text x="607" y="110" fill="#1b4332">&ge; 273 mm</text>
+
+                  <rect x="45" y="218" width="185" height="19" rx="4" fill="#ffffff" stroke="#cbd5e1" />
+                  <text x="137" y="231" fill="#334155">C-B-B-B-C / C-B-B-C (Dense)</text>
+
+                  <rect x="285" y="218" width="145" height="19" rx="4" fill="#e0f2fe" stroke="#0369a1" />
+                  <text x="357" y="231" fill="#0c4a6e">C-B-C-B-C (Akilimo C)</text>
+
+                  <rect x="515" y="218" width="175" height="19" rx="4" fill="#fef3c7" stroke="#d97706" />
+                  <text x="602" y="231" fill="#92400e">C-c-B-B-c-C (Cover Crop)</text>
+
+                  <rect x="750" y="218" width="175" height="19" rx="4" fill="#dfeee6" stroke="#1b4332" />
+                  <text x="837" y="231" fill="#1b4332">Standard No-Cover Intercrops</text>
+                </g>
+
+                <!-- Nodes -->
+                <g class="tree-node" data-tree="kayonza" data-node="Y_ROOT" transform="translate(405, 18)">
+                  <rect width="150" height="54" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2" />
+                  <text x="75" y="23" text-anchor="middle" font-weight="700" font-size="14" fill="#14532d">$1,612/ha</text>
+                  <text x="75" y="41" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#166534">n=50 (100%)</text>
+                </g>
+
+                <g class="tree-node" data-tree="kayonza" data-node="Y_L1" transform="translate(165, 138)">
+                  <rect width="150" height="54" rx="10" fill="#bae6fd" stroke="#0284c7" stroke-width="2" />
+                  <text x="75" y="23" text-anchor="middle" font-weight="700" font-size="14" fill="#0c4a6e">$719/ha</text>
+                  <text x="75" y="41" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0369a1">n=21 (42%)</text>
+                </g>
+
+                <g class="tree-node" data-tree="kayonza" data-node="Y_R1" transform="translate(645, 138)">
+                  <rect width="150" height="54" rx="10" fill="#bbf7d0" stroke="#16a34a" stroke-width="2" />
+                  <text x="75" y="23" text-anchor="middle" font-weight="700" font-size="14" fill="#14532d">$2,259/ha</text>
+                  <text x="75" y="41" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#166534">n=29 (58%)</text>
+                </g>
+
+                <!-- Y1 -->
+                <g class="tree-node" data-tree="kayonza" data-node="Y_LEAF1" transform="translate(55, 268)">
+                  <rect width="140" height="54" rx="10" fill="#7dd3fc" stroke="#0369a1" stroke-width="2" />
+                  <text x="70" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#0c4a6e">$536/ha</text>
+                  <text x="70" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#075985">Y1: n=17 (34%)</text>
+                </g>
+
+                <!-- Y2 -->
+                <g class="tree-node" data-tree="kayonza" data-node="Y_LEAF2" transform="translate(285, 268)">
+                  <rect width="140" height="54" rx="10" fill="#e0f2fe" stroke="#1d4e89" stroke-width="2" />
+                  <text x="70" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#1e3a8a">$1,494/ha</text>
+                  <text x="70" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#1e40af">Y2: n=4 (8%)</text>
+                </g>
+
+                <!-- Y3 -->
+                <g class="tree-node" data-tree="kayonza" data-node="Y_LEAF3" transform="translate(535, 268)">
+                  <rect width="140" height="54" rx="10" fill="#fde68a" stroke="#d97706" stroke-width="2" />
+                  <text x="70" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#78350f">$998/ha</text>
+                  <text x="70" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#92400e">Y3: n=4 (8%)</text>
+                </g>
+
+                <!-- Y4 -->
+                <g class="tree-node" data-tree="kayonza" data-node="Y_LEAF4" transform="translate(765, 268)">
+                  <rect width="140" height="54" rx="10" fill="#4ade80" stroke="#15803d" stroke-width="2.5" />
+                  <text x="70" y="22" text-anchor="middle" font-weight="700" font-size="13.5" fill="#052e16">$2,460/ha</text>
+                  <text x="70" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#14532d">Y4: n=25 (50%)</text>
+                </g>
+              </svg>
+            </div>
+
+            <div id="kayonza-node-inspector" class="mt-3 p-4 rounded-xl bg-white border border-ochre-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+              <div>
+                <span class="px-2 py-0.5 rounded bg-ochre-100 text-ochre-900 font-mono font-bold">Kayonza Intercrop Rules (Y1 – Y4)</span>
+                <p class="mt-1.5 text-slate-700"><strong>Critical Dryland Rules:</strong> (1) Under severe early drought (<code>rain_1_3MAP &lt; 273 mm</code>, Cycle 2), single-row <strong>Akilimo C (<code>C-B-C-B-C</code>)</strong> yields <strong>$1,494/ha</strong>—<strong>2.8&times; higher</strong> than multi-row dense intercrops ($536/ha); (2) When <code>rain_1_3MAP &ge; 273 mm</code>, living cover crops (<code>C-c-B-B-c-C</code>) extract scarce moisture and incur a <strong>-$1,462/ha penalty</strong> ($998 vs $2,460/ha for standard no-cover-crop intercrops).</p>
+              </div>
+              <div class="text-right shrink-0">
+                <div class="text-lg font-bold text-forest-900 font-mono">$2,460/ha</div>
+                <div class="text-slate-500">Top Dryland Intercrop (Y4)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: INTERACTIVE EXTENSION FIELD TARGETING SIMULATOR & REGIONAL MATRIX -->
+      <section id="sec-6" class="scroll-mt-16 space-y-8 pb-12">
+        <div class="flex items-center space-x-3 border-b border-slate-200 pb-3">
+          <span class="w-2 h-7 bg-forest-900 rounded-full"></span>
+          <div>
+            <h2 class="academic-heading text-xl sm:text-2xl font-bold text-slate-900">6. Interactive Extension Field Targeting Simulator &amp; Regional Deployment Matrix</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Live decision-support tool translating Random Forest &amp; CART splits into plot-level extension prescriptions.</p>
+          </div>
+        </div>
+
+        <!-- 6.1 Interactive Field Targeting Simulator -->
+        <div id="sec-6-simulator" class="scroll-mt-20 bg-white rounded-2xl border-2 border-forest-800/30 shadow-sm overflow-hidden card-panel">
+          <div class="bg-forest-900 px-6 py-4 text-white flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-300 font-semibold">Extension Officer Decision Tool</span>
+              <h3 class="text-base sm:text-lg font-bold">Plot-Level Extension Field Targeting Simulator</h3>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-white/10 font-mono text-xs text-emerald-200">Real-Time CART Rule Engine</span>
+          </div>
+
+          <div class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Left Controls (5 cols) -->
+            <div class="lg:col-span-5 space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-200">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600">Step 1: Select Plot &amp; Farmer Conditions</h4>
+
+              <div>
+                <label for="sim-aez" class="block text-xs font-semibold text-slate-800 mb-1">1. Agro-Ecological Zone &amp; Early Rainfall (1–3 MAP)</label>
+                <select id="sim-aez" class="w-full text-xs font-medium bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-forest-700">
+                  <option value="karongi_wet">Karongi / Humid High-Rainfall (&ge; 357 mm)</option>
+                  <option value="kayonza_mod">Kayonza / Semi-Arid Moderate Rain (273–356 mm)</option>
+                  <option value="kayonza_dry">Kayonza / Semi-Arid Severe Drought (&lt; 273 mm)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="sim-goal" class="block text-xs font-semibold text-slate-800 mb-1">2. Household Production Objective</label>
+                <select id="sim-goal" class="w-full text-xs font-medium bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-forest-700">
+                  <option value="food_security">Multi-Crop Food &amp; Cash Security (Maize + Beans + Cassava)</option>
+                  <option value="max_profit">Maximize 12-Month Net Income (Commercial Tuber Focus)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="sim-rootrot" class="block text-xs font-semibold text-slate-800 mb-1">3. Season B Bean Root Rot Risk (<code class="font-mono">beans_rootrot_inc_r1</code>)</label>
+                <select id="sim-rootrot" class="w-full text-xs font-medium bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-forest-700">
+                  <option value="low">Low Root Rot Risk (Incidence Score &lt; 2)</option>
+                  <option value="high">High Root Rot Risk (Incidence Score &ge; 2)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="sim-cover" class="block text-xs font-semibold text-slate-800 mb-1">4. Living Cover Crop Integration</label>
+                <select id="sim-cover" class="w-full text-xs font-medium bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-forest-700">
+                  <option value="none">No Living Cover Crop (Standard Maize-Beans)</option>
+                  <option value="cover">With Living Cover Crop Intercrop</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="sim-stover" class="block text-xs font-semibold text-slate-800 mb-1">5. Season A Maize Stover Residue Biomass</label>
+                <select id="sim-stover" class="w-full text-xs font-medium bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-forest-700">
+                  <option value="high">High Maize Stover (&ge; 5 t/ha, &gt;70% soil cover)</option>
+                  <option value="low">Low / Drought-Stunted Stover (&lt; 3 t/ha, sparse cover)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Right Dynamic Output Prescription (7 cols) -->
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+              <div class="space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                  <div>
+                    <span class="text-[11px] font-mono uppercase font-bold text-forest-700">Recommended Extension Package</span>
+                    <h4 id="sim-out-title" class="text-lg sm:text-xl font-bold text-slate-900 mt-0.5">Treatment E: Low Maize / High Cassava Intercrop</h4>
+                  </div>
+                  <div class="px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-right">
+                    <span class="block text-[10px] font-mono uppercase text-forest-700 font-semibold">Expected Net Profit</span>
+                    <span id="sim-out-profit" class="text-lg font-bold text-forest-900 font-mono">$12,000 – $14,000/ha</span>
+                  </div>
+                </div>
+
+                <!-- Spatial Geometry & PPD -->
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                  <span class="text-xs font-bold text-slate-800">Spatial Row Geometry &amp; Plant Population Density (PPD):</span>
+                  <p id="sim-out-geometry" class="text-xs sm:text-sm text-slate-700 leading-relaxed"></p>
+                </div>
+
+                <!-- Tillage & Biotic Management Rule -->
+                <div id="sim-alert-box" class="p-4 rounded-xl bg-teal-50/80 border border-teal-200 space-y-1">
+                  <span class="text-xs font-bold text-teal-900">Tillage, Residue &amp; Disease Management Rule:</span>
+                  <p id="sim-out-management" class="text-xs sm:text-sm text-slate-800 leading-relaxed"></p>
+                </div>
+              </div>
+
+              <!-- Decision Tree Path Breadcrumb -->
+              <div class="p-3.5 rounded-xl bg-forest-950 text-white text-xs space-y-1">
+                <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-300 font-semibold">Exact Decision Tree Pathway</span>
+                <p id="sim-out-path" class="font-mono text-[11px] text-slate-200 leading-relaxed"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.2 Filterable Regional System Performance & Extension Deployment Matrix -->
+        <div id="sec-6-matrix" class="scroll-mt-20 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs card-panel space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h3 class="text-lg font-bold text-forest-900">6.2 Regional System Performance Ranking &amp; OAF Extension Deployment Matrix</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Multi-trial empirical benchmarks synthesized into district-level extension protocols.</p>
+            </div>
+            <select id="matrix-zone-filter" class="text-xs font-medium bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-slate-800 focus:outline-none focus:border-forest-700 no-print">
+              <option value="ALL">All Agro-Ecological Zones</option>
+              <option value="Humid">Humid High-Rainfall (Karongi / Western)</option>
+              <option value="Semi-Arid">Semi-Arid Dryland (Kayonza / Eastern)</option>
+            </select>
+          </div>
+
+          <div class="overflow-x-auto scroll-box border border-slate-200 rounded-xl">
+            <table id="table-deployment-matrix" class="min-w-full divide-y divide-slate-200 text-xs tabular-nums">
+              <thead class="bg-forest-900 text-white">
+                <tr>
+                  <th class="px-3.5 py-3 text-left font-semibold">AEZ Target</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">System / Treatment</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">Row Pattern &amp; Spacing</th>
+                  <th class="px-3.5 py-3 text-right font-semibold">Trial Profit Range</th>
+                  <th class="px-3.5 py-3 text-right font-semibold">CART Leaf Mean</th>
+                  <th class="px-3.5 py-3 text-left font-semibold">Extension Status &amp; Guardrails</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Embedded Data & Interactive Controller Script -->
+  <script>
+    // =========================================================================
+    // 1. MULTI-WINDOW RAINFALL DATA (1-24 MAP)
+    // =========================================================================
+    const RAINFALL_COHORTS = {
+      T1_C1: {
+        title: 'Figure 2.1: Cumulative Rainfall (mm) by 3-Month Period After Planting — Trial 1 Cycle 1 (25AB: 1–24 MAP)',
+        labels: ['1-3MAP', '4-6MAP', '7-9MAP', '10-12MAP', '13-15MAP', '16-18MAP', '19-21MAP', '22-24MAP'],
+        karongi: [402, 301, 312, 268, 454, 556, 232, 98],
+        kayonza: [335, 267, 268, 150, 308, 332, 211, 37]
+      },
+      T1_C2: {
+        title: 'Figure 2.1: Cumulative Rainfall (mm) by 3-Month Period After Planting — Trial 1 Cycle 2 (26AB: 1–15* MAP)',
+        labels: ['1-3MAP', '4-6MAP', '7-9MAP', '10-12MAP', '13-15MAP*'],
+        karongi: [444, 517, 228, 109, 145],
+        kayonza: [264, 384, 159, 53, 37]
+      },
+      T2_HT: {
+        title: 'Figure 2.1: Cumulative Rainfall (mm) by 3-Month Period After Planting — Trial 2 HarvestTime (Cycle1_26AB: 1–15* MAP)',
+        labels: ['1-3MAP', '4-6MAP', '7-9MAP', '10-12MAP', '13-15MAP*'],
+        karongi: [362, 655, 252, 98, 156],
+        kayonza: [282, 381, 235, 35, 54]
+      }
+    };
+
+    // =========================================================================
+    // 2. RANDOM FOREST VARIABLE IMPORTANCE DATA (12 PREDICTORS)
+    // =========================================================================
+    const RF_IMPORTANCE_DATA = [
+      { rank: 1, varName: 'rain_mm_1_3MAP', category: 'Climate / Hydrology', mse: 7150000, desc: 'Cumulative rainfall during Months 1–3; primary split (357 mm) governing cassava tuber initiation vs. cereal moisture competition.' },
+      { rank: 2, varName: 'station', category: 'Agro-Ecological Zone', mse: 6900000, desc: 'Research station baseline capturing Humid High-Rainfall (Karongi) vs. Semi-Arid Savanna (Kayonza) soil & climate regimes.' },
+      { rank: 3, varName: 'arrangement', category: 'Spatial Geometry', mse: 5750000, desc: 'Row configuration (e.g., C-B-B-C vs. C-B-B-B-C vs. C-B-C-B-C vs. Sole C-C-C-C); #1 actionable management lever.' },
+      { rank: 4, varName: 'rain_mm_4_6MAP', category: 'Climate / Hydrology', mse: 3850000, desc: 'Season A grain fill & Season B transition moisture; splits Karongi intercrop leaves at 409 mm and 469 mm.' },
+      { rank: 5, varName: 'interrow_cm', category: 'Spatial Geometry', mse: 3810000, desc: 'Physical inter-row spacing between cassava and companion rows; >= 55 cm (60 cm in Trt E) boosts Karongi profit by +$2,000/ha.' },
+      { rank: 6, varName: 'rain_mm_10_12MAP', category: 'Climate / Hydrology', mse: 3480000, desc: 'Late-cycle rainfall during cassava starch bulking (Months 10–12); differentiates Cycle 1 vs. Cycle 2/T2 cohorts.' },
+      { rank: 7, varName: 'rain_mm_7_9MAP', category: 'Climate / Hydrology', mse: 2030000, desc: 'Season B bush bean flowering and pod-filling rainfall window.' },
+      { rank: 8, varName: 'system_type', category: 'Cropping System', mse: 1910000, desc: 'System architecture (Sole Cassava vs. Multi-Crop Intercrop vs. Annual Maize-Beans Rotation).' },
+      { rank: 9, varName: 'fertilization', category: 'Input Management', mse: 940000, desc: 'Recommended mineral fertilizer regime vs. unfertilized plots (4x–6x lower MSE importance than spatial arrangement).' },
+      { rank: 10, varName: 'max_dry_spell_4_6MAP', category: 'Dry-Spell Stress', mse: 690000, desc: 'Maximum consecutive dry days during Months 4–6 mid-cycle transition.' },
+      { rank: 11, varName: 'max_dry_spell_7_9MAP', category: 'Dry-Spell Stress', mse: 510000, desc: 'Maximum consecutive dry days during Season B bean pod fill.' },
+      { rank: 12, varName: 'planting_cohort', category: 'Timing / Phenology', mse: 370000, desc: 'Early (Late Sep) vs. Normal (Oct) vs. Late (Oct/Nov) planting date (15x lower MSE importance than arrangement).' }
+    ];
+
+    // =========================================================================
+    // 3. INTERACTIVE DECISION TREE NODE METADATA
+    // =========================================================================
+    const TREE_NODE_DETAILS = {
+      // Global Tree Nodes
+      G_ROOT: { badge: 'Global Root Node (n=159, 100%)', profit: '$4,840/ha', text: 'All experimental plots across Karongi and Kayonza. Primary split occurs at rain_mm_1_3MAP = 357 mm.' },
+      G_L1: { badge: 'Global Left Branch: Semi-Arid Regime (n=84, 53%)', profit: '$1,935/ha', text: 'Plots receiving rain_mm_1_3MAP < 357 mm (all Kayonza cohorts). Next split isolates Sole Cassava B (C-C-C-C) from annual and intercrop systems.' },
+      G_R1: { badge: 'Global Right Branch: Humid Regime (n=75, 47%)', profit: '$8,095/ha', text: 'Plots receiving rain_mm_1_3MAP >= 357 mm (all Karongi cohorts) — 4.2x higher mean profit than < 357 mm. Next split isolates Annual Maize-Beans A (B-B-B-B).' },
+      G_L2A: { badge: 'Semi-Arid Annual & Intercrops (n=68, 43%)', profit: '$1,418/ha', text: 'All non-sole-cassava systems under < 357 mm early rainfall. Further splits at rain_mm_1_3MAP = 305 mm.' },
+      G_LEAF3: { badge: 'Global Leaf 3: Semi-Arid Sole Cassava B (n=16, 10%)', profit: '$4,133/ha', text: 'Rule: rain_mm_1_3MAP < 357 mm AND arrangement = C-C-C-C. Eliminating cereal/legume water competition nearly triples profit vs. semi-arid intercrops ($4,133 vs. $1,418/ha).' },
+      G_LEAF4: { badge: 'Global Leaf 4: Humid Annual Maize-Beans A (n=13, 8%)', profit: '$1,240/ha', text: 'Rule: rain_mm_1_3MAP >= 357 mm AND arrangement = B-B-B-B. Omitting cassava in high-rainfall zones forfeits >$8,200/ha in system profitability.' },
+      G_R2B: { badge: 'Humid Cassava-Based Systems (n=62, 39%)', profit: '$9,532/ha', text: 'All sole and intercropped cassava systems in humid Karongi (>= 357 mm). Splits on late-cycle rainfall rain_mm_10_12MAP = 157 mm.' },
+      G_LEAF1: { badge: 'Global Leaf 1: Semi-Arid Severe Drought (n=39, 25%)', profit: '$631/ha', text: 'Rule: rain_mm_1_3MAP < 305 mm AND Annual/Intercrop arrangement. Severe early moisture deficit depresses both cereal and cassava yields.' },
+      G_LEAF2: { badge: 'Global Leaf 2: Semi-Arid Moderate Rain (n=29, 18%)', profit: '$2,475/ha', text: 'Rule: rain_mm_1_3MAP between 305 and 356 mm AND Annual/Intercrop arrangement (e.g., Kayonza Cycle 1).' },
+      G_L3A: { badge: 'Humid Wet Late-Season Sub-Branch (n=27, 17%)', profit: '$8,244/ha', text: 'Rule: rain_mm_1_3MAP >= 357 mm AND rain_mm_10_12MAP >= 157 mm (Karongi Cycle 1). Splits by row arrangement.' },
+      G_LEAF7: { badge: 'Global Leaf 7: Humid Cassava Cohort (n=35, 22%)', profit: '$11,000/ha', text: 'Rule: rain_mm_1_3MAP >= 357 mm AND rain_mm_10_12MAP < 157 mm (Karongi Cycle 2 & T2). Peak multi-system cassava profitability.' },
+      G_LEAF5: { badge: 'Global Leaf 5: Humid Wide-Alley / Sole Cassava (n=19, 12%)', profit: '$7,060/ha', text: 'Rule: rain_1_3 >= 357, rain_10_12 >= 157, arrangement in {C-B-B-B-C-B-B-B-C, C-C-C-C}. Trails Leaf 6 by -$3,940/ha.' },
+      G_LEAF6: { badge: 'Global Leaf 6: Humid High-Density Cassava Intercrops (n=8, 5%)', profit: '$11,000/ha', text: 'Rule: rain_1_3 >= 357, rain_10_12 >= 157, arrangement in {C-B-B-C-B-B-C (E), C-B-C-B-C (C)}. Captures maximum synergy.' },
+
+      // Karongi Intercrop Tree Nodes
+      K_ROOT: { badge: 'Karongi Intercrop Root Node (n=48, 100%)', profit: '$9,607/ha', text: 'All intercropped plots in humid Karongi. Primary split separates 3-bean-row wide alleys (D/F/G) from high-density cassava intercrops (E/C/T2-D).' },
+      K_L1: { badge: 'Karongi Wide-Alley 3-Bean-Row Branch (n=26, 54%)', profit: '$8,469/ha', text: 'Arrangement = C-B-B-B-C-B-B-B-C (Treatments D, F, G with 150 cm alleys and reduced cassava density in F/G). Splits at rain_mm_4_6MAP = 469 mm.' },
+      K_R1: { badge: 'Karongi High-Density Cassava Intercrops (n=22, 46%)', profit: '$11,000/ha', text: 'Arrangements C-B-B-C (E), C-B-C-B-C (C), and C-c-B-B-c-C (T2-D). Splits immediately on Season B bean root rot severity (beans_rootrot_inc_r1 >= 2).' },
+      K_LEAF1: { badge: 'Karongi Leaf K1: Wide-Alley Moderate Mid-Rain (n=14, 29%)', profit: '$7,210/ha', text: 'Rule: C-B-B-B-C-B-B-B-C AND rain_mm_4_6MAP < 469 mm. Lowest-performing intercrop tier in Karongi.' },
+      K_LEAF2: { badge: 'Karongi Leaf K2: Wide-Alley High Mid-Rain (n=12, 25%)', profit: '$9,937/ha', text: 'Rule: C-B-B-B-C-B-B-B-C AND rain_mm_4_6MAP >= 469 mm.' },
+      K_LEAF3: { badge: 'Karongi Leaf K3: High Bean Root Rot Penalty (n=7, 15%)', profit: '$8,752/ha', text: 'Rule: High-density cassava intercrop with beans_rootrot_inc_r1 >= 2. Root rot inflicts a -$3,248/ha loss compared to healthy plots ($12,000/ha).' },
+      K_R2: { badge: 'Karongi Healthy High-Density Cassava Intercrops (n=15, 31%)', profit: '$12,000/ha', text: 'Rule: High-density cassava intercrop with beans_rootrot_inc_r1 < 2. Splits on interrow_cm = 55 cm.' },
+      K_LEAF4: { badge: 'Karongi Leaf K4: Akilimo C 50 cm Spacing (n=7, 15%)', profit: '$11,000/ha', text: 'Rule: Healthy beans (<2) AND interrow_cm < 55 cm (50 cm spacing in Akilimo C). Strong profit, but -$2,000/ha below 60 cm Treatment E.' },
+      K_R3: { badge: 'Karongi Treatment E 60 cm Spacing (n=8, 17%)', profit: '$13,000/ha', text: 'Rule: Healthy beans (<2) AND interrow_cm >= 55 cm (60 cm spacing in Low Maize / High Cassava Treatment E). Splits at rain_mm_4_6MAP = 409 mm.' },
+      K_LEAF5: { badge: 'Karongi Leaf K5: Treatment E Moderate Mid-Rain (n=4, 8%)', profit: '$12,000/ha', text: 'Rule: Treatment E (60 cm), healthy beans (<2), rain_mm_4_6MAP < 409 mm.' },
+      K_LEAF6: { badge: 'Karongi Leaf K6: Treatment E Optimal Regime (n=4, 8%)', profit: '$14,000/ha', text: 'Rule: Treatment E (60 cm), healthy beans (<2), rain_mm_4_6MAP >= 409 mm. Highest terminal profit node in the entire study.' },
+
+      // Kayonza Intercrop Tree Nodes
+      Y_ROOT: { badge: 'Kayonza Intercrop Root Node (n=50, 100%)', profit: '$1,612/ha', text: 'All intercropped plots in semi-arid Kayonza. Splits immediately on early-season rainfall rain_mm_1_3MAP = 273 mm.' },
+      Y_L1: { badge: 'Kayonza Severe Early Drought Branch (n=21, 42%)', profit: '$719/ha', text: 'Rule: rain_mm_1_3MAP < 273 mm (Kayonza Cycle 2). Splits between multi-row dense intercrops and single-row Akilimo C.' },
+      Y_R1: { badge: 'Kayonza Moderate Early Rain Branch (n=29, 58%)', profit: '$2,259/ha', text: 'Rule: rain_mm_1_3MAP >= 273 mm (Kayonza Cycle 1 & T2). Splits between cover-crop intercrops and standard no-cover-crop intercrops.' },
+      Y_LEAF1: { badge: 'Kayonza Leaf Y1: Drought Dense Multi-Row Intercrops (n=17, 34%)', profit: '$536/ha', text: 'Rule: rain_1_3MAP < 273 mm AND multi-row dense intercrops (C-B-B-B-C, C-B-B-C). High plant density exhausts soil moisture.' },
+      Y_LEAF2: { badge: 'Kayonza Leaf Y2: Drought Single-Row Akilimo C (n=4, 8%)', profit: '$1,494/ha', text: 'Rule: rain_1_3MAP < 273 mm AND arrangement = C-B-C-B-C (Akilimo C). Lower companion density preserves 2.8x higher profit ($1,494 vs $536/ha).' },
+      Y_LEAF3: { badge: 'Kayonza Leaf Y3: Cover-Crop Moisture Penalty (n=4, 8%)', profit: '$998/ha', text: 'Rule: rain_1_3MAP >= 273 mm AND cover-crop arrangement (C-c-B-B-c-C). Living cover crop competes for water, incurring a -$1,462/ha penalty.' },
+      Y_LEAF4: { badge: 'Kayonza Leaf Y4: Standard No-Cover Intercrops (n=25, 50%)', profit: '$2,460/ha', text: 'Rule: rain_1_3MAP >= 273 mm AND standard no-cover-crop intercrops (C, D, E, F, G). Best intercrop outcome in semi-arid zones.' }
+    };
+
+    // =========================================================================
+    // 4. REGIONAL DEPLOYMENT MATRIX DATA
+    // =========================================================================
+    const DEPLOYMENT_MATRIX = [
+      { aez: 'Humid', system: 'Treatment E (Low Maize / High Cassava)', spacing: 'C-B-B-C | Cassava 120x80 cm (10,417/ha); Maize 1 row @ 60 cm (33,333/ha); Beans 2 rows (250k/ha)', trialRange: '$9,897 – $14,175/ha', treeMean: '$12,000 – $14,000/ha (Leaves K5–K6)', status: 'PRIMARY SCALING PACKAGE: Pair with CT-CA (stover >= 5 t/ha) and bean root rot management (< 2).' },
+      { aez: 'Humid', system: 'Treatment C (Akilimo Standard)', spacing: 'C-B-C-B-C | Cassava 100x100 cm (10,000/ha); Maize 1 row @ 50 cm (40,000/ha); Beans 1 row (150k/ha)', trialRange: '$9,985 – $10,708/ha', treeMean: '$11,000/ha (Leaf K4)', status: 'SECONDARY OPTION: Strong cassava yield, but 50 cm inter-row trails 60 cm Trt E by -$2,000/ha.' },
+      { aez: 'Humid', system: 'Treatment D (100% Density Wide-Alley)', spacing: 'C-B-B-B-C | Cassava 150x70 cm (9,524/ha); Maize 2 rows (53,000/ha); Beans 3 rows (225k/ha)', trialRange: '$8,325 – $10,468/ha', treeMean: '$7,210 – $9,937/ha (Leaves K1–K2)', status: 'CEREAL-PRIORITY OPTION: Use where household prioritizes high Season A maize grain (5.6–7.9 t/ha).' },
+      { aez: 'Humid', system: 'Treatment F / G (Low Cassava -17%)', spacing: 'C-B-B-B-C | Cassava 150x80 cm (8,333/ha); Maize 2 rows (53,333/ha); Beans 3 rows (225k/ha)', trialRange: '$6,948 – $10,188/ha', treeMean: '$7,210 – $9,937/ha (Leaves K1–K2)', status: 'NOT RECOMMENDED FOR SCALING: Cutting cassava PPD by 17% forfeits $4,617–$5,021/ha vs. Trt E.' },
+      { aez: 'Humid', system: 'Treatment A (Annual Maize–Beans Rotation)', spacing: 'B-B-B-B | Sole Maize (53k/ha) -> Sole Beans (250k/ha); No Cassava', trialRange: '$391 – $2,643/ha', treeMean: '$1,240/ha (Global Leaf 4)', status: 'AVOID: Severe opportunity cost (-$8,200 to -$13,648/ha) vs. cassava-based systems.' },
+      { aez: 'Semi-Arid', system: 'Treatment B (Sole Cassava Control)', spacing: 'C-C-C-C | Sole Cassava 100x100 cm (10,000/ha); 12-month stand', trialRange: '$3,793 – $5,764/ha', treeMean: '$4,133/ha (Global Leaf 3)', status: 'PRIMARY COMMERCIAL PACKAGE: Eliminates cereal moisture competition; 2.9x profit vs. intercrops.' },
+      { aez: 'Semi-Arid', system: 'Treatment C (Akilimo Single-Row Intercrop)', spacing: 'C-B-C-B-C | Cassava 100x100 cm (10,000/ha); Maize 1 row @ 50 cm; Beans 1 row (150k/ha)', trialRange: '$1,494 – $3,028/ha', treeMean: '$1,494/ha (Drought Leaf Y2)', status: 'BEST INTERCROP FOR FOOD SECURITY: Preserves 2.8x higher profit than dense intercrops under <273 mm drought.' },
+      { aez: 'Semi-Arid', system: 'Treatment D (150 cm Wide-Alley No Cover Crop)', spacing: 'C-B-B-B-C | Cassava 150x70 cm (9,524/ha); No living cover crop', trialRange: '$518 – $2,372/ha', treeMean: '$2,460/ha (Leaf Y4 >=273 mm)', status: 'CONDITIONAL INTERCROP: Viable only when 1–3 MAP >= 273 mm and living cover crops are excluded.' },
+      { aez: 'Semi-Arid', system: 'Cover-Crop Intercrops & Dense Trt E', spacing: 'C-c-B-B-c-C / C-B-B-C | High companion water demand', trialRange: '$68 – $998/ha', treeMean: '$536 – $998/ha (Leaves Y1, Y3)', status: 'DO NOT DEPLOY: Living cover crops (-$1,462/ha) and dense rows exhaust scarce dryland soil moisture.' }
+    ];
+
+    // =========================================================================
+    // 5. CHART.JS VISUALIZATIONS
+    // =========================================================================
+    let rainfallChartInstance = null;
+
+    function renderRainfallChart(cohortKey) {
+      const cohort = RAINFALL_COHORTS[cohortKey];
+      document.getElementById('rain-chart-title').textContent = cohort.title;
+
+      const ctx = document.getElementById('chart-rainfall-map').getContext('2d');
+      if (rainfallChartInstance) {
+        rainfallChartInstance.destroy();
+      }
+
+      const thresholdLine = cohort.labels.map(() => 357);
+
+      rainfallChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cohort.labels,
+          datasets: [
+            {
+              label: 'Karongi (Humid High-Rainfall Zone)',
+              data: cohort.karongi,
+              backgroundColor: '#1b4332',
+              borderRadius: 5
+            },
+            {
+              label: 'Kayonza (Semi-Arid Dryland Zone)',
+              data: cohort.kayonza,
+              backgroundColor: '#d97706',
+              borderRadius: 5
+            },
+            {
+              type: 'line',
+              label: 'Global Tree Split Threshold (357 mm)',
+              data: thresholdLine,
+              borderColor: '#b91c1c',
+              borderWidth: 2,
+              borderDash: [6, 4],
+              pointRadius: 0,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top' },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y} mm`
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 720,
+              title: { display: true, text: 'Cumulative Rainfall (mm)' }
+            },
+            x: {
+              title: { display: true, text: '3-Month Period After Planting (MAP)' }
+            }
+          }
+        }
+      });
+    }
+
+    function renderRFChart() {
+      const ctx = document.getElementById('chart-rf-importance').getContext('2d');
+      const labels = RF_IMPORTANCE_DATA.map(d => `#${d.rank} ${d.varName}`);
+      const values = RF_IMPORTANCE_DATA.map(d => d.mse);
+      const colors = RF_IMPORTANCE_DATA.map(d => {
+        if (d.category.includes('Spatial')) return '#1b4332'; // Actionable spatial geometry
+        if (d.category.includes('Climate') || d.category.includes('Agro-Ecological')) return '#1d4e89'; // Macro climate/AEZ
+        return '#64748b'; // Secondary management/stress
+      });
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Permutation Importance (Increase in MSE)',
+              data: values,
+              backgroundColor: colors,
+              borderRadius: 5
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `Increase in MSE: ${ctx.parsed.x.toExponential(2)} (${RF_IMPORTANCE_DATA[ctx.dataIndex].category})`
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              title: { display: true, text: 'Permutation Importance (Increase in MSE)' },
+              ticks: {
+                callback: (val) => val === 0 ? '0' : (val / 1e6).toFixed(1) + 'M'
+              }
+            },
+            y: {
+              ticks: {
+                font: { family: "'JetBrains Mono', monospace", size: 11, weight: '600' }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // =========================================================================
+    // 6. POPULATE TABLES & INTERACTIVE TREE CLICK HANDLERS
+    // =========================================================================
+    function populateRFTable() {
+      const maxMSE = RF_IMPORTANCE_DATA[0].mse;
+      const tbody = document.getElementById('table-rf-body');
+      tbody.innerHTML = RF_IMPORTANCE_DATA.map(d => {
+        const pct = ((d.mse / maxMSE) * 100).toFixed(1);
+        const isGeometry = d.category.includes('Spatial');
+        return `
+          <tr class="hover:bg-slate-50 ${isGeometry ? 'bg-emerald-50/50' : ''}">
+            <td class="px-3.5 py-2.5 text-center font-mono font-bold text-slate-900">#${d.rank}</td>
+            <td class="px-3.5 py-2.5 font-mono font-semibold ${isGeometry ? 'text-forest-900' : 'text-slateblue-900'}">${d.varName}</td>
+            <td class="px-3.5 py-2.5">
+              <span class="px-2 py-0.5 rounded text-[11px] font-medium ${isGeometry ? 'bg-emerald-100 text-forest-900' : 'bg-slate-100 text-slate-700'}">${d.category}</span>
+            </td>
+            <td class="px-3.5 py-2.5 text-right font-mono text-slate-800">${d.mse.toExponential(2)}</td>
+            <td class="px-3.5 py-2.5 text-right font-mono text-slate-600">${pct}%</td>
+            <td class="px-3.5 py-2.5 text-slate-600">${d.desc}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function populateDeploymentMatrix() {
+      const filter = document.getElementById('matrix-zone-filter').value;
+      const rows = DEPLOYMENT_MATRIX.filter(r => filter === 'ALL' || r.aez === filter);
+      const tbody = document.querySelector('#table-deployment-matrix tbody');
+      tbody.innerHTML = rows.map(r => {
+        const isHumid = r.aez === 'Humid';
+        return `
+          <tr class="hover:bg-slate-50">
+            <td class="px-3.5 py-3">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold ${isHumid ? 'bg-emerald-100 text-forest-900' : 'bg-ochre-100 text-ochre-900'}">${r.aez}</span>
+            </td>
+            <td class="px-3.5 py-3 font-semibold text-slate-900">${r.system}</td>
+            <td class="px-3.5 py-3 font-mono text-[11px] text-slate-700">${r.spacing}</td>
+            <td class="px-3.5 py-3 text-right font-semibold text-slate-900">${r.trialRange}</td>
+            <td class="px-3.5 py-3 text-right font-mono text-forest-800">${r.treeMean}</td>
+            <td class="px-3.5 py-3 text-slate-700">${r.status}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function initInteractiveTrees() {
+      document.querySelectorAll('.tree-node').forEach(node => {
+        node.addEventListener('click', () => {
+          const treeType = node.getAttribute('data-tree');
+          const nodeKey = node.getAttribute('data-node');
+          const info = TREE_NODE_DETAILS[nodeKey];
+          if (!info) return;
+
+          // Highlight selected node within its tree
+          document.querySelectorAll(`.tree-node[data-tree="${treeType}"]`).forEach(n => n.classList.remove('selected-node'));
+          node.classList.add('selected-node');
+
+          const inspectorId = `${treeType}-node-inspector`;
+          const inspector = document.getElementById(inspectorId);
+          if (inspector) {
+            inspector.innerHTML = `
+              <div>
+                <span class="px-2 py-0.5 rounded bg-forest-100 text-forest-900 font-mono font-bold">${info.badge}</span>
+                <p class="mt-1.5 text-slate-700">${info.text}</p>
+              </div>
+              <div class="text-right shrink-0">
+                <div class="text-lg font-bold text-forest-900 font-mono">${info.profit}</div>
+                <div class="text-slate-500">Node Mean Net Profit</div>
+              </div>
+            `;
+          }
+        });
+      });
+    }
+
+    // =========================================================================
+    // 7. EXTENSION FIELD TARGETING SIMULATOR ENGINE
+    // =========================================================================
+    function updateTargetingSimulator() {
+      const aez = document.getElementById('sim-aez').value;
+      const goal = document.getElementById('sim-goal').value;
+      const rootrot = document.getElementById('sim-rootrot').value;
+      const cover = document.getElementById('sim-cover').value;
+      const stover = document.getElementById('sim-stover').value;
+
+      let title = '';
+      let profit = '';
+      let geometry = '';
+      let management = '';
+      let path = '';
+      let alertTone = 'teal';
+
+      // Residue tillage rule component
+      const tillageRule = stover === 'high'
+        ? 'CT-CA APPROVED: Retained Season A maize stover (>= 5 t/ha) suppresses Season B weeds—plant Season B beans zero-till directly into mulch.'
+        : 'ADAPTIVE CT-CT OVERRIDE: Low Season A stover (< 3 t/ha) will not suppress weeds—perform shallow hand-hoe weeding in Season B to prevent the +$204/ha hand-uprooting labor penalty.';
+
+      // Disease management component
+      const diseaseRule = rootrot === 'high'
+        ? 'HIGH ROOT ROT ALERT (Score >= 2): Bean root rot reduces profit by -$3,248/ha in Karongi. Use raised beds/improved drainage, fungicide seed dressing, or rotate resistant legume varieties before scaling dense beans.'
+        : 'Low Bean Root Rot Risk (Score < 2): Full bean canopy vigor supported.';
+
+      if (aez === 'karongi_wet') {
+        if (goal === 'max_profit' || goal === 'food_security') {
+          title = 'Treatment E: Low Maize / High Cassava Intercrop (Primary Humid Package)';
+          profit = rootrot === 'high' ? '$8,752/ha (Root-Rot Adjusted)' : '$12,000 – $14,000/ha';
+          geometry = 'Row Pattern: C-B-B-C-B-B-C | Cassava at 120 x 80 cm (10,417 plants/ha) + 1 center row of Maize at 60 cm inter-row spacing (33,333 plants/ha) in Season A, followed by 2 rows of bush beans (250,000 plants/ha) in Season B.';
+          management = `${diseaseRule} ${tillageRule}`;
+          path = rootrot === 'high'
+            ? 'Global Root ($4,840) -> rain_1_3MAP >= 357 mm ($8,095) -> Karongi Tree ($9,607) -> arr = C-B-B-C ($11,000) -> beans_rootrot_inc_r1 >= 2 -> Leaf K3 ($8,752/ha).'
+            : 'Global Root ($4,840) -> rain_1_3MAP >= 357 mm ($8,095) -> Karongi Tree ($9,607) -> arr = C-B-B-C ($11,000) -> rootrot < 2 ($12,000) -> interrow_cm >= 55 [60 cm] ($13,000) -> Leaves K5–K6 ($12,000–$14,000/ha).';
+          alertTone = rootrot === 'high' ? 'crimson' : 'teal';
+        }
+      } else if (aez === 'kayonza_mod') {
+        if (goal === 'max_profit') {
+          title = 'Treatment B: Sole Cassava Control (Commercial Dryland Package)';
+          profit = '$4,133/ha (Range: $3,793 – $5,764/ha)';
+          geometry = 'Row Pattern: C-C-C-C | Sole Cassava at 100 x 100 cm (10,000 plants/ha) with 300 kg/ha NPK 17-17-17. Eliminates cereal-legume water competition during Months 1–4 tuber initiation.';
+          management = `Note: Sole cassava requires ~6–12 months before cash inflow (negative Month 1–6 cash flow). ${tillageRule}`;
+          path = 'Global Root ($4,840) -> rain_1_3MAP < 357 mm ($1,935) -> arrangement = C-C-C-C -> Global Leaf 3 ($4,133/ha).';
+          alertTone = 'ochre';
+        } else {
+          if (cover === 'cover') {
+            title = 'WARNING: Avoid Living Cover Crops in Kayonza -> Switch to Standard No-Cover Intercrop (C or D)';
+            profit = '$2,460/ha (vs. $998/ha with Cover Crop)';
+            geometry = 'Row Pattern: C-B-C-B-C (Akilimo C, 100x100 cm cassava + 1 maize/bean row) OR C-B-B-B-C (Wide-Alley D, 150x70 cm cassava) WITHOUT living cover crops.';
+            management = `COVER CROP PENALTY (-$1,462/ha): Living cover crops extract scarce dryland moisture in Kayonza ($998 vs. $2,460/ha). Remove living cover crop and rely on dead stover mulch only. ${tillageRule}`;
+            path = 'Kayonza Tree ($1,612) -> rain_1_3MAP >= 273 mm ($2,259) -> Avoid C-c-B-B-c-C ($998) -> Standard No-Cover Intercrops Leaf Y4 ($2,460/ha).';
+            alertTone = 'crimson';
+          } else {
+            title = 'Standard No-Cover-Crop Intercrop: Akilimo (C) or Wide-Alley (D)';
+            profit = '$2,460/ha (Kayonza Leaf Y4)';
+            geometry = 'Row Pattern: C-B-C-B-C (Akilimo C: 100x100 cm cassava + 1 row maize/beans) or C-B-B-B-C (Treatment D: 150x70 cm cassava alleys) with NO living cover crop.';
+            management = `Preserves annual maize and bean food harvests while achieving $2,460/ha mean profit when 1–3 MAP rainfall >= 273 mm. ${tillageRule}`;
+            path = 'Global Root ($4,840) -> rain_1_3MAP < 357 mm ($1,935) -> Kayonza Tree ($1,612) -> rain_1_3MAP >= 273 mm ($2,259) -> No Cover Crop -> Leaf Y4 ($2,460/ha).';
+            alertTone = 'teal';
+          }
+        }
+      } else {
+        // kayonza_dry (< 273 mm)
+        if (goal === 'max_profit') {
+          title = 'Treatment B: Sole Cassava Control (Drought-Resilient Commercial Package)';
+          profit = '$4,133/ha (Global Leaf 3)';
+          geometry = 'Row Pattern: C-C-C-C | Sole Cassava at 100 x 100 cm (10,000 plants/ha). Avoids severe drought-induced intercrop collapse ($536/ha).';
+          management = `Under severe early drought (< 273 mm), intercropped cassava tubers collapse by >80%. Sole cassava protects commercial tuber bulking. ${tillageRule}`;
+          path = 'Global Root ($4,840) -> rain_1_3MAP < 357 mm ($1,935) -> arrangement = C-C-C-C -> Global Leaf 3 ($4,133/ha).';
+          alertTone = 'ochre';
+        } else {
+          title = 'Treatment C: Single-Row Akilimo Intercrop (Drought Food-Security Package)';
+          profit = '$1,494/ha (2.8x vs. Dense Intercrops)';
+          geometry = 'Row Pattern: C-B-C-B-C | Cassava at 100 x 100 cm (10,000 plants/ha) with ONLY 1 center row of Maize (40,000/ha) in Season A and 1 row of Beans (150,000/ha) in Season B.';
+          management = `DROUGHT SPACING RULE: Do NOT plant multi-row dense intercrops (C-B-B-B-C or C-B-B-C), which collapse to $536/ha under < 273 mm rainfall. Single-row Akilimo C limits moisture competition and delivers $1,494/ha. ${tillageRule}`;
+          path = 'Global Root ($4,840) -> rain_1_3MAP < 357 mm ($1,935) -> Kayonza Tree ($1,612) -> rain_1_3MAP < 273 mm ($719) -> arrangement = C-B-C-B-C -> Leaf Y2 ($1,494/ha).';
+          alertTone = 'ochre';
+        }
+      }
+
+      document.getElementById('sim-out-title').textContent = title;
+      document.getElementById('sim-out-profit').textContent = profit;
+      document.getElementById('sim-out-geometry').textContent = geometry;
+      document.getElementById('sim-out-management').textContent = management;
+      document.getElementById('sim-out-path').textContent = path;
+
+      const alertBox = document.getElementById('sim-alert-box');
+      alertBox.className = 'p-4 rounded-xl border space-y-1 ' + (
+        alertTone === 'crimson' ? 'bg-crimson-50/80 border-crimson-200 text-crimson-900' :
+        alertTone === 'ochre' ? 'bg-ochre-50/80 border-ochre-200 text-ochre-900' :
+        'bg-teal-50/80 border-teal-200 text-teal-900'
+      );
+    }
+
+    // =========================================================================
+    // 8. SIDEBAR SCROLL-SPY & MOBILE DRAWER NAVIGATION
+    // =========================================================================
+    function initNavigation() {
+      const sidebar = document.getElementById('sidebar-nav');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      const openBtn = document.getElementById('mobile-menu-btn');
+      const closeBtn = document.getElementById('close-sidebar-btn');
+      const navLinks = document.querySelectorAll('.toc-link, .toc-sublink');
+
+      const toggleSidebar = (open) => {
+        if (open) {
+          sidebar.classList.remove('-translate-x-full');
+          backdrop.classList.remove('hidden');
+        } else {
+          sidebar.classList.add('-translate-x-full');
+          backdrop.classList.add('hidden');
+        }
+      };
+
+      openBtn.addEventListener('click', () => toggleSidebar(true));
+      closeBtn.addEventListener('click', () => toggleSidebar(false));
+      backdrop.addEventListener('click', () => toggleSidebar(false));
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 1024) toggleSidebar(false);
+        });
+      });
+
+      const sections = Array.from(navLinks).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+      window.addEventListener('scroll', () => {
+        const scrollPos = window.scrollY + 125;
+        let currentId = '';
+        sections.forEach(sec => {
+          if (sec.offsetTop <= scrollPos) {
+            currentId = '#' + sec.id;
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === currentId);
+        });
+      }, { passive: true });
+    }
+
+    // =========================================================================
+    // 9. INITIALIZATION ON DOM LOAD
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      renderRainfallChart('T1_C1');
+      renderRFChart();
+      populateRFTable();
+      populateDeploymentMatrix();
+      initInteractiveTrees();
+      updateTargetingSimulator();
+      initNavigation();
+
+      document.getElementById('rain-cohort-select').addEventListener('change', (e) => {
+        renderRainfallChart(e.target.value);
+      });
+
+      document.getElementById('matrix-zone-filter').addEventListener('change', populateDeploymentMatrix);
+
+      ['sim-aez', 'sim-goal', 'sim-rootrot', 'sim-cover', 'sim-stover'].forEach(id => {
+        document.getElementById(id).addEventListener('change', updateTargetingSimulator);
+      });
+    });
+  </script>
+</body>
+</html>
